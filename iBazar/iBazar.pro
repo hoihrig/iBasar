@@ -4,15 +4,17 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 
 TARGET = iBazar
 TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    databaseconnection.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    databaseconnection.h
 
 FORMS    += mainwindow.ui

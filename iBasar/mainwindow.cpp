@@ -27,7 +27,7 @@ void MainWindow::showSettings()
 
     sett.exec();
 
-//    reconnectDb();
+    reconnectDb();
 }
 
 void MainWindow::reconnectDb()

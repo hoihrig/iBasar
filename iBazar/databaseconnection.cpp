@@ -49,7 +49,19 @@ QString Databaseconnection::getLastError() {
 QSqlQuery* Databaseconnection::query(QString sqlquery)
 {
 // TODO
-return 0;
+    return 0;
+}
+
+void Databaseconnection::readDbSettings(QSettings *settings)
+{
+    if (!settings)
+        return;
+
+    setHostname(settings->value("DbHostname").toString());
+    setDbName(settings->value("DbName").toString());
+    setUsername(settings->value("DbUser").toString());
+    setPassword(settings->value("DbPasswd").toString());
+
 }
 
 void Databaseconnection::setHostname(QString hostname)

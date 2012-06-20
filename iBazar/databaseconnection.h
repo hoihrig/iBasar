@@ -7,6 +7,7 @@
 #include <QtSql/QSqlError>
 #include <QDebug>
 #include <QString>
+#include <QSettings>
 
 class Databaseconnection : public QObject
 {
@@ -30,6 +31,8 @@ public:
     bool isEstablished() { return connection_ok; }
 
     QSqlQuery* query(QString sqlquery);
+
+    void readDbSettings(QSettings *settings);
 
 private:
     QSqlDatabase db;

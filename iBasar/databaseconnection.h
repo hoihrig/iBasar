@@ -7,6 +7,7 @@
 #include <QtSql/QSqlError>
 #include <QDebug>
 #include <QString>
+#include <QStringList>
 #include <QSettings>
 
 class Databaseconnection : public QObject
@@ -21,6 +22,7 @@ public:
     QString getUsername() { return db_username; }
     QString getLastError();
 
+    void query(QString sqlquery, QSqlQuery &results);
     void setHostname(QString hostname);
     void setDbName(QString dbname);
     void setUsername(QString username);
@@ -30,12 +32,9 @@ public:
     void close();
     bool isEstablished() { return connection_ok; }
 
-    QSqlQuery* query(QString sqlquery);
-
     void readDbSettings(QSettings *settings);
 
 private:
-    QSqlDatabase db;
 
     QString db_hostname;
     QString db_name;
@@ -43,7 +42,6 @@ private:
     QString db_password;
     bool connection_ok;
 
-    QSqlQuery* dbquery;
 signals:
 
 public slots:

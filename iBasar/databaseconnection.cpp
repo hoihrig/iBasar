@@ -3,18 +3,16 @@
 Databaseconnection::Databaseconnection(QObject *parent) :
     QObject(parent), db_hostname("localhost"), db_name("ibasar"), db_username("ibasar"), db_password(""), connection_ok(false)
 {
-    dbquery = new QSqlQuery(db);
-    db.addDatabase("QMYSQL");
 }
 
 Databaseconnection::~Databaseconnection()
 {
-    if (dbquery)
-        delete dbquery;
 }
 
 bool Databaseconnection::open()
 {
+    QSqlDatabase db = QSqlDatabase::addDatabase( "QMYSQL" );;
+
     db.setHostName(db_hostname);
     db.setDatabaseName(db_name);
     db.setUserName(db_username);
@@ -32,6 +30,8 @@ bool Databaseconnection::open()
 
 void Databaseconnection::close()
 {
+    QSqlDatabase db;
+
     if (db.isOpen())
     {
         db.close();
@@ -41,15 +41,22 @@ void Databaseconnection::close()
 }
 
 QString Databaseconnection::getLastError() {
+    QSqlDatabase db;
+
     if (db.lastError().isValid())
         return db.lastError().text();
     return QString("No Error occured!");
 }
 
-QSqlQuery* Databaseconnection::query(QString sqlquery)
+void Databaseconnection::query(QString sqlquery, QSqlQuery &results)
 {
-// TODO
-    return 0;
+    if (!sqlquery.isEmpty())
+        return;
+
+    if (!results.exec(sqlquery));
+        qDebug() << results.lastError();
+
+    return;
 }
 
 void Databaseconnection::readDbSettings(QSettings *settings)

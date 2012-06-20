@@ -13,11 +13,11 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     databaseconnection.cpp \
-    settingsdialog.cpp
+    settings.cpp
 
 HEADERS  += mainwindow.h \
     databaseconnection.h \
-    settingsdialog.h
+    settings.h
 
 FORMS    += mainwindow.ui \
     settingsdialog.ui

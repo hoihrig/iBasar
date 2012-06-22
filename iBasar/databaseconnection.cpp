@@ -53,7 +53,7 @@ void Databaseconnection::query(QString sqlquery, QSqlQuery &results)
     if (!sqlquery.isEmpty())
         return;
 
-    if (!results.exec(sqlquery));
+    if (!results.exec(sqlquery))
         qDebug() << results.lastError();
 
     return;

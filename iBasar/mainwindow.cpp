@@ -12,14 +12,46 @@ MainWindow::MainWindow(QWidget *parent) :
 
     db->readDbSettings(settings);
 
+    mwidget = new MainWidget(db);
+    mfake = new fakeUI;
+
+    mwidget->setGeometry(ui->stackedWidget->geometry());
+    ui->stackedWidget->addWidget(mwidget);
+
+    mfake->setGeometry(ui->stackedWidget->geometry());
+    ui->stackedWidget->addWidget(mfake);
+
+
+
     connect(ui->actionAbout_Qt,SIGNAL(triggered()),this,SLOT(aboutQt()));
     connect(ui->actionSettings,SIGNAL(triggered()),this,SLOT(showSettings()));
+    connect(ui->toolBox,SIGNAL(currentChanged(int)),this,SLOT(loadWidget(int)));
+    connect(this,SIGNAL(updateWidgets()),mwidget,SLOT(updateValues()));
 }
 
 MainWindow::~MainWindow()
 {
+    delete db;
+    delete mwidget;
+    delete mfake;
+
     delete ui;
 }
+
+void MainWindow::loadWidget(int index)
+{
+    switch (index)
+    {
+    case 0:
+        emit updateWidgets();
+        break;
+    default:
+        break;
+    }
+
+    ui->stackedWidget->setCurrentIndex(index);
+}
+
 
 void MainWindow::showSettings()
 {
@@ -28,6 +60,7 @@ void MainWindow::showSettings()
     sett.exec();
 
     reconnectDb();
+    emit updateWidgets();
 }
 
 void MainWindow::reconnectDb()

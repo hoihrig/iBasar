@@ -1,7 +1,7 @@
 #ifndef FAKEUI_H
 #define FAKEUI_H
 
-#include <QWidget>
+#include <QtWidgets/QWidget>
 
 namespace Ui {
 class fakeUI;

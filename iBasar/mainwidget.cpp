@@ -28,6 +28,11 @@ void MainWidget::updateDbStatus()
 
 void MainWidget::updateItemStatus()
 {
+    QSqlQuery query;
+
+    data->query("Select COUNT(ID) from `Verkäufer`",query);
+    query.next();
+    ui->buyerslbl->setText(query.value(0).toString());
 
 }
 

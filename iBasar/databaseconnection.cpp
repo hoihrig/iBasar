@@ -50,7 +50,7 @@ QString Databaseconnection::getLastError() {
 
 void Databaseconnection::query(QString sqlquery, QSqlQuery &results)
 {
-    if (!sqlquery.isEmpty())
+    if (sqlquery.isEmpty())
         return;
 
     if (!results.exec(sqlquery))

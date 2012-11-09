@@ -12,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     db->readDbSettings(settings);
 
+    db->open();
+
     mwidget = new MainWidget(db);
     mfake = new fakeUI;
 

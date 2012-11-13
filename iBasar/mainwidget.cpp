@@ -32,7 +32,12 @@ void MainWidget::updateItemStatus()
 
     data->query("Select COUNT(ID) from `Verkäufer`",query);
     query.next();
-    ui->buyerslbl->setText(query.value(0).toString());
+    ui->sellerslbl->setText(query.value(0).toString());
+    query.clear();
+
+    data->query("Select COUNT(ID) from `Veranstaltung`",query);
+    query.next();
+    ui->eventslbl->setText(query.value(0).toString());
 
 }
 

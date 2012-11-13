@@ -7,6 +7,7 @@
 #include "settings.h"
 #include "mainwidget.h"
 #include "fakeui.h"
+#include "eventmgrwidget.h"
 
 namespace Ui {
     class MainWindow;
@@ -40,6 +41,7 @@ private:
 public slots:
     void aboutQt();
     void showSettings();
+    void showEventManagement();
     void loadWidget(int index);
 };
 

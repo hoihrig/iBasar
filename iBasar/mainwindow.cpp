@@ -28,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionAbout_Qt,SIGNAL(triggered()),this,SLOT(aboutQt()));
     connect(ui->actionSettings,SIGNAL(triggered()),this,SLOT(showSettings()));
     connect(ui->toolBox,SIGNAL(currentChanged(int)),this,SLOT(loadWidget(int)));
+    connect(ui->actionEvent_Manager,SIGNAL(triggered()),this,SLOT(showEventManagement()));
     connect(this,SIGNAL(updateWidgets()),mwidget,SLOT(updateValues()));
 }
 
@@ -62,6 +63,15 @@ void MainWindow::showSettings()
     sett.exec();
 
     reconnectDb();
+    emit updateWidgets();
+}
+
+void MainWindow::showEventManagement()
+{
+    EventMgrWidget eventmgmt(db);
+
+    eventmgmt.exec();
+
     emit updateWidgets();
 }
 

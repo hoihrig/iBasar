@@ -142,6 +142,7 @@
     <property name="title">
      <string>Tools</string>
     </property>
+    <addaction name="actionEvent_Manager"/>
     <addaction name="actionSettings"/>
    </widget>
    <widget class="QMenu" name="menuAbout">
@@ -182,6 +183,11 @@
   <action name="actionAbout_Qt">
    <property name="text">
     <string>About Qt</string>
+   </property>
+  </action>
+  <action name="actionEvent_Manager">
+   <property name="text">
+    <string>Event Management</string>
    </property>
   </action>
  </widget>

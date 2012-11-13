@@ -15,16 +15,19 @@ SOURCES += main.cpp\
     databaseconnection.cpp \
     settings.cpp \
     mainwidget.cpp \
-    fakeui.cpp
+    fakeui.cpp \
+    eventmgrwidget.cpp
 
 HEADERS  += mainwindow.h \
     databaseconnection.h \
     settings.h \
     mainwidget.h \
-    fakeui.h
+    fakeui.h \
+    eventmgrwidget.h
 
 FORMS    += \
     settingsdialog.ui \
     mainwindow.ui \
     mainwidget.ui \
-    fakeui.ui
+    fakeui.ui \
+    eventmgrwidget.ui

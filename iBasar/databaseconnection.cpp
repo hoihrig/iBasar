@@ -17,6 +17,7 @@ bool Databaseconnection::open()
     db.setDatabaseName(db_name);
     db.setUserName(db_username);
     db.setPassword(db_password);
+
     connection_ok = db.open();
 
     if (connection_ok)

@@ -28,6 +28,7 @@ USE ibasar;
 DROP TABLE IF EXISTS `ibasar`.`Artikel`;
 CREATE TABLE  `ibasar`.`Artikel` (
   `ID` int(10) unsigned NOT NULL,
+  `Verkäufer` int(10) unsigned NOT NULL,
   `Size` varchar(10) NOT NULL,
   `Hersteller` int(10) unsigned NOT NULL,
   `Beschreibung` int(10) unsigned NOT NULL,

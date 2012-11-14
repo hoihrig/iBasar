@@ -2,6 +2,7 @@
 #define SELLER_H
 
 #include <QString>
+#include "databaseconnection.h"
 
 class Seller
 {
@@ -16,14 +17,19 @@ public:
     QString getEmail();
     QString getPhone();
     QString getEvent();
+    bool isComplete();
 
     bool setName(QString name);
     bool setSurname(QString surname);
+    bool setAddress(QString address);
+    bool setCity(QString city);
+    bool setPlz(QString plz);
+    bool setEmail(QString email);
+    bool setPhone(QString phone);
     bool setEvent(QString eventname);
 
-public slots:
-    bool findSeller();
-    bool createSeller();
+    bool findSeller(Databaseconnection *data);
+    bool createSeller(Databaseconnection *data);
 
 private:
     int mID;
@@ -35,6 +41,8 @@ private:
     QString mEmail;
     QString mPhone;
     QString mEvent;
+
+    QString findEvent(Databaseconnection *data, QString eventid);
 
 };
 

@@ -56,6 +56,32 @@ QStringList SellerRegistrationWidget::findEvents(Databaseconnection *db)
 
 void SellerRegistrationWidget::updateSellerFields()
 {
+    if (!regseller->getName().isEmpty())
+        ui->nameedit->setText(regseller->getName());
+
+    if (!regseller->getSurname().isEmpty())
+        ui->surnameedit->setText(regseller->getSurname());
+
+    if (!regseller->getAddress().isEmpty())
+        ui->addressedit->setText(regseller->getAddress());
+
+    if (!regseller->getCity().isEmpty())
+        ui->cityedit->setText(regseller->getCity());
+
+    if (!regseller->getPlz().isEmpty())
+        ui->plzedit->setText(regseller->getPlz());
+
+    if (!regseller->getEmail().isEmpty())
+        ui->emailedit->setText(regseller->getEmail());
+
+    if (!regseller->getPhone().isEmpty())
+        ui->phoneedit->setText(regseller->getPhone());
+
+    if (!regseller->getEvent().isEmpty())
+        ui->eventComboBox->setCurrentText(regseller->getEvent());
+
+    if (regseller->isComplete())
+        ui->tableWidget->setEnabled(true);
 
 }
 
@@ -70,7 +96,10 @@ void SellerRegistrationWidget::searchSeller()
     regseller->setName(ui->nameedit->text());
     regseller->setSurname(ui->surnameedit->text());
 
-    regseller->findSeller(data);
+    if (!regseller->findSeller(data))
+        QMessageBox::critical(this,tr("Seller Registration"),tr("Could not find a Seller with that Name!"));
+
+    updateSellerFields();
 
 }
 
@@ -84,7 +113,7 @@ void SellerRegistrationWidget::createSeller()
          (ui->emailedit->text().isEmpty()) ||
          (ui->phoneedit->text().isEmpty()) )
     {
-        QMessageBox::Critical(this,tr("Seller Registration"),tr("One of the required Fields to create a Seller is missing. Cannot create Seller!"));
+        QMessageBox::critical(this,tr("Seller Registration"),tr("One of the required Fields to create a Seller is missing. Cannot create Seller!"));
         return;
     }
 
@@ -99,4 +128,5 @@ void SellerRegistrationWidget::createSeller()
 
     regseller->createSeller(data);
 
+    updateSellerFields();
 }

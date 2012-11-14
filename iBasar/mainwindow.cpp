@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     mwidget = new MainWidget(db);
     mfake = new fakeUI;
-    msellerwidget = new SellerRegistrationWidget;
+    msellerwidget = new SellerRegistrationWidget(db);
 
     mwidget->setGeometry(ui->stackedWidget->geometry());
     ui->stackedWidget->addWidget(mwidget);

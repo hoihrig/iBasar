@@ -2,10 +2,7 @@
 #define EVENTMGRWIDGET_H
 
 #include <QDialog>
-<<<<<<< HEAD
 #include <QtWidgets/QMessageBox>
-=======
->>>>>>> HEAD@{6}
 #include "databaseconnection.h"
 
 namespace Ui {
@@ -25,11 +22,7 @@ private:
     Databaseconnection *db;
 
 private slots:
-<<<<<<< HEAD
     void createEventManagerWidget();
-=======
-    void createEvent();
->>>>>>> HEAD@{6}
 };
 
 #endif // EVENTMGRWIDGET_H

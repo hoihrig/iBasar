@@ -8,6 +8,7 @@
 #include "mainwidget.h"
 #include "fakeui.h"
 #include "eventmgrwidget.h"
+#include "sellerregistrationwidget.h"
 
 namespace Ui {
     class MainWindow;
@@ -36,6 +37,7 @@ private:
     // Here are all the Widgets loaded by the StackedWidget
     MainWidget *mwidget;
     fakeUI *mfake;
+    SellerRegistrationWidget *msellerwidget;
 
 
 public slots:

@@ -16,12 +16,16 @@ MainWindow::MainWindow(QWidget *parent) :
 
     mwidget = new MainWidget(db);
     mfake = new fakeUI;
+    msellerwidget = new SellerRegistrationWidget;
 
     mwidget->setGeometry(ui->stackedWidget->geometry());
     ui->stackedWidget->addWidget(mwidget);
 
     mfake->setGeometry(ui->stackedWidget->geometry());
     ui->stackedWidget->addWidget(mfake);
+
+    msellerwidget->setGeometry(ui->stackedWidget->geometry());
+    ui->stackedWidget->addWidget(msellerwidget);
 
 
 
@@ -37,6 +41,7 @@ MainWindow::~MainWindow()
     delete db;
     delete mwidget;
     delete mfake;
+    delete msellerwidget;
 
     delete ui;
 }

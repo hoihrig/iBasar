@@ -6,23 +6,35 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>960</width>
-    <height>710</height>
+    <width>1129</width>
+    <height>772</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>iBazar</string>
   </property>
   <widget class="QWidget" name="centralWidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
    <property name="autoFillBackground">
     <bool>true</bool>
    </property>
    <widget class="QToolBox" name="toolBox">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>20</x>
       <y>14</y>
-      <width>71</width>
+      <width>111</width>
       <height>451</height>
      </rect>
     </property>
@@ -33,15 +45,15 @@
      <number>0</number>
     </property>
     <property name="tabSpacing">
-     <number>6</number>
+     <number>7</number>
     </property>
     <widget class="QWidget" name="page_3">
      <property name="geometry">
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>69</width>
-       <height>359</height>
+       <width>109</width>
+       <height>325</height>
       </rect>
      </property>
      <attribute name="label">
@@ -53,12 +65,17 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>69</width>
-       <height>359</height>
+       <width>109</width>
+       <height>325</height>
       </rect>
      </property>
      <attribute name="label">
       <string>FakeUI</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="page_6">
+     <attribute name="label">
+      <string>Register Seller</string>
      </attribute>
     </widget>
     <widget class="QWidget" name="page_4">
@@ -66,8 +83,8 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>69</width>
-       <height>359</height>
+       <width>109</width>
+       <height>325</height>
       </rect>
      </property>
      <attribute name="label">
@@ -78,32 +95,41 @@
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>150</x>
       <y>10</y>
-      <width>821</width>
-      <height>631</height>
+      <width>951</width>
+      <height>681</height>
      </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
     </property>
     <property name="autoFillBackground">
      <bool>true</bool>
     </property>
     <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
+     <enum>QFrame::NoFrame</enum>
     </property>
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
+    <property name="lineWidth">
+     <number>0</number>
+    </property>
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>9</x>
        <y>10</y>
-       <width>800</width>
-       <height>600</height>
+       <width>941</width>
+       <height>661</height>
       </rect>
      </property>
      <property name="sizePolicy">
-      <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
        <horstretch>1</horstretch>
        <verstretch>1</verstretch>
       </sizepolicy>
@@ -128,7 +154,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>960</width>
+     <width>1129</width>
      <height>26</height>
     </rect>
    </property>

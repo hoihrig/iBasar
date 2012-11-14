@@ -9,16 +9,22 @@ EventMgrWidget::EventMgrWidget(Databaseconnection *data, QWidget *parent) :
 
     db = data;
 
-    connect(ui->buttonBox,SIGNAL(accepted()),this,SLOT(createEvent()));
+    connect(ui->buttonBox,SIGNAL(accepted()),this,SLOT(createEventManagerWidget()));
 }
 
-void EventMgrWidget::createEvent()
+void EventMgrWidget::createEventManagerWidget()
 {
     if (ui->eventnameedit->text().isEmpty())
+    {
+        QMessageBox::critical(this,QString("iBasar Event Management"),tr("No Event name given. Cannot create Event!"));
         return;
+    }
 
     if (!db->isEstablished())
+    {
+        QMessageBox::critical(this,QString("iBasar Event Management"),tr("No Connection to Database! Cannot create Event!"));
         return;
+    }
 
     QSqlQuery result;
     QString querycmd;

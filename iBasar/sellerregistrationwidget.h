@@ -2,7 +2,9 @@
 #define SELLERREGISTRATIONWIDGET_H
 
 #include <QWidget>
+#include <QMessageBox>
 #include "databaseconnection.h"
+#include "seller.h"
 
 namespace Ui {
 class SellerRegistrationWidget;
@@ -19,8 +21,14 @@ public:
 private:
     Ui::SellerRegistrationWidget *ui;
     Databaseconnection *data;
+    Seller *regseller;
 
     QStringList findEvents(Databaseconnection *db);
+
+private slots:
+    void updateSellerFields();
+    void searchSeller();
+    void createSeller();
 };
 
 #endif // SELLERREGISTRATIONWIDGET_H

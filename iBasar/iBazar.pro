@@ -18,7 +18,8 @@ SOURCES += main.cpp\
     fakeui.cpp \
     eventmgrwidget.cpp \
     sellerregistrationwidget.cpp \
-    seller.cpp
+    seller.cpp \
+    salesitem.cpp
 
 HEADERS  += mainwindow.h \
     databaseconnection.h \
@@ -27,7 +28,8 @@ HEADERS  += mainwindow.h \
     fakeui.h \
     eventmgrwidget.h \
     sellerregistrationwidget.h \
-    seller.h
+    seller.h \
+    salesitem.h
 
 FORMS    += \
     settingsdialog.ui \

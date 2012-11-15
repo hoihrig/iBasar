@@ -29,6 +29,9 @@ private slots:
     void updateSellerFields();
     void searchSeller();
     void createSeller();
+    void addRow();
+    void deleteRow();
+    void saveTabletoDB();
 };
 
 #endif // SELLERREGISTRATIONWIDGET_H

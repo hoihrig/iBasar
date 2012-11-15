@@ -18,13 +18,19 @@ SellerRegistrationWidget::SellerRegistrationWidget(Databaseconnection *db, QWidg
 
     ui->setupUi(this);
 
+    // Setup the Table Widget
     ui->tableWidget->setHorizontalHeaderLabels(headerlist);
     ui->tableWidget->setColumnWidth(2,250);
+    for (int i=0; i<5; i++)
+        addRow();
 
     ui->eventComboBox->addItems(findEvents(db));
 
     connect(ui->sellersearchbtn,SIGNAL(clicked()),this,SLOT(searchSeller()));
     connect(ui->selleraddbtn,SIGNAL(clicked()),this,SLOT(createSeller()));
+    connect(ui->addRowbtn,SIGNAL(clicked()),this,SLOT(addRow()));
+    connect(ui->delRowbtn,SIGNAL(clicked()),this,SLOT(deleteRow()));
+    connect(ui->savetblbtn,SIGNAL(clicked()),this,SLOT(saveTabletoDB()));
 }
 
 SellerRegistrationWidget::~SellerRegistrationWidget()
@@ -127,4 +133,39 @@ void SellerRegistrationWidget::createSeller()
     regseller->createSeller(data);
 
     updateSellerFields();
+}
+
+void SellerRegistrationWidget::addRow()
+{
+    int row = ui->tableWidget->rowCount();
+
+    ui->tableWidget->insertRow(row);
+
+    QTableWidgetItem *item0 = new QTableWidgetItem;
+    item0->setFlags(item0->flags() ^ Qt::ItemIsEditable);
+    ui->tableWidget->setItem(row, 0, item0);
+
+    QTableWidgetItem *item1 = new QTableWidgetItem;
+    ui->tableWidget->setItem(row, 1, item1);
+
+    QTableWidgetItem *item2 = new QTableWidgetItem;
+    ui->tableWidget->setItem(row, 2, item2);
+
+    QTableWidgetItem *item3 = new QTableWidgetItem;
+    ui->tableWidget->setItem(row, 3, item3);
+
+    QTableWidgetItem *item4 = new QTableWidgetItem;
+    ui->tableWidget->setItem(row, 4, item4);
+}
+
+void SellerRegistrationWidget::deleteRow()
+{
+    int row = ui->tableWidget->currentRow();
+
+    ui->tableWidget->removeRow(row);
+}
+
+void SellerRegistrationWidget::saveTabletoDB()
+{
+
 }

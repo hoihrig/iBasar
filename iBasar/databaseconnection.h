@@ -9,6 +9,7 @@
 #include <QString>
 #include <QStringList>
 #include <QSettings>
+#include <QMessageBox>
 
 class Databaseconnection : public QObject
 {
@@ -34,6 +35,10 @@ public:
 
     void readDbSettings(QSettings *settings);
 
+
+signals:
+    void db_error(QString error_msg, QString error_src);
+
 private:
 
     QString db_hostname;
@@ -42,7 +47,6 @@ private:
     QString db_password;
     bool connection_ok;
 
-signals:
 
 public slots:
 

@@ -45,6 +45,7 @@ public slots:
     void showSettings();
     void showEventManagement();
     void loadWidget(int index);
+    void errorhandling(QString error_msg, QString error_src);
 };
 
 #endif // MAINWINDOW_H

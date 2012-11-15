@@ -15,8 +15,6 @@ SellerRegistrationWidget::SellerRegistrationWidget(Databaseconnection *db, QWidg
     headerlist.append("Beschreibung");
     headerlist.append("Size");
     headerlist.append("Preis");
-    headerlist.append("Aktiv");
-    headerlist.append("Verkauft");
 
     ui->setupUi(this);
 

@@ -176,7 +176,7 @@ QString Seller::findEvent(Databaseconnection *data, QString eventid)
     QSqlQuery result;
     QString querycmd;
 
-    querycmd = "SELECT Name FROM `Veranstaltung` WHERE ID=" + eventid.toInt();
+    querycmd = "SELECT Name FROM `Veranstaltung` WHERE ID=" + eventid;
 
     data->query(querycmd,result);
 

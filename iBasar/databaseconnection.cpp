@@ -51,9 +51,11 @@ QString Databaseconnection::getLastError() {
 
 void Databaseconnection::query(QString sqlquery, QSqlQuery &results)
 {
-    if (sqlquery.isEmpty())
+    if ((sqlquery.isEmpty()) || (!isEstablished()))
+    {
+        emit db_error(tr("Connection to DB not established"), tr("DatabaseConnection"));
         return;
-
+    }
     if (!results.exec(sqlquery))
         qDebug() << results.lastError();
 

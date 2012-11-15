@@ -25,7 +25,7 @@
    <property name="title">
     <string>Verkaeufer</string>
    </property>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -242,13 +242,13 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>730</x>
       <y>30</y>
       <width>101</width>
-      <height>111</height>
+      <height>114</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -301,7 +301,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>400</x>
@@ -535,7 +535,7 @@
      <number>16</number>
     </property>
     <property name="columnCount">
-     <number>7</number>
+     <number>5</number>
     </property>
     <row/>
     <row/>
@@ -558,40 +558,8 @@
     <column/>
     <column/>
     <column/>
-    <column/>
-    <column/>
    </widget>
   </widget>
-  <zorder>namelbl</zorder>
-  <zorder>surnamelbl</zorder>
-  <zorder>addresslbl</zorder>
-  <zorder>plzlbl</zorder>
-  <zorder>citylbl</zorder>
-  <zorder>phonelbl</zorder>
-  <zorder>emaillbl</zorder>
-  <zorder></zorder>
-  <zorder>nameedit</zorder>
-  <zorder>surnameedit</zorder>
-  <zorder>addressedit</zorder>
-  <zorder>emailedit</zorder>
-  <zorder>plzedit</zorder>
-  <zorder>cityedit</zorder>
-  <zorder>phoneedit</zorder>
-  <zorder>horizontalSpacer</zorder>
-  <zorder>horizontalSpacer_2</zorder>
-  <zorder>horizontalSpacer_3</zorder>
-  <zorder>horizontalSpacer_4</zorder>
-  <zorder>verticalSpacer</zorder>
-  <zorder>addressedit</zorder>
-  <zorder>verticalSpacer_2</zorder>
-  <zorder>verticalSpacer_3</zorder>
-  <zorder>horizontalSpacer_5</zorder>
-  <zorder>horizontalSpacer_6</zorder>
-  <zorder>horizontalSpacer_7</zorder>
-  <zorder>verticalSpacer_4</zorder>
-  <zorder>verticalSpacer_5</zorder>
-  <zorder>sellergroupbox</zorder>
-  <zorder>itemgroupbox</zorder>
  </widget>
  <resources/>
  <connections>

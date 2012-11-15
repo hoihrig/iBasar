@@ -34,6 +34,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->toolBox,SIGNAL(currentChanged(int)),this,SLOT(loadWidget(int)));
     connect(ui->actionEvent_Manager,SIGNAL(triggered()),this,SLOT(showEventManagement()));
     connect(this,SIGNAL(updateWidgets()),mwidget,SLOT(updateValues()));
+    connect(db,SIGNAL(db_error(QString,QString)),this,SLOT(errorhandling(QString,QString)));
 }
 
 MainWindow::~MainWindow()
@@ -106,6 +107,11 @@ void MainWindow::connectDb()
     {
         qWarning("Database Object does not exist yet!");
     }
+}
+
+void MainWindow::errorhandling(QString error_msg, QString error_src)
+{
+    QMessageBox::critical(this, error_src, error_msg);
 }
 
 void MainWindow::aboutQt()

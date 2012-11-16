@@ -9,20 +9,10 @@ SellerRegistrationWidget::SellerRegistrationWidget(Databaseconnection *db, QWidg
 
     regseller = new Seller;
 
-    QStringList headerlist;
-    headerlist.append("ID");
-    headerlist.append("Hersteller");
-    headerlist.append("Beschreibung");
-    headerlist.append("Size");
-    headerlist.append("Preis");
-
     ui->setupUi(this);
 
     // Setup the Table Widget
-    ui->tableWidget->setHorizontalHeaderLabels(headerlist);
-    ui->tableWidget->setColumnWidth(2,250);
-    for (int i=0; i<5; i++)
-        addRow();
+    addRow();
 
     ui->eventComboBox->addItems(findEvents(db));
 
@@ -105,6 +95,42 @@ void SellerRegistrationWidget::searchSeller()
 
     updateSellerFields();
 
+    //delete all rows that are now visible in Table
+    for (int i=0; i < ui->tableWidget->rowCount();i++)
+        ui->tableWidget->removeRow(i);
+
+    //Now fill the TableWidget with all Items from Seller
+    loadSalesItems();
+
+}
+
+bool SellerRegistrationWidget::loadSalesItems()
+{
+    int numberOfItems = 0;
+    QList<int> salesItemList;
+
+    salesItemList = regseller->getSalesItemIDs(data);
+    numberOfItems = salesItemList.count();
+
+    for (int i=0; i<numberOfItems; i++)
+    {
+        SalesItem item;
+        if (item.loadItem(data, salesItemList.value(i)))
+        {
+            // Create a Row for each Item and load values of SalesItem
+            addRow();
+
+            int row = ui->tableWidget->rowCount() - 1;
+
+            ui->tableWidget->item(row,0)->setText(QString::number(item.getID()));
+            ui->tableWidget->item(row,1)->setText(item.getManufacturer());
+            ui->tableWidget->item(row,2)->setText(item.getDescription());
+            ui->tableWidget->item(row,3)->setText(item.getItemSize());
+            ui->tableWidget->item(row,4)->setText(item.getPrice());
+        }
+    }
+
+    return true;
 }
 
 void SellerRegistrationWidget::createSeller()
@@ -133,10 +159,28 @@ void SellerRegistrationWidget::createSeller()
     regseller->createSeller(data);
 
     updateSellerFields();
+
+    //delete all rows that are now visible in Table
+    for (int i=0; i < ui->tableWidget->rowCount();i++)
+        ui->tableWidget->removeRow(i);
+    // Create 4 Rows in Table for new items
+    ui->tableWidget->clear();
+    for (int i=0; i<4; i++)
+        addRow();
 }
 
 void SellerRegistrationWidget::addRow()
 {
+    QStringList headerlist;
+    headerlist.append("ID");
+    headerlist.append("Hersteller");
+    headerlist.append("Beschreibung");
+    headerlist.append("Size");
+    headerlist.append("Preis");
+
+    ui->tableWidget->setHorizontalHeaderLabels(headerlist);
+    ui->tableWidget->setColumnWidth(2,250);
+
     int row = ui->tableWidget->rowCount();
 
     ui->tableWidget->insertRow(row);
@@ -167,5 +211,30 @@ void SellerRegistrationWidget::deleteRow()
 
 void SellerRegistrationWidget::saveTabletoDB()
 {
+
+    for (int i=0; i<(ui->tableWidget->rowCount());i++)
+    {
+        // Checking if there is a Manufacturer present. If yes, process row, else ignore
+        if (!ui->tableWidget->item(i,1)->text().isEmpty())
+        {
+            SalesItem sitem;
+
+            sitem.setSellerID(regseller->getID());
+            sitem.setManufacturer(ui->tableWidget->item(i,1)->text());
+            sitem.setDescription(ui->tableWidget->item(i,2)->text());
+            sitem.setItemSize(ui->tableWidget->item(i,3)->text());
+            sitem.setPrice(ui->tableWidget->item(i,4)->text());
+
+            if (!sitem.saveItem(data))
+            {
+                QMessageBox::critical(this,tr("Seller Registration"), tr("Could not save Dataset to Database, because of missing field!"));
+                return;
+            }
+
+            ui->tableWidget->item(i,0)->setText(QString::number(sitem.getID()));
+
+        }
+
+    }
 
 }

@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include "databaseconnection.h"
 #include "seller.h"
+#include "salesitem.h"
 
 namespace Ui {
 class SellerRegistrationWidget;
@@ -24,6 +25,7 @@ private:
     Seller *regseller;
 
     QStringList findEvents(Databaseconnection *db);
+    bool loadSalesItems();
 
 private slots:
     void updateSellerFields();

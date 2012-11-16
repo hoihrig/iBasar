@@ -10,7 +10,6 @@ class SalesItem : public QObject
 public:
     explicit SalesItem(QObject *parent = 0);
     int getID() { return mID; }
-    QString getID() { return QString::number(mID); }
     QString getManufacturer() { return mManufacturer; }
     QString getDescription() { return mDescription; }
     QString getItemSize() { return mItemSize; }
@@ -25,6 +24,7 @@ public:
 signals:
     
 public slots:
+    bool loadItem(Databaseconnection *data, int itemID);
     bool saveItem(Databaseconnection *data);
 
 private:

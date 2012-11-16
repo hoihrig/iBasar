@@ -30,6 +30,8 @@ public:
 
     bool findSeller(Databaseconnection *data);
     bool createSeller(Databaseconnection *data);
+    int getNumberofSalesItems(Databaseconnection *data);
+    QList<int> getSalesItemIDs(Databaseconnection *data);
 
 private:
     int mID;

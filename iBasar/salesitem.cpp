@@ -63,6 +63,33 @@ bool SalesItem::isComplete()
     return false;
 }
 
+bool SalesItem::loadItem(Databaseconnection *data, int itemID)
+{
+    QSqlQuery result;
+    QString querycmd;
+    mID = itemID;
+
+    querycmd = "SELECT a.ID, a.Verkäufer, a.Size, b.Hersteller, c.Beschreibung, a.Preis FROM `artikel` a, `Hersteller` b, `Artikelbezeichnung` c WHERE a.ID=" +
+            QString::number(mID) + " AND " +
+            "a.Hersteller = b.ID AND " +
+            "a.Beschreibung = c.ID";
+
+    data->query(querycmd,result);
+
+    if (!(result.numRowsAffected() > 0))
+        return false;
+
+    result.next();
+
+    mSellerID = result.value(1).toInt();
+    mItemSize = result.value(2).toString();
+    mManufacturer = result.value(3).toString();
+    mDescription = result.value(4).toString();
+    mPrice = result.value(5).toString();
+
+    return true;
+}
+
 bool SalesItem::saveItem(Databaseconnection *data)
 {
     if (!isComplete())
@@ -137,7 +164,7 @@ int SalesItem::saveManufacturer(Databaseconnection *data)
         // Insert the Manufacturer Name with determined ID
         querycmd = "INSERT INTO `Hersteller` (ID, Hersteller) VALUES (" +
                 QString::number(manufacturerID) + "," +
-                "'" + mManufacturer + "'";
+                "'" + mManufacturer + "')";
         data->query(querycmd,result);
 
 
@@ -179,7 +206,7 @@ int SalesItem::saveDescription(Databaseconnection *data)
         // Insert the Manufacturer Name with determined ID
         querycmd = "INSERT INTO `Artikelbezeichnung` (ID, Beschreibung) VALUES (" +
                 QString::number(descriptionID) + "," +
-                "'" + mDescription + "'";
+                "'" + mDescription + "')";
         data->query(querycmd,result);
 
 

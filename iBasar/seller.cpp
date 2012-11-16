@@ -191,14 +191,13 @@ bool Seller::createSeller(Databaseconnection *data)
 {
     QSqlQuery result;
     QString querycmd;
-    int rowid = 0;
     int eventid = 0;
 
     querycmd = "SELECT MAX(ID) FROM `Verkäufer`";
     data->query(querycmd,result);
 
     result.next();
-    rowid = result.value(0).toInt() + 1;
+    mID = result.value(0).toInt() + 1;
     result.clear();
 
     querycmd = "SELECT ID FROM `Veranstaltung` WHERE Name='" + mEvent + "'";
@@ -209,7 +208,7 @@ bool Seller::createSeller(Databaseconnection *data)
     result.clear();
 
     querycmd = "INSERT INTO `Verkäufer` (ID, Vorname, Nachname, Straße, PLZ, Ort, Telefon, Email, Veranstaltung) VALUES (" +
-            QString::number(rowid) + ", " +
+            QString::number(mID) + ", " +
             "'" + mName + "', " +
             "'" + mSurname + "', " +
             "'" + mAddress + "', " +
@@ -221,6 +220,41 @@ bool Seller::createSeller(Databaseconnection *data)
 
     data->query(querycmd,result);
 
+    if (result.numRowsAffected() > 0)
+        return true;
 
     return false;
+}
+
+int Seller::getNumberofSalesItems(Databaseconnection *data)
+{
+    QSqlQuery result;
+    QString querycmd;
+
+    querycmd = "SELECT COUNT(ID) from `Artikel` WHERE Verkäufer=" + QString::number(mID);
+
+    data->query(querycmd, result);
+
+    if (result.next())
+        return result.value(0).toInt();
+
+    return 0;
+}
+
+QList<int> Seller::getSalesItemIDs(Databaseconnection *data)
+{
+    QSqlQuery result;
+    QString querycmd;
+    QList<int> IDList;
+
+    querycmd = "SELECT ID from `Artikel` WHERE Verkäufer=" + QString::number(mID);
+
+    data->query(querycmd, result);
+
+    while(result.next())
+    {
+        IDList << result.value(0).toInt();
+    }
+
+    return IDList;
 }

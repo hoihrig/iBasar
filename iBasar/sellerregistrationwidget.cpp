@@ -91,12 +91,15 @@ void SellerRegistrationWidget::searchSeller()
     regseller->setSurname(ui->surnameedit->text());
 
     if (!regseller->findSeller(data))
+    {
         QMessageBox::critical(this,tr("Seller Registration"),tr("Could not find a Seller with that Name!"));
+        return;
+    }
 
     updateSellerFields();
 
     //delete all rows that are now visible in Table
-    for (int i=0; i < ui->tableWidget->rowCount();i++)
+    for (int i=ui->tableWidget->rowCount() - 1; i >= 0; --i)
         ui->tableWidget->removeRow(i);
 
     //Now fill the TableWidget with all Items from Seller

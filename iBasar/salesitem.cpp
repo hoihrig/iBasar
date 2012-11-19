@@ -5,6 +5,13 @@ SalesItem::SalesItem(QObject *parent) :
 {
 }
 
+bool SalesItem::setID(QString itemid)
+{
+    mID = itemid.toInt();
+
+    return true;
+}
+
 bool SalesItem::setSellerID(int sellerid)
 {
     if (sellerid == 0)
@@ -90,11 +97,99 @@ bool SalesItem::loadItem(Databaseconnection *data, int itemID)
     return true;
 }
 
+
 bool SalesItem::saveItem(Databaseconnection *data)
 {
     if (!isComplete())
         return false;
 
+    // Decide if we have a new dataset or a merge
+    if (mID != 0)
+    {
+        // SalesItem already exists in DB with that given mID and all field identical
+        if (existsInDb(data))
+            return true;
+        else //SalesItem ID exists, but some fields differ. Update needed!
+            return updateItem(data);
+    }
+    else
+    {
+        return saveNewItem(data);
+    }
+
+}
+
+bool SalesItem::existsInDb(Databaseconnection *data)
+{
+    // Store Manufacturer Name in Database and get ID back
+    int manufacturerID;
+    manufacturerID = saveManufacturer(data);
+
+    // Store Item Description in Database and get ID back
+    int descriptionID;
+    descriptionID = saveDescription(data);
+
+    if ( (descriptionID == 0) ||
+         (manufacturerID == 0) )
+        return false;
+
+    QSqlQuery result;
+    QString querycmd;
+
+    querycmd = "SELECT COUNT(ID) FROM `Artikel` WHERE ID=" +
+            QString::number(mID) + " AND Verkäufer=" +
+            QString::number(mSellerID) + " AND Size='" +
+            mItemSize + "' AND Hersteller=" +
+            QString::number(manufacturerID) + " AND Beschreibung=" +
+            QString::number(descriptionID) + " AND Preis='" +
+            mPrice + "'";
+
+    data->query(querycmd,result);
+
+    result.next();
+
+    if (result.value(0).toInt() > 0)
+        return true;
+
+    return false;
+
+}
+
+bool SalesItem::updateItem(Databaseconnection *data)
+{
+    // Store Manufacturer Name in Database and get ID back
+    int manufacturerID;
+    manufacturerID = saveManufacturer(data);
+
+    // Store Item Description in Database and get ID back
+    int descriptionID;
+    descriptionID = saveDescription(data);
+
+    if ( (descriptionID == 0) ||
+         (manufacturerID == 0) )
+        return false;
+
+    QSqlQuery result;
+    QString querycmd;
+
+    querycmd = "UPDATE `Artikel` SET  Verkäufer=" +
+            QString::number(mSellerID) + ", Size='" +
+            mItemSize + "', Hersteller=" +
+            QString::number(manufacturerID) + ", Beschreibung=" +
+            QString::number(descriptionID) + ", Preis='" +
+            mPrice + "' WHERE ID=" +
+            QString::number(mID);
+
+    data->query(querycmd,result);
+
+    return true;
+
+
+
+}
+
+bool SalesItem::saveNewItem(Databaseconnection *data)
+{
     // Store Manufacturer Name in Database and get ID back
     int manufacturerID;
     manufacturerID = saveManufacturer(data);

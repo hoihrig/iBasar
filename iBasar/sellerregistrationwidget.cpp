@@ -222,6 +222,7 @@ void SellerRegistrationWidget::saveTabletoDB()
         {
             SalesItem sitem;
 
+            sitem.setID(ui->tableWidget->item(i,0)->text());
             sitem.setSellerID(regseller->getID());
             sitem.setManufacturer(ui->tableWidget->item(i,1)->text());
             sitem.setDescription(ui->tableWidget->item(i,2)->text());

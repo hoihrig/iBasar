@@ -14,12 +14,14 @@ public:
     QString getDescription() { return mDescription; }
     QString getItemSize() { return mItemSize; }
     QString getPrice() { return mPrice; }
+    bool setID(QString itemid);
     bool setSellerID(int sellerid);
     bool setManufacturer(QString manufacturer);
     bool setDescription(QString description);
     bool setItemSize(QString itemsize);
     bool setPrice(QString price);
     bool isComplete();
+
 
 signals:
     
@@ -37,6 +39,9 @@ private:
 
     int saveManufacturer(Databaseconnection *data);
     int saveDescription(Databaseconnection *data);
+    bool saveNewItem(Databaseconnection *data);
+    bool updateItem(Databaseconnection *data);
+    bool existsInDb(Databaseconnection *data);
     
 };
 

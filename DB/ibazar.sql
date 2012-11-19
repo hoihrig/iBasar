@@ -32,7 +32,7 @@ CREATE TABLE  `ibasar`.`Artikel` (
   `Size` varchar(10) NOT NULL,
   `Hersteller` int(10) unsigned NOT NULL,
   `Beschreibung` int(10) unsigned NOT NULL,
-  `Preis` decimal(4,2) unsigned NOT NULL,
+  `Preis` decimal(6,2) unsigned NOT NULL,
   `Aktiv` tinyint(1) NOT NULL,
   `Verkauft` tinyint(1) NOT NULL,
   PRIMARY KEY (`ID`)

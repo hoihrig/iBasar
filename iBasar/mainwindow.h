@@ -6,7 +6,6 @@
 #include "databaseconnection.h"
 #include "settings.h"
 #include "mainwidget.h"
-#include "fakeui.h"
 #include "eventmgrwidget.h"
 #include "sellerregistrationwidget.h"
 
@@ -36,7 +35,6 @@ private:
 
     // Here are all the Widgets loaded by the StackedWidget
     MainWidget *mwidget;
-    fakeUI *mfake;
     SellerRegistrationWidget *msellerwidget;
 
 

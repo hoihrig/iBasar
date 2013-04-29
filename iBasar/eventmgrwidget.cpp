@@ -15,6 +15,7 @@
 #   If not, see http://www.gnu.org/licenses/.                                                   #
 #################################################################################################
 */
+
 #include "eventmgrwidget.h"
 #include "ui_eventmgrwidget.h"
 

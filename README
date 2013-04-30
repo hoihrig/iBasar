@@ -1,1 +1,5 @@
 This is the Repository for the iBazar Project
+
+
+If there are any problems with getting MySQL to find the plugin, there is a good guide here:
+http://seppemagiels.com/blog/create-mysql-driver-qt5-windows

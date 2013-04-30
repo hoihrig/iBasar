@@ -9,6 +9,20 @@ QT       += core gui sql widgets
 TARGET = iBazar
 TEMPLATE = app
 
+CONFIG(release, debug|release): DESTDIR = $$OUT_PWD/release
+CONFIG(debug, debug|release): DESTDIR = $$OUT_PWD/debug
+
+qtlibs.path = $$DESTDIR
+qtlibs.files =  $$[QT_INSTALL_BINS]/*.dll
+qtlibs.CONFIG = no_check_exist
+
+drivers.path = $$DESTDIR/plugins/sqldrivers
+drivers.files += sqldrivers/*.dll
+
+INSTALLS += drivers qtlibs
+
+
+win32: QMAKE_POST_LINK = copy $${QMAKE_LIBDIR_QT}\Qt*.dll ..\bin
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -35,3 +49,9 @@ FORMS    += \
     mainwidget.ui \
     eventmgrwidget.ui \
     sellerregistrationwidget.ui
+
+
+
+win32: LIBS += -lQt5Widgetsd
+
+win32: LIBS += -lqsqlmysqld

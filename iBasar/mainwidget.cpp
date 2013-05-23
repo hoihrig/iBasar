@@ -48,6 +48,11 @@ void MainWidget::updateItemStatus()
 {
     QSqlQuery query;
 
+    data->query("Select COUNT(ID) from `Artikel`",query);
+    query.next();
+    ui->itemslbl->setText(query.value(0).toString());
+    query.clear();
+
     data->query("Select COUNT(ID) from `Verkäufer`",query);
     query.next();
     ui->sellerslbl->setText(query.value(0).toString());

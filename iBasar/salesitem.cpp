@@ -94,7 +94,7 @@ bool SalesItem::loadItem(Databaseconnection *data, int itemID)
     QString querycmd;
     mID = itemID;
 
-    querycmd = "SELECT a.ID, a.Verkäufer, a.Size, b.Hersteller, c.Beschreibung, a.Preis FROM `artikel` a, `Hersteller` b, `Artikelbezeichnung` c WHERE a.ID=" +
+    querycmd = "SELECT a.ID, a.Verkäufer, a.Size, b.Hersteller, c.Beschreibung, a.Preis FROM `Artikel` a, `Hersteller` b, `Artikelbezeichnung` c WHERE a.ID=" +
             QString::number(mID) + " AND " +
             "a.Hersteller = b.ID AND " +
             "a.Beschreibung = c.ID";

@@ -17,12 +17,10 @@ qtlibs.files =  $$[QT_INSTALL_BINS]/*.dll
 qtlibs.CONFIG = no_check_exist
 
 drivers.path = $$DESTDIR/plugins/sqldrivers
-drivers.files += sqldrivers/*.dll
+drivers.files += sqldrivers/*
 
 INSTALLS += drivers qtlibs
 
-
-win32: QMAKE_POST_LINK = copy $${QMAKE_LIBDIR_QT}\Qt*.dll ..\bin
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -32,7 +30,8 @@ SOURCES += main.cpp\
     eventmgrwidget.cpp \
     sellerregistrationwidget.cpp \
     seller.cpp \
-    salesitem.cpp
+    salesitem.cpp \
+    labelprintwidget.cpp
 
 HEADERS  += mainwindow.h \
     databaseconnection.h \
@@ -41,17 +40,15 @@ HEADERS  += mainwindow.h \
     eventmgrwidget.h \
     sellerregistrationwidget.h \
     seller.h \
-    salesitem.h
+    salesitem.h \
+    labelprintwidget.h
 
 FORMS    += \
     settingsdialog.ui \
     mainwindow.ui \
     mainwidget.ui \
     eventmgrwidget.ui \
-    sellerregistrationwidget.ui
+    sellerregistrationwidget.ui \
+    labelprintwidget.ui
 
 
-
-win32: LIBS += -lQt5Widgetsd
-
-win32: LIBS += -lqsqlmysqld

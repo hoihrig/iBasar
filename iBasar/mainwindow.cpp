@@ -48,6 +48,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionSettings,SIGNAL(triggered()),this,SLOT(showSettings()));
     connect(ui->toolBox,SIGNAL(currentChanged(int)),this,SLOT(loadWidget(int)));
     connect(ui->actionEvent_Manager,SIGNAL(triggered()),this,SLOT(showEventManagement()));
+    connect(ui->actionPrint_Labels,SIGNAL(triggered()),this,SLOT(showLabelPrint()));
     connect(this,SIGNAL(updateWidgets()),mwidget,SLOT(updateValues()));
     connect(db,SIGNAL(db_error(QString,QString)),this,SLOT(errorhandling(QString,QString)));
 }
@@ -91,6 +92,15 @@ void MainWindow::showEventManagement()
     EventMgrWidget eventmgmt(db);
 
     eventmgmt.exec();
+
+    emit updateWidgets();
+}
+
+void MainWindow::showLabelPrint()
+{
+    LabelPrintWidget labelprint(db);
+
+    labelprint.exec();
 
     emit updateWidgets();
 }

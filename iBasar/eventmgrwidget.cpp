@@ -25,7 +25,8 @@ EventMgrWidget::EventMgrWidget(Databaseconnection *data, QWidget *parent) :
 {
     ui->setupUi(this);
 
-    db = data;
+    if (data != 0)
+        db = data;
 
     connect(ui->buttonBox,SIGNAL(accepted()),this,SLOT(createEventManagerWidget()));
 }

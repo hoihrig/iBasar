@@ -26,6 +26,7 @@
 #include "mainwidget.h"
 #include "eventmgrwidget.h"
 #include "sellerregistrationwidget.h"
+#include "labelprintwidget.h"
 
 namespace Ui {
     class MainWindow;
@@ -60,6 +61,7 @@ public slots:
     void aboutQt();
     void showSettings();
     void showEventManagement();
+    void showLabelPrint();
     void loadWidget(int index);
     void errorhandling(QString error_msg, QString error_src);
 };

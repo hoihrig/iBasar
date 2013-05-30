@@ -271,8 +271,35 @@ QList<int> Seller::getSalesItemIDs(Databaseconnection *data)
 
     while(result.next())
     {
-        IDList << result.value(0).toInt();
+        IDList << result.value("ID").toInt();
     }
 
     return IDList;
+}
+
+QString Seller::toHtml()
+{
+    QString html;
+
+    html = "<font size=\"+1\">" +
+            mEvent.toUpper() + "<br><br>" +
+            mName + " " + mSurname + "<br>" +
+            mAddress + "<br>" +
+            mPlz + " " + mCity + "<br><br>" +
+            mPhone + "<br><br></font>";
+
+    return html;
+}
+
+QString Seller::serialize()
+{
+    QString serialized;
+
+    serialized = mEvent.toUpper() + ":::" +
+            mName + " " + mSurname + ":::" +
+            mAddress + ":::" +
+            mPlz + " " + mCity + ":::" +
+            mPhone;
+
+    return serialized;
 }

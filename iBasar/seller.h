@@ -51,6 +51,9 @@ public:
     int getNumberofSalesItems(Databaseconnection *data);
     QList<int> getSalesItemIDs(Databaseconnection *data);
 
+    QString toHtml();
+    QString serialize();
+
 private:
     int mID;
     QString mName;

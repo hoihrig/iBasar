@@ -22,6 +22,10 @@
 #include <QDialog>
 #include <QStringList>
 #include "databaseconnection.h"
+#include "itemprinter.h"
+#include "seller.h"
+#include "salesitem.h"
+
 
 namespace Ui {
 class Labelprintwidget;

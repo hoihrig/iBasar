@@ -88,7 +88,7 @@ bool SalesItem::isComplete()
     return false;
 }
 
-bool SalesItem::loadItem(Databaseconnection *data, int itemID)
+bool SalesItem::findItem(Databaseconnection *data, int itemID)
 {
     QSqlQuery result;
     QString querycmd;
@@ -228,6 +228,7 @@ bool SalesItem::saveNewItem(Databaseconnection *data)
     querycmd = "SELECT MAX(ID) FROM `Artikel`";
     data->query(querycmd,result);
     result.next();
+
     mID = result.value(0).toInt() + 1;
 
     result.clear();
@@ -329,5 +330,17 @@ int SalesItem::saveDescription(Databaseconnection *data)
     }
 
     return descriptionID;
+
+}
+
+QString SalesItem::serialize()
+{
+    QString serialized;
+
+    serialized = mManufacturer + " " + mDescription + " " + mItemSize + ":::" +
+            QString::number(mID) + ":::" +
+            mPrice;
+
+    return serialized;
 
 }

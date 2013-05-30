@@ -31,6 +31,7 @@ LabelPrintWidget::LabelPrintWidget(Databaseconnection *data, QWidget *parent) :
     ui->eventcombobox->addItems(findEvents(db));
 
     connect(ui->eventcombobox,SIGNAL(currentIndexChanged(int)),this,SLOT(updateSellers(int)));
+    connect(ui->printbtn,SIGNAL(clicked()),this,SLOT(printlabel()));
 
     emit ui->eventcombobox->currentIndexChanged(0);
 }
@@ -91,5 +92,39 @@ void LabelPrintWidget::updateSellers(int index)
 
 void LabelPrintWidget::printlabel()
 {
-// TODO: Write a Class that Draws to a surface and writes that as PDF
+    ItemPrinter printer;
+    Seller printseller;
+    SalesItem item;
+    QStringList serializedlist;
+    QList<int> itemlist;
+    QList<QStringList> pages;
+
+    // Separate Surname and Name from Combobox
+    printseller.setSurname(ui->sellercombobox->currentText().split(',').at(0).trimmed());
+    printseller.setName(ui->sellercombobox->currentText().split(',').at(1).trimmed());
+
+    // Fill all properties of seller
+    printseller.findSeller(db);
+
+    // The Labelprinter needs all that information in serialized form
+    printer.setHeaderInfo(printseller.serialize());
+
+    // Find all the items that belong to this Seller and this Event
+    itemlist = printseller.getSalesItemIDs(db);
+
+    // Serialize all the items and put them in a List
+    for (int i = 0; i < itemlist.size(); i++)
+    {
+
+        item.findItem(db,itemlist[i]);
+        serializedlist.append(item.serialize());
+
+    }
+
+    // Create different pages out of that information and prepare for printing
+    printer.paginate(&pages,serializedlist);
+
+    printer.print(pages);
+
+    this->close();
 }

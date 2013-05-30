@@ -20,6 +20,10 @@
 #define SALESITEM_H
 
 #include <QObject>
+#include <QString>
+#include <QPainter>
+#include <QImageWriter>
+#include <QImage>
 #include "databaseconnection.h"
 
 class SalesItem : public QObject
@@ -32,6 +36,7 @@ public:
     QString getDescription() { return mDescription; }
     QString getItemSize() { return mItemSize; }
     QString getPrice() { return mPrice; }
+    QString serialize();
     bool setID(QString itemid);
     bool setSellerID(int sellerid);
     bool setManufacturer(QString manufacturer);
@@ -41,10 +46,11 @@ public:
     bool isComplete();
 
 
+
 signals:
     
 public slots:
-    bool loadItem(Databaseconnection *data, int itemID);
+    bool findItem(Databaseconnection *data, int itemID);
     bool saveItem(Databaseconnection *data);
 
 private:

@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql widgets
+QT       += core gui sql widgets printsupport
 
 TARGET = iBazar
 TEMPLATE = app
@@ -31,7 +31,9 @@ SOURCES += main.cpp\
     sellerregistrationwidget.cpp \
     seller.cpp \
     salesitem.cpp \
-    labelprintwidget.cpp
+    labelprintwidget.cpp \
+    itemprinter.cpp \
+    ean13.cpp
 
 HEADERS  += mainwindow.h \
     databaseconnection.h \
@@ -41,7 +43,9 @@ HEADERS  += mainwindow.h \
     sellerregistrationwidget.h \
     seller.h \
     salesitem.h \
-    labelprintwidget.h
+    labelprintwidget.h \
+    itemprinter.h \
+    ean13.h
 
 FORMS    += \
     settingsdialog.ui \

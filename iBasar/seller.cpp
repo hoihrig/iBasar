@@ -167,8 +167,17 @@ bool Seller::findSeller(Databaseconnection *data)
     QSqlQuery result;
     QString querycmd;
 
-    querycmd = "SELECT * FROM `Verkäufer` WHERE Vorname='" + mName + "' AND Nachname='" + mSurname + "'";
+    if (mEvent.isEmpty()) {
+        querycmd = "SELECT * FROM `Verkäufer` WHERE Vorname='" + mName + "' AND Nachname='" + mSurname + "'";
+    }
+    else {
+        querycmd = "SELECT ID FROM `Veranstaltung` WHERE Name='" + mEvent + "'";
+        data->query(querycmd,result);
+        result.next();
+        int eventid = result.value("ID").toInt();
 
+        querycmd = "SELECT * FROM `Verkäufer` WHERE Vorname='" + mName + "' AND Nachname='" + mSurname + "' AND Veranstaltung=" + QString::number(eventid);
+    }
     data->query(querycmd,result);
 
     if (!(result.size() > 0))
@@ -222,7 +231,7 @@ bool Seller::createSeller(Databaseconnection *data)
     data->query(querycmd,result);
 
     result.next();
-    eventid = result.value(0).toInt();
+    eventid = result.value("ID").toInt();
     result.clear();
 
     querycmd = "INSERT INTO `Verkäufer` (ID, Vorname, Nachname, Straße, PLZ, Ort, Telefon, Email, Veranstaltung) VALUES (" +

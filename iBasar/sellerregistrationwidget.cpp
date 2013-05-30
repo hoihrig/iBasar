@@ -107,6 +107,7 @@ void SellerRegistrationWidget::searchSeller()
 
     regseller->setName(ui->nameedit->text());
     regseller->setSurname(ui->surnameedit->text());
+    regseller->setEvent(ui->eventComboBox->currentText());
 
     if (!regseller->findSeller(data))
     {
@@ -136,7 +137,7 @@ bool SellerRegistrationWidget::loadSalesItems()
     for (int i=0; i<numberOfItems; i++)
     {
         SalesItem item;
-        if (item.loadItem(data, salesItemList.value(i)))
+        if (item.findItem(data, salesItemList.value(i)))
         {
             // Create a Row for each Item and load values of SalesItem
             addRow();

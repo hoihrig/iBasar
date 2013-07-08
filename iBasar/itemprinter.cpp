@@ -151,7 +151,12 @@ int ItemPrinter::printpages(QList<QStringList> pages)
             // Draw the EAN-13 Barcode using the helper class
             EAN13 code(prodnr);
             code.draw(QRectF(posx, posy + rely, barcodewidth, barcodeheigth), *ipainter);
-            rely += barcodeheigth + lineheight;
+            rely += barcodeheigth;
+
+            // Print the product number in front of the price
+            textRect = ipainter->boundingRect(posx,(posy + rely),width,20,Qt::AlignLeft,prodnr);
+            ipainter->drawText(textRect,Qt::AlignLeft,prodnr);
+            rely += lineheight;
 
             // Print the Price in a little bit bigger font.
             ipainter->setFont(priceFont);

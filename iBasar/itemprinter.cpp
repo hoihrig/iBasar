@@ -3,11 +3,7 @@
 ItemPrinter::ItemPrinter(QObject *parent) :
     QObject(parent)
 {
-    iprinter = new QPrinter(QPrinter::HighResolution);
-    iprinter->setOutputFileName("print.pdf");
-    iprinter->setOutputFormat(QPrinter::PdfFormat);
 
-    ipainter = new QPainter(iprinter);
 }
 
 ItemPrinter::~ItemPrinter()
@@ -17,6 +13,50 @@ ItemPrinter::~ItemPrinter()
 
     if (iprinter != 0)
         delete iprinter;
+
+}
+
+void ItemPrinter::print(QWidget* parent,QList<QStringList> pages)
+{
+    iprinter = new QPrinter();
+
+    QPrintDialog printDialog(iprinter,parent);
+    if (printDialog.exec() == QDialog::Accepted) {
+        ipainter = new QPainter(iprinter);
+
+        border = 10;
+        lineheight = 20;
+        gap = 10;
+        headergap = 30;
+        entryheight = 300;
+        barcodewidth = 240;
+        barcodeheigth = 100;
+
+        printpages(pages);
+    }
+
+}
+
+void ItemPrinter::printPdf(QList<QStringList> pages)
+{
+    iprinter = new QPrinter(QPrinter::HighResolution);
+    iprinter->setOutputFileName("print.pdf");
+    iprinter->setOutputFormat(QPrinter::PdfFormat);
+
+    ipainter = new QPainter(iprinter);
+
+    border = 100;
+    lineheight = 200;
+    gap = 100;
+    headergap = 300;
+    entryheight = 3000;
+    barcodewidth = 2400;
+    barcodeheigth = 1000;
+
+    printpages(pages);
+
+    // This is just temporary until a proper printing class is available.
+    QDesktopServices::openUrl(QUrl("print.pdf", QUrl::TolerantMode));
 
 }
 
@@ -50,7 +90,7 @@ void ItemPrinter::paginate(QList<QStringList> *pages, QStringList &entries)
     pages->append(temp);
 }
 
-int ItemPrinter::print(QList<QStringList> pages)
+int ItemPrinter::printpages(QList<QStringList> pages)
 {
     if (!ipainter)
         return false;
@@ -77,7 +117,7 @@ int ItemPrinter::print(QList<QStringList> pages)
 
         // Print Header on each Page
         for (int j = 0; j < headerinfo.size(); j++) {
-
+            ipainter->setFont(serifFont);
             QRect textRect = ipainter->boundingRect(posx,posy,width,20,Qt::TextWordWrap, headerinfo[j]);
             ipainter->drawText(textRect,Qt::TextWordWrap, headerinfo[j]);
             posy += lineheight;
@@ -128,10 +168,6 @@ int ItemPrinter::print(QList<QStringList> pages)
     }
 
     ipainter->end();
-
-    // This is just temporary until a proper printing class is available.
-    QDesktopServices::openUrl(QUrl("print.pdf", QUrl::TolerantMode));
-
 
     return true;
 }

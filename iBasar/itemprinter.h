@@ -9,6 +9,7 @@
 #include <QUrl>
 #include <QTextDocument>
 #include <QDebug>
+#include <QPrintDialog>
 #include "ean13.h"
 
 class ItemPrinter : public QObject
@@ -19,8 +20,8 @@ public:
     ~ItemPrinter();
     void setHeaderInfo(QString Info);
     void paginate(QList<QStringList> *pages, QStringList &entries);
-    int print(QList<QStringList> pages);
-
+    void printPdf(QList<QStringList> pages);
+    void print(QWidget *parent, QList<QStringList> pages);
     
 signals:
     
@@ -30,17 +31,18 @@ private:
     QPrinter *iprinter;
     QPainter *ipainter;
     QStringList deserialize(QString serialString);
+    int printpages(QList<QStringList> pages);
 
     QStringList headerinfo;
     int posx;
     int posy;
-    static const int border = 100;
-    static const int lineheight = 200;
-    static const int gap = 100;
-    static const int headergap = 300;
-    static const int entryheight = 3000;
-    static const int barcodewidth = 2400;
-    static const int barcodeheigth = 1000;
+    int border;
+    int lineheight;
+    int gap;
+    int headergap;
+    int entryheight;
+    int barcodewidth;
+    int barcodeheigth;
 };
 
 #endif // ITEMPRINTER_H

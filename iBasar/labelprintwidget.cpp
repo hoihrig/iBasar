@@ -124,7 +124,10 @@ void LabelPrintWidget::printlabel()
     // Create different pages out of that information and prepare for printing
     printer.paginate(&pages,serializedlist);
 
-    printer.print(pages);
+    if (ui->createpdfcheckbox->isChecked())
+        printer.printPdf(pages);
+    else
+        printer.print(this,pages);
 
     this->close();
 }

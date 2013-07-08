@@ -33,7 +33,8 @@ SOURCES += main.cpp\
     salesitem.cpp \
     labelprintwidget.cpp \
     itemprinter.cpp \
-    ean13.cpp
+    ean13.cpp \
+    checkoutwidget.cpp
 
 HEADERS  += mainwindow.h \
     databaseconnection.h \
@@ -45,7 +46,8 @@ HEADERS  += mainwindow.h \
     salesitem.h \
     labelprintwidget.h \
     itemprinter.h \
-    ean13.h
+    ean13.h \
+    checkoutwidget.h
 
 FORMS    += \
     settingsdialog.ui \
@@ -53,6 +55,7 @@ FORMS    += \
     mainwidget.ui \
     eventmgrwidget.ui \
     sellerregistrationwidget.ui \
-    labelprintwidget.ui
+    labelprintwidget.ui \
+    checkoutwidget.ui
 
 

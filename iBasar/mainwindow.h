@@ -27,6 +27,7 @@
 #include "eventmgrwidget.h"
 #include "sellerregistrationwidget.h"
 #include "labelprintwidget.h"
+#include "checkoutwidget.h"
 
 namespace Ui {
     class MainWindow;
@@ -55,6 +56,7 @@ private:
     // Here are all the Widgets loaded by the StackedWidget
     MainWidget *mwidget;
     SellerRegistrationWidget *msellerwidget;
+    CheckoutWidget *mcheckoutwidget;
 
 
 public slots:

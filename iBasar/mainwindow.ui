@@ -42,44 +42,49 @@
      <enum>QFrame::Box</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <property name="tabSpacing">
      <number>7</number>
     </property>
-    <widget class="QWidget" name="page_3">
+    <widget class="QWidget" name="startpage">
      <property name="geometry">
       <rect>
        <x>0</x>
        <y>0</y>
        <width>109</width>
-       <height>356</height>
+       <height>325</height>
       </rect>
      </property>
      <attribute name="label">
       <string>Start</string>
      </attribute>
     </widget>
-    <widget class="QWidget" name="page_6">
+    <widget class="QWidget" name="registersellerpage">
      <property name="geometry">
       <rect>
        <x>0</x>
        <y>0</y>
        <width>109</width>
-       <height>356</height>
+       <height>325</height>
       </rect>
      </property>
      <attribute name="label">
       <string>Register Seller</string>
      </attribute>
     </widget>
-    <widget class="QWidget" name="page_4">
+    <widget class="QWidget" name="checkoutpage">
+     <attribute name="label">
+      <string>Checkout</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="stuffpage">
      <property name="geometry">
       <rect>
        <x>0</x>
        <y>0</y>
        <width>109</width>
-       <height>356</height>
+       <height>325</height>
       </rect>
      </property>
      <attribute name="label">

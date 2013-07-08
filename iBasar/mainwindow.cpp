@@ -34,6 +34,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     mwidget = new MainWidget(db);
     msellerwidget = new SellerRegistrationWidget(db);
+    mcheckoutwidget = new CheckoutWidget(db);
 
     mwidget->setGeometry(ui->stackedWidget->geometry());
     ui->stackedWidget->addWidget(mwidget);
@@ -42,7 +43,10 @@ MainWindow::MainWindow(QWidget *parent) :
     msellerwidget->setGeometry(ui->stackedWidget->geometry());
     ui->stackedWidget->addWidget(msellerwidget);
 
+    mcheckoutwidget->setGeometry(ui->stackedWidget->geometry());
+    ui->stackedWidget->addWidget(mcheckoutwidget);
 
+    ui->toolBox->setCurrentIndex(0);
 
     connect(ui->actionAbout_Qt,SIGNAL(triggered()),this,SLOT(aboutQt()));
     connect(ui->actionSettings,SIGNAL(triggered()),this,SLOT(showSettings()));
@@ -50,6 +54,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionEvent_Manager,SIGNAL(triggered()),this,SLOT(showEventManagement()));
     connect(ui->actionPrint_Labels,SIGNAL(triggered()),this,SLOT(showLabelPrint()));
     connect(this,SIGNAL(updateWidgets()),mwidget,SLOT(updateValues()));
+    connect(this,SIGNAL(updateWidgets()),mcheckoutwidget,SLOT(getFocus()));
     connect(db,SIGNAL(db_error(QString,QString)),this,SLOT(errorhandling(QString,QString)));
 }
 
@@ -58,6 +63,7 @@ MainWindow::~MainWindow()
     delete db;
     delete mwidget;
     delete msellerwidget;
+    delete mcheckoutwidget;
 
     delete ui;
 }
@@ -69,6 +75,8 @@ void MainWindow::loadWidget(int index)
     case 0:
         emit updateWidgets();
         break;
+    case 2: //checkoutwidget
+        emit updateWidgets();
     default:
         break;
     }

@@ -44,8 +44,7 @@ public:
     bool setItemSize(QString itemsize);
     bool setPrice(QString price);
     bool isComplete();
-
-
+    bool markSold(Databaseconnection *data);
 
 signals:
     

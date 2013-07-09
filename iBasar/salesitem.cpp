@@ -173,6 +173,24 @@ bool SalesItem::existsInDb(Databaseconnection *data)
 
 }
 
+bool SalesItem::markSold(Databaseconnection *data)
+{
+    QSqlQuery result;
+    QString querycmd;
+
+    querycmd = "UPDATE `Artikel` SET Verkauft=1 WHERE ID=" + QString::number(mID) + ";";
+
+    data->query(querycmd,result);
+
+    result.next();
+
+    if (result.value(0).toInt() > 0)
+        return true;
+
+    return false;
+
+}
+
 bool SalesItem::updateItem(Databaseconnection *data)
 {
     // Store Manufacturer Name in Database and get ID back

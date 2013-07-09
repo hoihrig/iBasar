@@ -47,6 +47,7 @@ CheckoutWidget::~CheckoutWidget()
 void CheckoutWidget::checkout()
 {
     bool retval = false;
+    SalesItem sitem;
 
     retval = validatefields();
 
@@ -59,6 +60,14 @@ void CheckoutWidget::checkout()
     }
 
     printCheckout();
+
+    // Mark sold items as sold and clear all fields
+    for (int i=0; i<salesItemList.count(); i++)
+    {
+        sitem.findItem(data, salesItemList[i]);
+        sitem.markSold(data);
+    }
+    reset();
 
 }
 
@@ -84,7 +93,11 @@ void CheckoutWidget::reset()
     ui->plzedit->clear();
     ui->totalpricelabel->setText(QString("0 €"));
 
-    ui->tableWidget->clear();
+    for(int i=ui->tableWidget->rowCount(); i>=0; --i)
+    {
+        ui->tableWidget->removeRow(i);
+    }
+
     salesItemList.clear();
 }
 
@@ -110,14 +123,13 @@ void CheckoutWidget::processItem(QString itemnumber)
         ui->tableWidget->item(row,2)->setText(item.getDescription());
         ui->tableWidget->item(row,3)->setText(item.getItemSize());
         ui->tableWidget->item(row,4)->setText(item.getPrice());
+
+        salesItemList.append(item.getID());
+
+        ui->totalpricelabel->setText(QString::number(calculateTotalPrice()) + " €");
+
+        ui->itemnumbertextbox->clear();
     }
-
-    salesItemList.append(item.getID());
-
-    ui->totalpricelabel->setText(QString::number(calculateTotalPrice()) + " €");
-
-    ui->itemnumbertextbox->clear();
-
 }
 
 float CheckoutWidget::calculateTotalPrice()

@@ -124,6 +124,7 @@ CREATE TABLE  `ibasar`.`Veranstaltung` (
   `ID` int(10) unsigned NOT NULL,
   `Name` varchar(30) CHARACTER SET latin1 NOT NULL,
   `Datum` date NOT NULL,
+  `Ort` varchar(50) CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

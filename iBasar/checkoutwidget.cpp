@@ -1,3 +1,21 @@
+/*
+#################################################################################################
+#   Copyright 2013 Holger Ihrig                                                                 #
+#                                                                                               #
+#   This file is part of iBasar.                                                                #
+#                                                                                               #
+#   iBasar is free software: you can redistribute it and/or modify it under the terms of        #
+#   the GNU General Public License as published by the Free Software Foundation,                #
+#   either version 3 of the License, or (at your option) any later version.                     #
+#   Foobar is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;         #
+#   without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.   #
+#   See the GNU General Public License for more details.                                        #
+#                                                                                               #
+#   You should have received a copy of the GNU General Public License along with iBasar.        #
+#   If not, see http://www.gnu.org/licenses/.                                                   #
+#################################################################################################
+*/
+
 #include "checkoutwidget.h"
 #include "ui_checkoutwidget.h"
 
@@ -11,14 +29,39 @@ CheckoutWidget::CheckoutWidget(Databaseconnection *db,QWidget *parent) :
 
     ui->itemnumbertextbox->setFocus();
 
+    updateEvents();
+    setTableHeader();
+
     connect(ui->itemnumbertextbox,SIGNAL(textChanged(QString)),this,SLOT(itemNumberTextChanged(QString)));
     connect(ui->itemnumbertextbox,SIGNAL(returnPressed()),this,SLOT(itemNumberReturnPressed()));
+    connect(ui->resetButton,SIGNAL(clicked()),this,SLOT(reset()));
+    connect(ui->checkoutButton,SIGNAL(clicked()),this,SLOT(checkout()));
+
 }
 
 CheckoutWidget::~CheckoutWidget()
 {
     delete ui;
 }
+
+void CheckoutWidget::checkout()
+{
+    bool retval = false;
+
+    retval = validatefields();
+
+    if(retval == false)
+    {
+        QMessageBox::critical(this,tr("Checkout Window"),
+                              tr("Could not validate all input fields. Please make "
+                                 "sure that all fields are filled."),QMessageBox::Ok);
+        return;
+    }
+
+    printCheckout();
+
+}
+
 
 void CheckoutWidget::itemNumberReturnPressed()
 {
@@ -29,6 +72,20 @@ void CheckoutWidget::itemNumberReturnPressed()
 void CheckoutWidget::getFocus()
 {
     ui->itemnumbertextbox->setFocus();
+}
+
+void CheckoutWidget::reset()
+{
+    ui->nameedit->clear();
+    ui->surnameedit->clear();
+    ui->addressedit->clear();
+    ui->cityedit->clear();
+    ui->itemnumbertextbox->clear();
+    ui->plzedit->clear();
+    ui->totalpricelabel->setText(QString("0 €"));
+
+    ui->tableWidget->clear();
+    salesItemList.clear();
 }
 
 void CheckoutWidget::itemNumberTextChanged(QString itemnumber)
@@ -75,7 +132,110 @@ float CheckoutWidget::calculateTotalPrice()
     return totalPrice;
 }
 
-void CheckoutWidget::addRow()
+bool CheckoutWidget::validatefields()
+{
+    if((ui->addressedit->text().isEmpty())
+            || (ui->cityedit->text().isEmpty())
+            || (ui->nameedit->text().isEmpty())
+            || (ui->plzedit->text().isEmpty())
+            || (ui->surnameedit->text().isEmpty())
+            || (ui->tableWidget->rowCount() == 0))
+        return false;
+
+    return true;
+}
+
+QStringList CheckoutWidget::findEvents(Databaseconnection *db)
+{
+    QStringList eventslist;
+
+    QSqlQuery result;
+    QString querycmd;
+
+    querycmd = "SELECT Name from `Veranstaltung`";
+
+    db->query(querycmd,result);
+
+    while (result.next())
+    {
+        eventslist.append(result.value(0).toString());
+    }
+
+    return eventslist;
+}
+
+bool CheckoutWidget::getSelectedEventInfo(Databaseconnection *db)
+{
+    QSqlQuery result;
+    QString querycmd;
+
+    querycmd = "SELECT * FROM `Veranstaltung` WHERE Name='" + ui->eventComboBox->currentText() + "';";
+
+    db->query(querycmd,result);
+
+    if (result.next())
+    {
+        selectedEventName = result.value("Name").toString();
+        selectedEventLocation = result.value("Ort").toString();
+        selectedEventDate = result.value("Datum").toString();
+
+        return true;
+    }
+
+    return false;
+}
+
+void CheckoutWidget::updateEvents()
+{
+    ui->eventComboBox->clear();
+    ui->eventComboBox->addItems(findEvents(data));
+}
+
+void CheckoutWidget::printCheckout()
+{
+    BillPrinter bprinter;
+
+    QString header;
+    QStringList serializedlist;
+    SalesItem item;
+    QList<QStringList> pages;
+
+    header = serializeHeader();
+    bprinter.setHeaderInfo(header);
+
+    if(getSelectedEventInfo(data))
+    {
+        bprinter.setEventName(selectedEventName);
+        bprinter.setEventLocation(selectedEventLocation);
+        bprinter.setEventDate(selectedEventDate);
+    }
+
+    // Serialize all the items and put them in a List
+    for (int i = 0; i < salesItemList.size(); i++)
+    {
+
+        item.findItem(data,salesItemList[i]);
+        serializedlist.append(item.serialize());
+
+    }
+
+    bprinter.printPdf(serializedlist);
+}
+
+QString CheckoutWidget::serializeHeader()
+{
+    QString header;
+
+    header += ui->nameedit->text() + " ";
+    header += ui->surnameedit->text() + ":::";
+    header += ui->addressedit->text() + ":::";
+    header += ui->plzedit->text() + " ";
+    header += ui->cityedit->text() + ":::";
+
+    return header;
+}
+
+void CheckoutWidget::setTableHeader()
 {
     QStringList headerlist;
     headerlist.append("ID");
@@ -86,6 +246,11 @@ void CheckoutWidget::addRow()
 
     ui->tableWidget->setHorizontalHeaderLabels(headerlist);
     ui->tableWidget->setColumnWidth(2,250);
+}
+
+void CheckoutWidget::addRow()
+{
+    setTableHeader();
 
     int row = ui->tableWidget->rowCount();
 

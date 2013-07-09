@@ -16,54 +16,51 @@
 #################################################################################################
 */
 
-#ifndef CHECKOUTWIDGET_H
-#define CHECKOUTWIDGET_H
+#ifndef BILLPRINTER_H
+#define BILLPRINTER_H
 
-#include <QWidget>
-#include "databaseconnection.h"
-#include "salesitem.h"
-#include "billprinter.h"
+#include <QObject>
+#include <QPrinter>
+#include <QPainter>
+#include <QTextDocument>
+#include <QDesktopServices>
+#include <QUrl>
+#include <QDateTime>
 
-namespace Ui {
-class CheckoutWidget;
-}
-
-class CheckoutWidget : public QWidget
+class BillPrinter : public QObject
 {
     Q_OBJECT
-    
 public:
-    explicit CheckoutWidget(Databaseconnection *db, QWidget *parent = 0);
-    ~CheckoutWidget();
+    explicit BillPrinter(QObject *parent = 0);
+    ~BillPrinter();
+
+    void printPdf(QStringList &entries);
+
+    void setHeaderInfo(QString Info);
+    void setEventName(QString eventName);
+    void setEventLocation(QString eventLocation);
+    void setEventDate(QString eventDate);
     
 
-
-
-    void setTableHeader();
+signals:
+    
 public slots:
-    void itemNumberTextChanged(QString itemnumber);
-    void itemNumberReturnPressed();
-    void getFocus();
-    void reset();
-    void checkout();
-    void updateEvents();
-
+    
 private:
-    Ui::CheckoutWidget *ui;
-    Databaseconnection *data;
-    QList<int> salesItemList;
-    QString selectedEventName;
-    QString selectedEventLocation;
-    QString selectedEventDate;
+    QPrinter *iprinter;
+    QStringList deserialize(QString serialString);
+    QString createHtmlHeader();
+    QString addHtmlAdresswithEventInfo();
+    QString addHtmlSalesItemHeader();
+    QString addHtmlSalesItem(QStringList entry);
+    QString addHtmlDocumentFooter();
+    QString addHtmlSummary(int count, float price);
 
-    void addRow();
-    void processItem(QString itemnumber);
-    void printCheckout();
-    QString serializeHeader();
-    QStringList findEvents(Databaseconnection *db);
-    float calculateTotalPrice();
-    bool validatefields();
-    bool getSelectedEventInfo(Databaseconnection *db);
+    QStringList headerinfo;
+    QString eventName;
+    QString eventLocation;
+    QString eventDate;
+
 };
 
-#endif // CHECKOUTWIDGET_H
+#endif // BILLPRINTER_H

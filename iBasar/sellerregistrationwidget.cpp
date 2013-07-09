@@ -32,7 +32,7 @@ SellerRegistrationWidget::SellerRegistrationWidget(Databaseconnection *db, QWidg
     // Setup the Table Widget
     addRow();
 
-    ui->eventComboBox->addItems(findEvents(db));
+    updateEvents();
 
     connect(ui->sellersearchbtn,SIGNAL(clicked()),this,SLOT(searchSeller()));
     connect(ui->selleraddbtn,SIGNAL(clicked()),this,SLOT(createSeller()));
@@ -45,6 +45,12 @@ SellerRegistrationWidget::~SellerRegistrationWidget()
 {
     delete regseller;
     delete ui;
+}
+
+void SellerRegistrationWidget::updateEvents()
+{
+    ui->eventComboBox->clear();
+    ui->eventComboBox->addItems(findEvents(data));
 }
 
 QStringList SellerRegistrationWidget::findEvents(Databaseconnection *db)

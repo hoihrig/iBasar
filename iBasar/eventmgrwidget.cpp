@@ -56,10 +56,11 @@ void EventMgrWidget::createEventManagerWidget()
     rowid = result.value(0).toInt() + 1;
     result.clear();
 
-    querycmd = "INSERT INTO `Veranstaltung` (ID, Name, Datum) VALUES (" +
+    querycmd = "INSERT INTO `Veranstaltung` (ID, Name, Datum, Ort) VALUES (" +
             QString::number(rowid) + ", '" +
             ui->eventnameedit->text() + "', '" +
-            ui->eventdateedit->dateTime().toString("yyyy-MM-dd") + "');";
+            ui->eventdateedit->dateTime().toString("yyyy-MM-dd") + "', '" +
+            ui->eventLocationlineedit->text() + "');";
 
     db->query(querycmd,result);
 

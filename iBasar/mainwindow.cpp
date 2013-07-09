@@ -55,6 +55,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionPrint_Labels,SIGNAL(triggered()),this,SLOT(showLabelPrint()));
     connect(this,SIGNAL(updateWidgets()),mwidget,SLOT(updateValues()));
     connect(this,SIGNAL(updateWidgets()),mcheckoutwidget,SLOT(getFocus()));
+    connect(this,SIGNAL(updateWidgets()),mcheckoutwidget,SLOT(updateEvents()));
+    connect(this,SIGNAL(updateWidgets()),msellerwidget,SLOT(updateEvents()));
     connect(db,SIGNAL(db_error(QString,QString)),this,SLOT(errorhandling(QString,QString)));
 }
 
@@ -70,16 +72,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::loadWidget(int index)
 {
-    switch (index)
-    {
-    case 0:
-        emit updateWidgets();
-        break;
-    case 2: //checkoutwidget
-        emit updateWidgets();
-    default:
-        break;
-    }
+    emit updateWidgets();
 
     ui->stackedWidget->setCurrentIndex(index);
 }

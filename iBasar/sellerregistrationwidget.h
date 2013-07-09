@@ -36,7 +36,10 @@ class SellerRegistrationWidget : public QWidget
 public:
     explicit SellerRegistrationWidget(Databaseconnection *db, QWidget *parent = 0);
     ~SellerRegistrationWidget();
-    
+
+public slots:
+    void updateEvents();
+
 private:
     Ui::SellerRegistrationWidget *ui;
     Databaseconnection *data;

@@ -1,8 +1,3 @@
-#include <QPainter>
-#include <QDebug>
-
-#include "ean13.h"
-
 /** EAN13
   *
   * A class to encode and draw EAN-13 barcodes.
@@ -13,6 +8,11 @@
   * Wiki article at http://en.wikipedia.org/wiki/European_Article_Number
   *
   **/
+
+#include <QPainter>
+#include <QDebug>
+
+#include "ean13.h"
 
 EAN13::EAN13(const QString &code)
 {

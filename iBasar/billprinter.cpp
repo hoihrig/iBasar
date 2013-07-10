@@ -130,12 +130,19 @@ QString BillPrinter::addHtmlSummary(int count, float price)
     return temp;
 }
 
-void BillPrinter::printPdf(QStringList &entries)
+void BillPrinter::printPrinter(QWidget* parent,QStringList &entries)
 {
     iprinter = new QPrinter();
-    iprinter->setOutputFileName("printbill.pdf");
-    iprinter->setOutputFormat(QPrinter::PdfFormat);
 
+    QPrintDialog printDialog(iprinter,parent);
+    if (printDialog.exec() == QDialog::Accepted) {
+        print(entries);
+    }
+
+}
+
+void BillPrinter::print(QStringList &entries)
+{
     QString htmlContent;
     float totalPrice = 0;
 
@@ -165,6 +172,15 @@ void BillPrinter::printPdf(QStringList &entries)
     document->print(iprinter);
 
     delete document;
+}
+
+void BillPrinter::printPdf(QStringList &entries)
+{
+    iprinter = new QPrinter();
+    iprinter->setOutputFileName("printbill.pdf");
+    iprinter->setOutputFormat(QPrinter::PdfFormat);
+
+    print(entries);
 
     // This is just temporary until a proper printing class is available.
     QDesktopServices::openUrl(QUrl("printbill.pdf", QUrl::TolerantMode));

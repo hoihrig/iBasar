@@ -26,6 +26,7 @@
 #include <QDesktopServices>
 #include <QUrl>
 #include <QDateTime>
+#include <QPrintDialog>
 
 class BillPrinter : public QObject
 {
@@ -35,6 +36,7 @@ public:
     ~BillPrinter();
 
     void printPdf(QStringList &entries);
+    void printPrinter(QWidget *parent, QStringList &entries);
 
     void setHeaderInfo(QString Info);
     void setEventName(QString eventName);
@@ -55,6 +57,7 @@ private:
     QString addHtmlSalesItem(QStringList entry);
     QString addHtmlDocumentFooter();
     QString addHtmlSummary(int count, float price);
+    void print(QStringList &entries);
 
     QStringList headerinfo;
     QString eventName;

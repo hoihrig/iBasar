@@ -23,7 +23,9 @@ CheckoutWidget::CheckoutWidget(Databaseconnection *db,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CheckoutWidget)
 {
+
     data = db;
+    pdf = false;
 
     ui->setupUi(this);
 
@@ -36,12 +38,19 @@ CheckoutWidget::CheckoutWidget(Databaseconnection *db,QWidget *parent) :
     connect(ui->itemnumbertextbox,SIGNAL(returnPressed()),this,SLOT(itemNumberReturnPressed()));
     connect(ui->resetButton,SIGNAL(clicked()),this,SLOT(reset()));
     connect(ui->checkoutButton,SIGNAL(clicked()),this,SLOT(checkout()));
+    connect(ui->checkoutPdfButton,SIGNAL(clicked()),this,SLOT(checkoutPdf()));
 
 }
 
 CheckoutWidget::~CheckoutWidget()
 {
     delete ui;
+}
+
+void CheckoutWidget::checkoutPdf()
+{
+    pdf = true;
+    checkout();
 }
 
 void CheckoutWidget::checkout()
@@ -231,7 +240,15 @@ void CheckoutWidget::printCheckout()
 
     }
 
-    bprinter.printPdf(serializedlist);
+    if(pdf)
+    {
+        bprinter.printPdf(serializedlist);
+        pdf = false;
+    }
+    else
+    {
+        bprinter.printPrinter(this,serializedlist);
+    }
 }
 
 QString CheckoutWidget::serializeHeader()

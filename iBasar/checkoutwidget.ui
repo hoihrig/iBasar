@@ -344,32 +344,6 @@
     </layout>
    </widget>
   </widget>
-  <widget class="QPushButton" name="checkoutButton">
-   <property name="geometry">
-    <rect>
-     <x>750</x>
-     <y>30</y>
-     <width>93</width>
-     <height>81</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Checkout</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="resetButton">
-   <property name="geometry">
-    <rect>
-     <x>750</x>
-     <y>130</y>
-     <width>93</width>
-     <height>81</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Reset</string>
-   </property>
-  </widget>
   <widget class="QTableWidget" name="tableWidget">
    <property name="geometry">
     <rect>
@@ -461,6 +435,57 @@
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>750</x>
+     <y>30</y>
+     <width>95</width>
+     <height>221</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="QPushButton" name="checkoutButton">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Checkout</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="checkoutPdfButton">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Checkout PDF</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="resetButton">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Reset</string>
       </property>
      </widget>
     </item>

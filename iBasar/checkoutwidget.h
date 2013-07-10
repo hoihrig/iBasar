@@ -46,6 +46,7 @@ public slots:
     void getFocus();
     void reset();
     void checkout();
+    void checkoutPdf();
     void updateEvents();
 
 private:
@@ -64,6 +65,7 @@ private:
     float calculateTotalPrice();
     bool validatefields();
     bool getSelectedEventInfo(Databaseconnection *db);
+    bool pdf;
 };
 
 #endif // CHECKOUTWIDGET_H

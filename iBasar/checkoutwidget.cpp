@@ -74,7 +74,7 @@ void CheckoutWidget::checkout()
     for (int i=0; i<salesItemList.count(); i++)
     {
         sitem.findItem(data, salesItemList[i]);
-        sitem.markSold(data);
+        sitem.setSold(true);
     }
     reset();
 
@@ -155,12 +155,17 @@ float CheckoutWidget::calculateTotalPrice()
 
 bool CheckoutWidget::validatefields()
 {
-    if((ui->addressedit->text().isEmpty())
-            || (ui->cityedit->text().isEmpty())
-            || (ui->nameedit->text().isEmpty())
-            || (ui->plzedit->text().isEmpty())
-            || (ui->surnameedit->text().isEmpty())
-            || (ui->tableWidget->rowCount() == 0))
+    if(ui->addressedit->text().isEmpty() ||
+            ui->cityedit->text().isEmpty() ||
+            ui->nameedit->text().isEmpty() ||
+            ui->surnameedit->text().isEmpty() ||
+            ui->plzedit->text().isEmpty())
+        headerPresent = false;
+    else
+        headerPresent = true;
+
+
+    if((ui->tableWidget->rowCount() == 0))
         return false;
 
     return true;
@@ -219,10 +224,12 @@ void CheckoutWidget::printCheckout()
     QString header;
     QStringList serializedlist;
     SalesItem item;
-    QList<QStringList> pages;
 
-    header = serializeHeader();
-    bprinter.setHeaderInfo(header);
+    if (headerPresent)
+    {
+        header = serializeHeader();
+        bprinter.setHeaderInfo(header);
+    }
 
     if(getSelectedEventInfo(data))
     {
@@ -236,6 +243,8 @@ void CheckoutWidget::printCheckout()
     {
 
         item.findItem(data,salesItemList[i]);
+        item.setSold(true);
+        item.updateItem(data);
         serializedlist.append(item.serialize());
 
     }

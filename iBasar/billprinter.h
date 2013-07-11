@@ -53,6 +53,7 @@ private:
     QStringList deserialize(QString serialString);
     QString createHtmlHeader();
     QString addHtmlAdresswithEventInfo();
+    QString addEventInfo();
     QString addHtmlSalesItemHeader();
     QString addHtmlSalesItem(QStringList entry);
     QString addHtmlDocumentFooter();

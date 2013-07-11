@@ -55,6 +55,7 @@ private slots:
     void addRow();
     void deleteRow();
     void saveTabletoDB();
+    void reset();
 };
 
 #endif // SELLERREGISTRATIONWIDGET_H

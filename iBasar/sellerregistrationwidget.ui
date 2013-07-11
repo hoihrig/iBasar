@@ -535,15 +535,19 @@
      <number>0</number>
     </property>
     <property name="columnCount">
-     <number>5</number>
+     <number>6</number>
     </property>
+    <attribute name="verticalHeaderVisible">
+     <bool>false</bool>
+    </attribute>
+    <column/>
     <column/>
     <column/>
     <column/>
     <column/>
     <column/>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>780</x>
@@ -605,134 +609,5 @@
   </widget>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>sellerresetbtn</sender>
-   <signal>clicked()</signal>
-   <receiver>addressedit</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>800</x>
-     <y>136</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>277</x>
-     <y>169</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>sellerresetbtn</sender>
-   <signal>clicked()</signal>
-   <receiver>surnameedit</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>815</x>
-     <y>142</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>320</x>
-     <y>114</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>sellerresetbtn</sender>
-   <signal>clicked()</signal>
-   <receiver>nameedit</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>837</x>
-     <y>139</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>362</x>
-     <y>59</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>sellerresetbtn</sender>
-   <signal>clicked()</signal>
-   <receiver>plzedit</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>787</x>
-     <y>142</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>637</x>
-     <y>57</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>sellerresetbtn</sender>
-   <signal>clicked()</signal>
-   <receiver>cityedit</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>780</x>
-     <y>133</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>597</x>
-     <y>119</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>sellerresetbtn</sender>
-   <signal>clicked()</signal>
-   <receiver>emailedit</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>787</x>
-     <y>139</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>359</x>
-     <y>232</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>sellerresetbtn</sender>
-   <signal>clicked()</signal>
-   <receiver>phoneedit</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>772</x>
-     <y>142</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>685</x>
-     <y>171</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>sellerresetbtn</sender>
-   <signal>clicked()</signal>
-   <receiver>tableWidget</receiver>
-   <slot>clearContents()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>818</x>
-     <y>137</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>751</x>
-     <y>364</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

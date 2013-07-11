@@ -66,6 +66,7 @@ private:
     bool validatefields();
     bool getSelectedEventInfo(Databaseconnection *db);
     bool pdf;
+    bool headerPresent;
 };
 
 #endif // CHECKOUTWIDGET_H

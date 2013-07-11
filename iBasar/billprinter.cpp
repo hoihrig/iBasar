@@ -81,6 +81,20 @@ QString BillPrinter::addHtmlAdresswithEventInfo()
     return temp;
 }
 
+QString BillPrinter::addEventInfo()
+{
+    QString temp;
+
+    temp = "<tr><td><table><tbody><tr><td rowspan=\"2\">";
+    temp +="<br>";
+    temp +="<br>";
+    temp +="</td><td align=\"right\">";
+    temp +=eventLocation + ", " + eventDate;
+    temp +="</td></tr></tbody></table></td></tr>";
+
+    return temp;
+}
+
 QString BillPrinter::addHtmlSalesItemHeader()
 {
     QString temp;
@@ -147,7 +161,12 @@ void BillPrinter::print(QStringList &entries)
     float totalPrice = 0;
 
     htmlContent += createHtmlHeader();
-    htmlContent += addHtmlAdresswithEventInfo();
+
+    if (headerinfo.isEmpty())
+        htmlContent += addEventInfo();
+    else
+        htmlContent += addHtmlAdresswithEventInfo();
+
     htmlContent += addHtmlSalesItemHeader();
 
     for(int i=0; i<entries.count(); i++)

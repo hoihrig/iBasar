@@ -39,12 +39,30 @@ SellerRegistrationWidget::SellerRegistrationWidget(Databaseconnection *db, QWidg
     connect(ui->addRowbtn,SIGNAL(clicked()),this,SLOT(addRow()));
     connect(ui->delRowbtn,SIGNAL(clicked()),this,SLOT(deleteRow()));
     connect(ui->savetblbtn,SIGNAL(clicked()),this,SLOT(saveTabletoDB()));
+    connect(ui->sellerresetbtn,SIGNAL(clicked()),this,SLOT(reset()));
 }
 
 SellerRegistrationWidget::~SellerRegistrationWidget()
 {
     delete regseller;
     delete ui;
+}
+
+void SellerRegistrationWidget::reset()
+{
+    ui->addressedit->clear();
+    ui->cityedit->clear();
+    ui->emailedit->clear();
+    ui->nameedit->clear();
+    ui->phoneedit->clear();
+    ui->plzedit->clear();
+    ui->surnameedit->clear();
+
+    for(int i=ui->tableWidget->rowCount(); i>=0; --i)
+    {
+        ui->tableWidget->removeRow(i);
+    }
+
 }
 
 void SellerRegistrationWidget::updateEvents()
@@ -155,6 +173,10 @@ bool SellerRegistrationWidget::loadSalesItems()
             ui->tableWidget->item(row,2)->setText(item.getDescription());
             ui->tableWidget->item(row,3)->setText(item.getItemSize());
             ui->tableWidget->item(row,4)->setText(item.getPrice());
+            if (item.getSoldStatus())
+                ui->tableWidget->item(row,5)->setText("1");
+            else
+                ui->tableWidget->item(row,5)->setText("0");
         }
     }
 
@@ -205,8 +227,10 @@ void SellerRegistrationWidget::addRow()
     headerlist.append("Beschreibung");
     headerlist.append("Size");
     headerlist.append("Preis");
+    headerlist.append("Verkauft");
 
     ui->tableWidget->setHorizontalHeaderLabels(headerlist);
+    ui->tableWidget->setColumnWidth(0,80);
     ui->tableWidget->setColumnWidth(2,250);
 
     int row = ui->tableWidget->rowCount();
@@ -228,11 +252,21 @@ void SellerRegistrationWidget::addRow()
 
     QTableWidgetItem *item4 = new QTableWidgetItem;
     ui->tableWidget->setItem(row, 4, item4);
+
+    QTableWidgetItem *item5 = new QTableWidgetItem;
+    ui->tableWidget->setItem(row, 5, item5);
 }
 
 void SellerRegistrationWidget::deleteRow()
 {
     int row = ui->tableWidget->currentRow();
+
+    if (!ui->tableWidget->item(row,0)->text().isEmpty())
+    {
+        SalesItem sitem;
+        sitem.findItem(data,ui->tableWidget->item(row,0)->text().toInt());
+        sitem.deleteItem(data);
+    }
 
     ui->tableWidget->removeRow(row);
 }
@@ -253,6 +287,11 @@ void SellerRegistrationWidget::saveTabletoDB()
             sitem.setDescription(ui->tableWidget->item(i,2)->text());
             sitem.setItemSize(ui->tableWidget->item(i,3)->text());
             sitem.setPrice(ui->tableWidget->item(i,4)->text());
+
+            if (ui->tableWidget->item(i,5)->text() == "1")
+                sitem.setSold(true);
+            else
+                sitem.setSold(false);
 
             if (!sitem.saveItem(data))
             {

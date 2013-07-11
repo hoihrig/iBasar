@@ -76,6 +76,12 @@ bool SalesItem::setPrice(QString price)
     return true;
 }
 
+void SalesItem::setSold(bool soldStatus)
+{
+    mSold = soldStatus;
+}
+
+
 bool SalesItem::isComplete()
 {
     if ( !mManufacturer.isEmpty() &&
@@ -94,7 +100,7 @@ bool SalesItem::findItem(Databaseconnection *data, int itemID)
     QString querycmd;
     mID = itemID;
 
-    querycmd = "SELECT a.ID, a.Verkäufer, a.Size, b.Hersteller, c.Beschreibung, a.Preis FROM `Artikel` a, `Hersteller` b, `Artikelbezeichnung` c WHERE a.ID=" +
+    querycmd = "SELECT a.ID, a.Verkäufer, a.Size, b.Hersteller, c.Beschreibung, a.Preis, a.Verkauft FROM `Artikel` a, `Hersteller` b, `Artikelbezeichnung` c WHERE a.ID=" +
             QString::number(mID) + " AND " +
             "a.Hersteller = b.ID AND " +
             "a.Beschreibung = c.ID";
@@ -111,6 +117,7 @@ bool SalesItem::findItem(Databaseconnection *data, int itemID)
     mManufacturer = result.value(3).toString();
     mDescription = result.value(4).toString();
     mPrice = result.value(5).toString();
+    mSold = result.value(6).toInt();
 
     return true;
 }
@@ -137,6 +144,24 @@ bool SalesItem::saveItem(Databaseconnection *data)
 
 }
 
+bool SalesItem::deleteItem(Databaseconnection *data)
+{
+    QSqlQuery result;
+    QString querycmd;
+
+    querycmd = "DELETE FROM `Artikel` WHERE `Artikel`.`ID` = " + QString::number(mID);
+
+    data->query(querycmd,result);
+
+    result.next();
+
+    if (result.value(0).toInt() > 0)
+        return true;
+
+    return false;
+}
+
+
 bool SalesItem::existsInDb(Databaseconnection *data)
 {
     // Store Manufacturer Name in Database and get ID back
@@ -160,25 +185,7 @@ bool SalesItem::existsInDb(Databaseconnection *data)
             mItemSize + "' AND Hersteller=" +
             QString::number(manufacturerID) + " AND Beschreibung=" +
             QString::number(descriptionID) + " AND Preis='" +
-            mPrice + "'";
-
-    data->query(querycmd,result);
-
-    result.next();
-
-    if (result.value(0).toInt() > 0)
-        return true;
-
-    return false;
-
-}
-
-bool SalesItem::markSold(Databaseconnection *data)
-{
-    QSqlQuery result;
-    QString querycmd;
-
-    querycmd = "UPDATE `Artikel` SET Verkauft=1 WHERE ID=" + QString::number(mID) + ";";
+            mPrice + "' AND Verkauft=" + QString::number(mSold) + "";
 
     data->query(querycmd,result);
 
@@ -213,7 +220,8 @@ bool SalesItem::updateItem(Databaseconnection *data)
             mItemSize + "', Hersteller=" +
             QString::number(manufacturerID) + ", Beschreibung=" +
             QString::number(descriptionID) + ", Preis='" +
-            mPrice + "' WHERE ID=" +
+            mPrice + "', Verkauft=" +
+            QString::number(mSold) + " WHERE ID=" +
             QString::number(mID);
 
     data->query(querycmd,result);

@@ -37,20 +37,24 @@ public:
     QString getItemSize() { return mItemSize; }
     QString getPrice() { return mPrice; }
     QString serialize();
+    bool getSoldStatus() { return mSold; }
     bool setID(QString itemid);
     bool setSellerID(int sellerid);
     bool setManufacturer(QString manufacturer);
     bool setDescription(QString description);
     bool setItemSize(QString itemsize);
     bool setPrice(QString price);
+    void setSold(bool soldStatus);
     bool isComplete();
-    bool markSold(Databaseconnection *data);
+
 
 signals:
     
 public slots:
     bool findItem(Databaseconnection *data, int itemID);
     bool saveItem(Databaseconnection *data);
+    bool updateItem(Databaseconnection *data);
+    bool deleteItem(Databaseconnection *data);
 
 private:
     int mID;
@@ -59,11 +63,11 @@ private:
     QString mDescription;
     QString mItemSize;
     QString mPrice;
+    int mSold;
 
     int saveManufacturer(Databaseconnection *data);
     int saveDescription(Databaseconnection *data);
     bool saveNewItem(Databaseconnection *data);
-    bool updateItem(Databaseconnection *data);
     bool existsInDb(Databaseconnection *data);
     
 };

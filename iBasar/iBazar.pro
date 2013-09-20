@@ -35,7 +35,8 @@ SOURCES += main.cpp\
     itemprinter.cpp \
     ean13.cpp \
     checkoutwidget.cpp \
-    billprinter.cpp
+    billprinter.cpp \
+    sellercheckoutprinter.cpp
 
 HEADERS  += mainwindow.h \
     databaseconnection.h \
@@ -49,7 +50,8 @@ HEADERS  += mainwindow.h \
     itemprinter.h \
     ean13.h \
     checkoutwidget.h \
-    billprinter.h
+    billprinter.h \
+    sellercheckoutprinter.h
 
 FORMS    += \
     settingsdialog.ui \

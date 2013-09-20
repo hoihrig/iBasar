@@ -16,57 +16,65 @@
 #################################################################################################
 */
 
-#ifndef SELLERREGISTRATIONWIDGET_H
-#define SELLERREGISTRATIONWIDGET_H
+#ifndef SELLERCHECKOUTPRINTER_H
+#define SELLERCHECKOUTPRINTER_H
 
-#include <QWidget>
-#include <QMessageBox>
-#include "databaseconnection.h"
-#include "seller.h"
-#include "salesitem.h"
-#include "sellercheckoutprinter.h"
+#include <QObject>
+#include <QPrinter>
+#include <QPainter>
+#include <QTextDocument>
+#include <QDesktopServices>
+#include <QUrl>
+#include <QDateTime>
+#include <QPrintDialog>
 
-namespace Ui {
-class SellerRegistrationWidget;
-}
-
-class SellerRegistrationWidget : public QWidget
+class SellerCheckoutPrinter : public QObject
 {
     Q_OBJECT
-    
 public:
-    explicit SellerRegistrationWidget(Databaseconnection *db, QWidget *parent = 0);
-    ~SellerRegistrationWidget();
+    explicit SellerCheckoutPrinter(QObject *parent = 0);
+    ~SellerCheckoutPrinter();
+
+    void printPdf(QStringList &soldentries, QStringList &unsoldentries);
+    void printPrinter(QWidget *parent, QStringList &soldentries, QStringList &unsoldentries);
+
+    void setHeaderInfo(QString Info);
+    void setEventName(QString eventName);
+    void setEventLocation(QString eventLocation);
+    void setEventDate(QString eventDate);
+
+
+    void setSoldProvision(QString provision);
+    void setUnSoldProvision(QString provision);
+    void setCurrencySymbol(const QString &value);
+
+signals:
 
 public slots:
-    void updateEvents();
 
 private:
-    Ui::SellerRegistrationWidget *ui;
-    Databaseconnection *data;
-    Seller *regseller;
-    QString selectedEventName;
-    QString selectedEventLocation;
-    QString selectedEventDate;
+    QPrinter *iprinter;
+    QStringList deserialize(QString serialString);
+    QString createHtmlHeader();
+    QString addHtmlAdresswithEventInfo();
+    QString addEventInfo();
+    QString addHtmlSoldSalesItemHeader();
+    QString addHtmlUnSoldSalesItem(QStringList entry);
+    QString addHtmlDocumentFooter();
+    QString addHtmlSoldSummary(int count, float price);
+    void print(QStringList &entries, QStringList &unsoldentries);
+
+    QStringList headerinfo;
+    QString eventName;
+    QString eventLocation;
+    QString eventDate;
     QString soldProvision;
     QString unsoldProvision;
     QString currencySymbol;
 
-    QStringList findEvents(Databaseconnection *db);
-    bool loadSalesItems();
-    void printCheckout(QList<int> salesItemList);
-
-    QString serializeHeader();
-    bool getSelectedEventInfo(Databaseconnection *db);
-private slots:
-    void updateSellerFields();
-    void searchSeller();
-    void createSeller();
-    void checkoutSeller();
-    void addRow();
-    void deleteRow();
-    void saveTabletoDB();
-    void reset();
+    QString addHtmlUnSoldSalesItemHeader();
+    QString addHtmlSoldSalesItem(QStringList entry);
+    QString addHtmlUnSoldSummary(int count, float price);
 };
 
-#endif // SELLERREGISTRATIONWIDGET_H
+#endif // SELLERCHECKOUTPRINTER_H

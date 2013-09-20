@@ -40,6 +40,7 @@ SellerRegistrationWidget::SellerRegistrationWidget(Databaseconnection *db, QWidg
     connect(ui->delRowbtn,SIGNAL(clicked()),this,SLOT(deleteRow()));
     connect(ui->savetblbtn,SIGNAL(clicked()),this,SLOT(saveTabletoDB()));
     connect(ui->sellerresetbtn,SIGNAL(clicked()),this,SLOT(reset()));
+    connect(ui->sellerCheckoutbtn,SIGNAL(clicked()),this,SLOT(checkoutSeller()));
 }
 
 SellerRegistrationWidget::~SellerRegistrationWidget()
@@ -181,6 +182,127 @@ bool SellerRegistrationWidget::loadSalesItems()
     }
 
     return true;
+}
+
+void SellerRegistrationWidget::checkoutSeller()
+{
+    QList<int> salesItemList;
+    SalesItem sitem;
+
+    if ((ui->nameedit->text().isEmpty()) || (ui->surnameedit->text().isEmpty()))
+    {
+        QMessageBox::critical(this,tr("Seller Registration"),tr("To Search you have to specify Name and Surname of the Seller. Cannot search Seller!"));
+        return;
+    }
+
+    searchSeller();
+
+    regseller->setName(ui->nameedit->text());
+    regseller->setSurname(ui->surnameedit->text());
+    regseller->findSeller(data);
+
+    salesItemList = regseller->getSalesItemIDs(data);
+
+    printCheckout(salesItemList);
+
+    // Mark sold items as sold and clear all fields
+    for (int i=0; i<salesItemList.count(); i++)
+    {
+        sitem.findItem(data, salesItemList[i]);
+        sitem.deleteItem(data);
+    }
+    reset();
+}
+
+QString SellerRegistrationWidget::serializeHeader()
+{
+    QString header;
+
+    header += ui->nameedit->text() + " ";
+    header += ui->surnameedit->text() + ":::";
+    header += ui->addressedit->text() + ":::";
+    header += ui->plzedit->text() + " ";
+    header += ui->cityedit->text() + ":::";
+
+    return header;
+}
+
+bool SellerRegistrationWidget::getSelectedEventInfo(Databaseconnection *db)
+{
+    QSqlQuery result;
+    QString querycmd;
+
+    int eventid = 0;
+
+    querycmd = "SELECT * FROM `Veranstaltung` WHERE Name='" + ui->eventComboBox->currentText() + "';";
+
+    db->query(querycmd,result);
+
+    if (result.next())
+    {
+        eventid = result.value("ID").toInt();
+        selectedEventName = result.value("Name").toString();
+        selectedEventLocation = result.value("Ort").toString();
+        selectedEventDate = result.value("Datum").toString();
+    }
+
+    querycmd = "SELECT * FROM `Config` WHERE Veranstaltung=" + QString::number(eventid) + ";";
+
+    db->query(querycmd, result);
+
+    if (result.next())
+    {
+        soldProvision = result.value("Provision_Verkauft").toString();
+        unsoldProvision = result.value("Provision_NVerkauft").toString();
+        currencySymbol = result.value("WSymbol").toString();
+
+        return true;
+    }
+
+    return false;
+}
+
+void SellerRegistrationWidget::printCheckout(QList<int> salesItemList)
+{
+    SellerCheckoutPrinter scprinter;
+
+    QString header;
+    QStringList soldlist;
+    QStringList unsoldlist;
+    SalesItem item;
+
+    header = serializeHeader();
+    scprinter.setHeaderInfo(header);
+
+
+    if(getSelectedEventInfo(data))
+    {
+        scprinter.setEventName(selectedEventName);
+        scprinter.setEventLocation(selectedEventLocation);
+        scprinter.setEventDate(selectedEventDate);
+        scprinter.setSoldProvision(soldProvision);
+        scprinter.setUnSoldProvision(unsoldProvision);
+        scprinter.setCurrencySymbol(currencySymbol);
+    }
+
+    // Serialize all the items and put them in a List
+    for (int i = 0; i < salesItemList.size(); i++)
+    {
+        item.findItem(data,salesItemList[i]);
+        if (item.getSoldStatus())
+            soldlist.append(item.serialize());
+        else
+            unsoldlist.append(item.serialize());
+    }
+
+    if(ui->pdfcheckBox->isChecked())
+    {
+        scprinter.printPdf(soldlist, unsoldlist);
+    }
+    else
+    {
+        scprinter.printPrinter(this, soldlist, unsoldlist);
+    }
 }
 
 void SellerRegistrationWidget::createSeller()

@@ -245,10 +245,10 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>730</x>
-      <y>30</y>
+      <x>721</x>
+      <y>31</y>
       <width>101</width>
-      <height>114</height>
+      <height>131</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -505,6 +505,48 @@
       </layout>
      </item>
     </layout>
+   </widget>
+   <widget class="QGroupBox" name="chkoutbox">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>170</y>
+      <width>121</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Abschluss</string>
+    </property>
+    <widget class="QCheckBox" name="pdfcheckBox">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>70</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>PDF</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="sellerCheckoutbtn">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>101</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Checkout</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QGroupBox" name="itemgroupbox">

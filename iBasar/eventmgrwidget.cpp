@@ -65,6 +65,15 @@ void EventMgrWidget::createEventManagerWidget()
     db->query(querycmd,result);
 
 
+    querycmd = "INSERT INTO `Config` (Veranstaltung, WSymbol, Provision_Verkauft, Provision_NVerkauft) VALUES (" +
+            QString::number(rowid) + ", '" +
+            ui->currencyLineEdit->text() + "', " +
+            ui->provSoldLineEdit->text() + ", " +
+            ui->provNSoldLineEdit->text() + ");";
+
+    db->query(querycmd,result);
+
+
 }
 
 EventMgrWidget::~EventMgrWidget()

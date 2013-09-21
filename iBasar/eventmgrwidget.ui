@@ -53,34 +53,34 @@
     <property name="title">
      <string>Logo</string>
     </property>
-    <widget class="QPushButton" name="browselblbtn">
+    <widget class="QWidget" name="">
      <property name="geometry">
       <rect>
-       <x>20</x>
+       <x>10</x>
        <y>20</y>
-       <width>75</width>
-       <height>23</height>
+       <width>311</width>
+       <height>25</height>
       </rect>
      </property>
-     <property name="text">
-      <string>Browse</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="logolineEdit">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>110</x>
-       <y>20</y>
-       <width>201</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QLineEdit" name="logolineEdit">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="browselblbtn">
+        <property name="text">
+         <string>Browse</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </widget>
    <widget class="QWidget" name="">
@@ -153,6 +153,9 @@
      </item>
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="spacing">
+        <number>13</number>
+       </property>
        <item>
         <widget class="QLineEdit" name="eventnameedit"/>
        </item>

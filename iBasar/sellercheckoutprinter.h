@@ -48,6 +48,8 @@ public:
     void setUnSoldProvision(QString provision);
     void setCurrencySymbol(const QString &value);
 
+    void setPrintLogo(bool value);
+
 signals:
 
 public slots:
@@ -71,10 +73,12 @@ private:
     QString soldProvision;
     QString unsoldProvision;
     QString currencySymbol;
+    bool printLogo;
 
     QString addHtmlUnSoldSalesItemHeader();
     QString addHtmlSoldSalesItem(QStringList entry);
     QString addHtmlUnSoldSummary(int count, float price);
+    QString addLogo();
 };
 
 #endif // SELLERCHECKOUTPRINTER_H

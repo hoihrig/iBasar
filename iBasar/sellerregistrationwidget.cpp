@@ -19,6 +19,8 @@
 #include "sellerregistrationwidget.h"
 #include "ui_sellerregistrationwidget.h"
 
+#include <QFile>
+
 SellerRegistrationWidget::SellerRegistrationWidget(Databaseconnection *db, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::SellerRegistrationWidget)
@@ -191,7 +193,7 @@ void SellerRegistrationWidget::checkoutSeller()
 
     if ((ui->nameedit->text().isEmpty()) || (ui->surnameedit->text().isEmpty()))
     {
-        QMessageBox::critical(this,tr("Seller Registration"),tr("To Search you have to specify Name and Surname of the Seller. Cannot search Seller!"));
+        QMessageBox::critical(this,tr("Seller"),tr("To Search you have to specify Name and Surname of the Seller. Cannot search Seller!"));
         return;
     }
 
@@ -202,6 +204,12 @@ void SellerRegistrationWidget::checkoutSeller()
     regseller->findSeller(data);
 
     salesItemList = regseller->getSalesItemIDs(data);
+
+    if (salesItemList.count() == 0)
+    {
+        QMessageBox::critical(this,tr("Seller"),tr("This Seller has either no items or has already checked out!"));
+        return;
+    }
 
     printCheckout(salesItemList);
 
@@ -255,6 +263,14 @@ bool SellerRegistrationWidget::getSelectedEventInfo(Databaseconnection *db)
         soldProvision = result.value("Provision_Verkauft").toString();
         unsoldProvision = result.value("Provision_NVerkauft").toString();
         currencySymbol = result.value("WSymbol").toString();
+        logo = result.value("Logo").toByteArray();
+
+        if (!logo.isEmpty())
+        {
+            QPixmap pic;
+            pic.loadFromData(logo);
+            pic.save(QString("Logo.png"));
+        }
 
         return true;
     }
@@ -283,6 +299,10 @@ void SellerRegistrationWidget::printCheckout(QList<int> salesItemList)
         scprinter.setSoldProvision(soldProvision);
         scprinter.setUnSoldProvision(unsoldProvision);
         scprinter.setCurrencySymbol(currencySymbol);
+
+        if (!logo.isEmpty())
+            scprinter.setPrintLogo(true);
+
     }
 
     // Serialize all the items and put them in a List
@@ -303,6 +323,10 @@ void SellerRegistrationWidget::printCheckout(QList<int> salesItemList)
     {
         scprinter.printPrinter(this, soldlist, unsoldlist);
     }
+
+    // cleanup
+    if (!logo.isEmpty())
+        QFile::remove("Logo.png");
 }
 
 void SellerRegistrationWidget::createSeller()

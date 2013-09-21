@@ -79,6 +79,15 @@ QString SellerCheckoutPrinter::createHtmlHeader()
     return temp;
 }
 
+QString SellerCheckoutPrinter::addLogo()
+{
+    QString temp;
+
+    temp = "<tr><td><table align=\"right\"><tbody><tr><td><img src=\"logo.png\" /></td></tr></tbody></table></td></tr>";
+
+    return temp;
+}
+
 QString SellerCheckoutPrinter::addHtmlAdresswithEventInfo()
 {
     QString temp;
@@ -222,6 +231,9 @@ void SellerCheckoutPrinter::print(QStringList &soldentries, QStringList &unsolde
 
     htmlContent += createHtmlHeader();
 
+    if (printLogo)
+        htmlContent += addLogo();
+
     if (headerinfo.isEmpty())
         htmlContent += addEventInfo();
     else
@@ -273,6 +285,13 @@ void SellerCheckoutPrinter::print(QStringList &soldentries, QStringList &unsolde
 
     delete document;
 }
+
+
+void SellerCheckoutPrinter::setPrintLogo(bool value)
+{
+    printLogo = value;
+}
+
 
 void SellerCheckoutPrinter::setCurrencySymbol(const QString &value)
 {

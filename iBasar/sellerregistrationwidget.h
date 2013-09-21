@@ -51,6 +51,7 @@ private:
     QString soldProvision;
     QString unsoldProvision;
     QString currencySymbol;
+    QByteArray logo;
 
     QStringList findEvents(Databaseconnection *db);
     bool loadSalesItems();

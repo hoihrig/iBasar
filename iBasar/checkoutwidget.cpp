@@ -19,6 +19,8 @@
 #include "checkoutwidget.h"
 #include "ui_checkoutwidget.h"
 
+#include <QFile>
+
 CheckoutWidget::CheckoutWidget(Databaseconnection *db,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CheckoutWidget)
@@ -195,20 +197,34 @@ bool CheckoutWidget::getSelectedEventInfo(Databaseconnection *db)
     QSqlQuery result;
     QString querycmd;
 
+
     querycmd = "SELECT * FROM `Veranstaltung` WHERE Name='" + ui->eventComboBox->currentText() + "';";
 
     db->query(querycmd,result);
 
-    if (result.next())
-    {
-        selectedEventName = result.value("Name").toString();
-        selectedEventLocation = result.value("Ort").toString();
-        selectedEventDate = result.value("Datum").toString();
+    if (!result.next())
+        return false;
 
-        return true;
+
+    selectedEventName = result.value("Name").toString();
+    selectedEventLocation = result.value("Ort").toString();
+    selectedEventDate = result.value("Datum").toString();
+
+    QString eventid = result.value("ID").toString();
+
+    querycmd = "SELECT LOGO FROM `Config` WHERE Veranstaltung=" + eventid + ";";
+
+    db->query(querycmd,result);
+
+    if (result.next()) {
+        selectedLogo = result.value(0).toByteArray();
+
+        QPixmap pic;
+        pic.loadFromData(selectedLogo);
+        pic.save(QString("Logo.png"));
     }
 
-    return false;
+    return true;
 }
 
 void CheckoutWidget::updateEvents()
@@ -236,6 +252,9 @@ void CheckoutWidget::printCheckout()
         bprinter.setEventName(selectedEventName);
         bprinter.setEventLocation(selectedEventLocation);
         bprinter.setEventDate(selectedEventDate);
+
+        if (!selectedLogo.isEmpty())
+            bprinter.setPrintLogo(true);
     }
 
     // Serialize all the items and put them in a List
@@ -257,6 +276,13 @@ void CheckoutWidget::printCheckout()
     else
     {
         bprinter.printPrinter(this,serializedlist);
+    }
+
+    //cleanup
+    if (!selectedLogo.isEmpty())
+    {
+        QFile file("Logo.png");
+        file.remove();
     }
 }
 

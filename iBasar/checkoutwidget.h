@@ -56,6 +56,7 @@ private:
     QString selectedEventName;
     QString selectedEventLocation;
     QString selectedEventDate;
+    QByteArray selectedLogo;
 
     void addRow();
     void processItem(QString itemnumber);

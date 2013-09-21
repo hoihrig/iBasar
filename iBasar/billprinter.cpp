@@ -21,6 +21,7 @@
 BillPrinter::BillPrinter(QObject *parent) :
     QObject(parent)
 {
+    printLogo = false;
 }
 
 BillPrinter::~BillPrinter()
@@ -38,6 +39,11 @@ void BillPrinter::setHeaderInfo(QString Info)
 {
     if (!Info.isEmpty())
         headerinfo = deserialize(Info);
+}
+
+void BillPrinter::setPrintLogo(bool Logoavailable)
+{
+    printLogo = Logoavailable;
 }
 
 void BillPrinter::setEventName(QString eventName)
@@ -64,6 +70,15 @@ QString BillPrinter::createHtmlHeader()
 
     temp = "<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=windows-1252\">";
     temp += "<title>iBasar, Schneesportbörse: Verkaufsbeleg</title></head><body>";
+    return temp;
+}
+
+QString BillPrinter::addLogo()
+{
+    QString temp;
+
+    temp = "<tr><td><table align=\"right\"><tbody><tr><td><img src=\"logo.png\" /></td></tr></tbody></table></td></tr>";
+
     return temp;
 }
 
@@ -161,6 +176,9 @@ void BillPrinter::print(QStringList &entries)
     float totalPrice = 0;
 
     htmlContent += createHtmlHeader();
+
+    if (printLogo)
+        htmlContent += addLogo();
 
     if (headerinfo.isEmpty())
         htmlContent += addEventInfo();

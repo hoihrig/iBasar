@@ -44,6 +44,7 @@ public:
     void setEventDate(QString eventDate);
     
 
+    void setPrintLogo(bool Logoavailable);
 signals:
     
 public slots:
@@ -64,7 +65,9 @@ private:
     QString eventName;
     QString eventLocation;
     QString eventDate;
+    bool printLogo;
 
+    QString addLogo();
 };
 
 #endif // BILLPRINTER_H

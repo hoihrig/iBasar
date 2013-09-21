@@ -29,6 +29,7 @@ EventMgrWidget::EventMgrWidget(Databaseconnection *data, QWidget *parent) :
         db = data;
 
     connect(ui->buttonBox,SIGNAL(accepted()),this,SLOT(createEventManagerWidget()));
+    connect(ui->browselblbtn,SIGNAL(clicked()),this,SLOT(selectLogo()));
 }
 
 void EventMgrWidget::createEventManagerWidget()
@@ -65,15 +66,57 @@ void EventMgrWidget::createEventManagerWidget()
     db->query(querycmd,result);
 
 
-    querycmd = "INSERT INTO `Config` (Veranstaltung, WSymbol, Provision_Verkauft, Provision_NVerkauft) VALUES (" +
-            QString::number(rowid) + ", '" +
-            ui->currencyLineEdit->text() + "', " +
-            ui->provSoldLineEdit->text() + ", " +
-            ui->provNSoldLineEdit->text() + ");";
+    if (ui->logolineEdit->text().isEmpty()) {
+        querycmd = "INSERT INTO `Config` (Veranstaltung, WSymbol, Provision_Verkauft, Provision_NVerkauft) VALUES (" +
+                QString::number(rowid) + ", '" +
+                ui->currencyLineEdit->text() + "', " +
+                ui->provSoldLineEdit->text() + ", " +
+                ui->provNSoldLineEdit->text() + ");";
 
-    db->query(querycmd,result);
+        db->query(querycmd,result);
 
+    }
+    else
+    {
+            QString fileName = ui->logolineEdit->text();
 
+            // load image to bytearray
+            QByteArray ba;
+            QFile f(fileName);
+            if(f.open(QIODevice::ReadOnly))
+            {
+                ba = f.readAll();
+                f.close();
+            }
+
+            // Writing the image into table
+            QSqlDatabase::database().transaction();
+            QSqlQuery query;
+            query.prepare( "INSERT INTO `Config` (Veranstaltung, WSymbol, Provision_Verkauft, Provision_NVerkauft, Logo ) VALUES (" +
+                           QString::number(rowid) + ", '" +
+                           ui->currencyLineEdit->text() + "', " +
+                           ui->provSoldLineEdit->text() + ", " +
+                           ui->provNSoldLineEdit->text() + ", " +
+                           ":IMAGE);");
+            query.bindValue(":IMAGE", ba);
+            query.exec();
+            if( query.lastError().isValid()) {
+            qDebug() << query.lastError().text();
+            QSqlDatabase::database().rollback();
+            } else
+            QSqlDatabase::database().commit();
+
+    }
+
+}
+
+void EventMgrWidget::selectLogo()
+{
+    QString fileName = QFileDialog::getOpenFileName(this,
+       tr("Open Image"), ".", tr("Image Files (*.png *.jpg *.bmp)"));
+
+    if (!fileName.isEmpty())
+        ui->logolineEdit->setText(fileName);
 }
 
 EventMgrWidget::~EventMgrWidget()

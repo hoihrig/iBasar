@@ -21,6 +21,8 @@
 
 #include <QDialog>
 #include <QtWidgets/QMessageBox>
+#include <QtCore/QFile>
+#include <QtWidgets/QFileDialog>
 #include "databaseconnection.h"
 
 namespace Ui {
@@ -41,6 +43,7 @@ private:
 
 private slots:
     void createEventManagerWidget();
+    void selectLogo();
 };
 
 #endif // EVENTMGRWIDGET_H

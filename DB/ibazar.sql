@@ -78,6 +78,10 @@ CREATE TABLE  `ibasar`.`Config` (
   `Logo` blob NOT NULL,
   `Provision_Verkauft` int(2) NOT NULL,
   `Provision_NVerkauft` int(2) NOT NULL,
+  `Provision_Annahme` decimal(2,0) NOT NULL,
+  `Grosshaendler_Verkauft` int(2) NOT NULL,
+  `Grosshaendler_NVerkauft` int(2) NOT NULL,
+  `Grosshaendler_Annahme` decimal(2,0) NOT NULL,
   `Negativ` tinyint(1) NOT NULL,
   `WSymbol` char(1) CHARACTER SET latin1 NOT NULL,
   `Duplexprint` tinyint(1) NOT NULL,
@@ -152,6 +156,7 @@ CREATE TABLE  `ibasar`.`Verkäufer` (
   `Ort` varchar(50) CHARACTER SET latin1 NOT NULL,
   `Telefon` varchar(20) CHARACTER SET latin1 NOT NULL,
   `Email` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `Ist_Grosshaendler` tinyint(1) NOT NULL,
   `Veranstaltung` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Liste der Verkäufer';

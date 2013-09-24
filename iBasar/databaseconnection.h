@@ -66,6 +66,7 @@ private:
     bool connection_ok;
 
 
+    bool checkDriverAvailable();
 public slots:
 
 };

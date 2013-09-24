@@ -27,8 +27,23 @@ Databaseconnection::~Databaseconnection()
 {
 }
 
+bool Databaseconnection::checkDriverAvailable()
+{
+    QStringList drivers = QSqlDatabase::drivers();
+
+    if (drivers.contains(QString("QMYSQL")))
+        return true;
+
+    emit db_error(tr("MySQL Driver is not properly installed!"), tr("DatabaseConnection"));
+    return false;
+}
+
 bool Databaseconnection::open()
 {
+    if (!checkDriverAvailable())
+        return false;
+
+
     QSqlDatabase db = QSqlDatabase::addDatabase( "QMYSQL" );;
 
     db.setHostName(db_hostname);

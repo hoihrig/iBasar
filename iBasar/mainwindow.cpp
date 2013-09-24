@@ -116,7 +116,7 @@ void MainWindow::reconnectDb()
         db->readDbSettings(settings);
 
         if (!db->open())
-            qWarning("Could not Open Database");
+            qWarning("Could not Open Database, either the credentials are wrong or the Driver is not properly installed");
     }
 }
 
@@ -126,7 +126,7 @@ void MainWindow::connectDb()
     {
         if (!db->isEstablished())
             if (!db->open())
-                qWarning("Could not Open Database");
+                qWarning("Could not Open Database, either the credentials are wrong or the Driver is not properly installed");
     }
     else
     {

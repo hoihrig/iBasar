@@ -28,6 +28,8 @@ EventMgrWidget::EventMgrWidget(Databaseconnection *data, QWidget *parent) :
     if (data != 0)
         db = data;
 
+    ui->eventdateedit->setDate(QDate::currentDate());
+
     connect(ui->buttonBox,SIGNAL(accepted()),this,SLOT(createEventManagerWidget()));
     connect(ui->browselblbtn,SIGNAL(clicked()),this,SLOT(selectLogo()));
 }

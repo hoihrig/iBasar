@@ -35,7 +35,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Welcome to iBasar!</string>
+    <string>Willkommen bei iBasar</string>
    </property>
   </widget>
   <widget class="Line" name="line">
@@ -119,7 +119,7 @@
      <rect>
       <x>20</x>
       <y>10</y>
-      <width>191</width>
+      <width>221</width>
       <height>67</height>
      </rect>
     </property>
@@ -129,21 +129,21 @@
        <item>
         <widget class="QLabel" name="itemstextlbl">
          <property name="text">
-          <string>Items available:</string>
+          <string>Gegenstände verfügbar:</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="sellertextlbl">
          <property name="text">
-          <string>Sellers available:</string>
+          <string>Verkäufer verfügbar:</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="eventstextlbl">
          <property name="text">
-          <string>Events available:</string>
+          <string>Veranstaltungen verfügbar:</string>
          </property>
         </widget>
        </item>
@@ -196,7 +196,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Statistics</string>
+    <string>Statistik</string>
    </property>
   </widget>
  </widget>

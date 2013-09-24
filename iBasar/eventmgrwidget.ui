@@ -53,13 +53,13 @@
     <property name="title">
      <string>Logo</string>
     </property>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>10</x>
        <y>20</y>
        <width>311</width>
-       <height>25</height>
+       <height>30</height>
       </rect>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -76,14 +76,14 @@
       <item>
        <widget class="QPushButton" name="browselblbtn">
         <property name="text">
-         <string>Browse</string>
+         <string>Durchsuchen</string>
         </property>
        </widget>
       </item>
      </layout>
     </widget>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -138,14 +138,14 @@
        <item>
         <widget class="QLabel" name="provSoldLabel">
          <property name="text">
-          <string>Provision Verkauft</string>
+          <string>Provision Verkauft (%)</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="provNSoldLabel">
          <property name="text">
-          <string>Provision Nicht Verkauft</string>
+          <string>Provision Nicht Verkauft (€)</string>
          </property>
         </widget>
        </item>

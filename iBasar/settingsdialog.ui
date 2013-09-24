@@ -23,9 +23,9 @@
     </rect>
    </property>
    <property name="title">
-    <string>Database Settings</string>
+    <string>Datenbank Einstellungen</string>
    </property>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>21</x>
@@ -40,28 +40,28 @@
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>Database Hostname</string>
+          <string>Datenbank Hostname</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_2">
          <property name="text">
-          <string>Database Name</string>
+          <string>Datenbank Name</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_3">
          <property name="text">
-          <string>Database Username</string>
+          <string>Datenbank Username</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_4">
          <property name="text">
-          <string>Database Password</string>
+          <string>Datenbank Password</string>
          </property>
         </widget>
        </item>
@@ -105,13 +105,13 @@
     </layout>
    </widget>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>240</y>
-     <width>158</width>
-     <height>25</height>
+     <x>180</x>
+     <y>200</y>
+     <width>195</width>
+     <height>30</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -125,7 +125,7 @@
     <item>
      <widget class="QPushButton" name="abortButton">
       <property name="text">
-       <string>Abort</string>
+       <string>Abbrechen</string>
       </property>
      </widget>
     </item>

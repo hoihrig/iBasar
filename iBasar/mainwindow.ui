@@ -42,7 +42,7 @@
      <enum>QFrame::Box</enum>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <property name="tabSpacing">
      <number>7</number>
@@ -53,7 +53,7 @@
        <x>0</x>
        <y>0</y>
        <width>109</width>
-       <height>337</height>
+       <height>356</height>
       </rect>
      </property>
      <attribute name="label">
@@ -66,11 +66,11 @@
        <x>0</x>
        <y>0</y>
        <width>109</width>
-       <height>337</height>
+       <height>356</height>
       </rect>
      </property>
      <attribute name="label">
-      <string>Seller</string>
+      <string>Verkäufer</string>
      </attribute>
     </widget>
     <widget class="QWidget" name="checkoutpage">
@@ -79,24 +79,11 @@
        <x>0</x>
        <y>0</y>
        <width>109</width>
-       <height>337</height>
+       <height>356</height>
       </rect>
      </property>
      <attribute name="label">
-      <string>Buyer</string>
-     </attribute>
-    </widget>
-    <widget class="QWidget" name="stuffpage">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>109</width>
-       <height>337</height>
-      </rect>
-     </property>
-     <attribute name="label">
-      <string>Other</string>
+      <string>Käufer</string>
      </attribute>
     </widget>
    </widget>
@@ -163,7 +150,7 @@
      <x>0</x>
      <y>0</y>
      <width>1129</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuDatei">
@@ -174,7 +161,7 @@
    </widget>
    <widget class="QMenu" name="menuTools">
     <property name="title">
-     <string>Tools</string>
+     <string>Werkzeuge</string>
     </property>
     <addaction name="actionEvent_Manager"/>
     <addaction name="actionPrint_Labels"/>
@@ -182,7 +169,7 @@
    </widget>
    <widget class="QMenu" name="menuAbout">
     <property name="title">
-     <string>About</string>
+     <string>Über</string>
     </property>
     <addaction name="actionAbout"/>
     <addaction name="actionAbout_Qt"/>
@@ -202,32 +189,32 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionExit">
    <property name="text">
-    <string>Exit</string>
+    <string>Beenden</string>
    </property>
   </action>
   <action name="actionSettings">
    <property name="text">
-    <string>Settings</string>
+    <string>Einstellungen</string>
    </property>
   </action>
   <action name="actionAbout">
    <property name="text">
-    <string>About</string>
+    <string>Über iBasar</string>
    </property>
   </action>
   <action name="actionAbout_Qt">
    <property name="text">
-    <string>About Qt</string>
+    <string>Über Qt</string>
    </property>
   </action>
   <action name="actionEvent_Manager">
    <property name="text">
-    <string>Event Management</string>
+    <string>Veranstaltungsmanagement</string>
    </property>
   </action>
   <action name="actionPrint_Labels">
    <property name="text">
-    <string>Print Labels</string>
+    <string>Produkte drucken</string>
    </property>
   </action>
  </widget>

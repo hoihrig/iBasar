@@ -23,9 +23,9 @@
     </rect>
    </property>
    <property name="title">
-    <string>Product Labels</string>
+    <string>Produktaufkleber</string>
    </property>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -42,7 +42,7 @@
          <item>
           <widget class="QLabel" name="eventlvl">
            <property name="text">
-            <string>Event</string>
+            <string>Veranstaltung</string>
            </property>
           </widget>
          </item>
@@ -72,7 +72,7 @@
          <item>
           <widget class="QLabel" name="sellerlbl">
            <property name="text">
-            <string>Seller</string>
+            <string>Verkäufer</string>
            </property>
           </widget>
          </item>
@@ -102,7 +102,7 @@
      <item>
       <widget class="QCheckBox" name="createpdfcheckbox">
        <property name="text">
-        <string>Print as PDF</string>
+        <string>Als PDF ausgeben</string>
        </property>
        <property name="checked">
         <bool>true</bool>
@@ -112,7 +112,7 @@
     </layout>
    </widget>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -138,14 +138,14 @@
     <item>
      <widget class="QPushButton" name="printbtn">
       <property name="text">
-       <string>Print</string>
+       <string>Drucken</string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QPushButton" name="cancelbtn">
       <property name="text">
-       <string>Cancel</string>
+       <string>Abbruch</string>
       </property>
      </widget>
     </item>

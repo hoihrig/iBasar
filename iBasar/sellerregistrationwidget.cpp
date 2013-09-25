@@ -405,6 +405,8 @@ void SellerRegistrationWidget::addRow()
 
     QTableWidgetItem *item0 = new QTableWidgetItem;
     item0->setFlags(item0->flags() ^ Qt::ItemIsEditable);
+    if (ui->tableWidget->isEnabled())
+        item0->setBackgroundColor(QColor("lightgray"));
     ui->tableWidget->setItem(row, 0, item0);
 
     QTableWidgetItem *item1 = new QTableWidgetItem;

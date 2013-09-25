@@ -38,12 +38,19 @@ public:
 private:
     Ui::Mainwidget *ui;
     Databaseconnection *data;
+    QString defaultEvent;
 
     void updateDbStatus();
     void updateItemStatus();
 
+    void updateEvents();
 public slots:
     void updateValues();
+
+    void updateTitle(QString name);
+
+signals:
+    void eventChanged(QString name);
 };
 
 #endif // MAINWIDGET_H

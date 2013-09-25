@@ -48,6 +48,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->toolBox->setCurrentIndex(0);
 
+
     connect(ui->actionAbout_Qt,SIGNAL(triggered()),this,SLOT(aboutQt()));
     connect(ui->actionSettings,SIGNAL(triggered()),this,SLOT(showSettings()));
     connect(ui->toolBox,SIGNAL(currentChanged(int)),this,SLOT(loadWidget(int)));
@@ -58,6 +59,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this,SIGNAL(updateWidgets()),mcheckoutwidget,SLOT(updateEvents()));
     connect(this,SIGNAL(updateWidgets()),msellerwidget,SLOT(updateEvents()));
     connect(db,SIGNAL(db_error(QString,QString)),this,SLOT(errorhandling(QString,QString)));
+    connect(mwidget,SIGNAL(eventChanged(QString)),this,SLOT(setTitle(QString)));
+    connect(mwidget,SIGNAL(eventChanged(QString)),mcheckoutwidget,SLOT(setDefaultEvent(QString)));
+    connect(mwidget,SIGNAL(eventChanged(QString)),msellerwidget,SLOT(setDefaultEvent(QString)));
+
+    emit updateWidgets();
 }
 
 MainWindow::~MainWindow()
@@ -77,6 +83,10 @@ void MainWindow::loadWidget(int index)
     ui->stackedWidget->setCurrentIndex(index);
 }
 
+void MainWindow::setTitle(QString name)
+{
+    this->setWindowTitle(QString("iBazar - ") + name);
+}
 
 void MainWindow::showSettings()
 {

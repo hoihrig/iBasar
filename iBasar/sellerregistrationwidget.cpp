@@ -51,6 +51,15 @@ SellerRegistrationWidget::~SellerRegistrationWidget()
     delete ui;
 }
 
+void SellerRegistrationWidget::setDefaultEvent(QString name)
+{
+
+    if (!name.isEmpty())
+    {
+        defaultEvent = name;
+    }
+}
+
 void SellerRegistrationWidget::reset()
 {
     ui->addressedit->clear();
@@ -72,6 +81,14 @@ void SellerRegistrationWidget::updateEvents()
 {
     ui->eventComboBox->clear();
     ui->eventComboBox->addItems(findEvents(data));
+
+    if (!defaultEvent.isEmpty())
+    {
+        int eventid = ui->eventComboBox->findText(defaultEvent);
+
+        if (eventid >= 0)
+            ui->eventComboBox->setCurrentIndex(eventid);
+    }
 }
 
 QStringList SellerRegistrationWidget::findEvents(Databaseconnection *db)

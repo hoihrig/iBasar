@@ -49,6 +49,7 @@ public slots:
     void checkoutPdf();
     void updateEvents();
 
+    void setDefaultEvent(QString name);
 private:
     Ui::CheckoutWidget *ui;
     Databaseconnection *data;
@@ -57,6 +58,7 @@ private:
     QString selectedEventLocation;
     QString selectedEventDate;
     QByteArray selectedLogo;
+    QString defaultEvent;
 
     void addRow();
     void processItem(QString itemnumber);

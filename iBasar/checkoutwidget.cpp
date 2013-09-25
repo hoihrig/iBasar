@@ -49,6 +49,14 @@ CheckoutWidget::~CheckoutWidget()
     delete ui;
 }
 
+void CheckoutWidget::setDefaultEvent(QString name){
+
+    if (!name.isEmpty())
+    {
+        defaultEvent = name;
+    }
+}
+
 void CheckoutWidget::checkoutPdf()
 {
     pdf = true;
@@ -231,6 +239,14 @@ void CheckoutWidget::updateEvents()
 {
     ui->eventComboBox->clear();
     ui->eventComboBox->addItems(findEvents(data));
+
+    if (!defaultEvent.isEmpty())
+    {
+        int eventid = ui->eventComboBox->findText(defaultEvent);
+
+        if (eventid >= 0)
+            ui->eventComboBox->setCurrentIndex(eventid);
+    }
 }
 
 void CheckoutWidget::printCheckout()

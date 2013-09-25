@@ -27,11 +27,21 @@ MainWidget::MainWidget(Databaseconnection *db, QWidget *parent) :
     data = db;
 
     updateValues();
+
+    connect(ui->eventcomboBox,SIGNAL(currentIndexChanged(QString)),this,SLOT(updateTitle(QString)));
+
 }
 
 MainWidget::~MainWidget()
 {
     delete ui;
+}
+
+void MainWidget::updateTitle(QString name)
+{
+    defaultEvent = name;
+
+    emit eventChanged(name);
 }
 
 void MainWidget::updateDbStatus()
@@ -64,9 +74,47 @@ void MainWidget::updateItemStatus()
 
 }
 
+void MainWidget::updateEvents()
+{
+
+
+    QStringList eventslist;
+
+    QSqlQuery result;
+    QString querycmd;
+
+    querycmd = "SELECT Name from `Veranstaltung`";
+
+    data->query(querycmd,result);
+
+    while (result.next())
+    {
+        eventslist.append(result.value(0).toString());
+    }
+
+    if (eventslist.count() != ui->eventcomboBox->count())
+    {
+        ui->eventcomboBox->clear();
+        ui->eventcomboBox->addItems(eventslist);
+
+        updateTitle(ui->eventcomboBox->currentText());
+    }
+
+
+    if (!defaultEvent.isEmpty())
+    {
+        int eventid = ui->eventcomboBox->findText(defaultEvent);
+
+        if (eventid >= 0)
+            ui->eventcomboBox->setCurrentText(defaultEvent);
+    }
+}
+
 void MainWidget::updateValues()
 {
     updateDbStatus();
 
     updateItemStatus();
+
+    updateEvents();
 }

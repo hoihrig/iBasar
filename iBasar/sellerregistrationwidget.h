@@ -41,6 +41,7 @@ public:
 public slots:
     void updateEvents();
 
+    void setDefaultEvent(QString name);
 private:
     Ui::SellerRegistrationWidget *ui;
     Databaseconnection *data;
@@ -51,6 +52,7 @@ private:
     QString soldProvision;
     QString unsoldProvision;
     QString currencySymbol;
+    QString defaultEvent;
     QByteArray logo;
 
     QStringList findEvents(Databaseconnection *db);

@@ -58,7 +58,6 @@ private:
     SellerRegistrationWidget *msellerwidget;
     CheckoutWidget *mcheckoutwidget;
 
-
 public slots:
     void aboutQt();
     void showSettings();
@@ -66,6 +65,7 @@ public slots:
     void showLabelPrint();
     void loadWidget(int index);
     void errorhandling(QString error_msg, QString error_src);
+    void setTitle(QString name);
 };
 
 #endif // MAINWINDOW_H

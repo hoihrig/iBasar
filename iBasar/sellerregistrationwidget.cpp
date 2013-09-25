@@ -194,9 +194,9 @@ bool SellerRegistrationWidget::loadSalesItems()
             ui->tableWidget->item(row,3)->setText(item.getItemSize());
             ui->tableWidget->item(row,4)->setText(item.getPrice());
             if (item.getSoldStatus())
-                ui->tableWidget->item(row,5)->setText("1");
+                ui->tableWidget->item(row,5)->setText("Ja");
             else
-                ui->tableWidget->item(row,5)->setText("0");
+                ui->tableWidget->item(row,5)->setText("Nein");
         }
     }
 
@@ -400,6 +400,9 @@ void SellerRegistrationWidget::addRow()
 
     ui->tableWidget->insertRow(row);
 
+    ComboBoxItemDelegate *cbid = new ComboBoxItemDelegate(ui->tableWidget);
+    ui->tableWidget->setItemDelegate(cbid);
+
     QTableWidgetItem *item0 = new QTableWidgetItem;
     item0->setFlags(item0->flags() ^ Qt::ItemIsEditable);
     ui->tableWidget->setItem(row, 0, item0);
@@ -418,6 +421,8 @@ void SellerRegistrationWidget::addRow()
 
     QTableWidgetItem *item5 = new QTableWidgetItem;
     ui->tableWidget->setItem(row, 5, item5);
+
+
 }
 
 void SellerRegistrationWidget::deleteRow()
@@ -451,7 +456,7 @@ void SellerRegistrationWidget::saveTabletoDB()
             sitem.setItemSize(ui->tableWidget->item(i,3)->text());
             sitem.setPrice(ui->tableWidget->item(i,4)->text());
 
-            if (ui->tableWidget->item(i,5)->text() == "1")
+            if (ui->tableWidget->item(i,5)->text() == QString("Ja"))
                 sitem.setSold(true);
             else
                 sitem.setSold(false);

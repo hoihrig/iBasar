@@ -36,7 +36,8 @@ SOURCES += main.cpp\
     ean13.cpp \
     checkoutwidget.cpp \
     billprinter.cpp \
-    sellercheckoutprinter.cpp
+    sellercheckoutprinter.cpp \
+    comboboxitemdelegate.cpp
 
 HEADERS  += mainwindow.h \
     databaseconnection.h \
@@ -51,7 +52,8 @@ HEADERS  += mainwindow.h \
     ean13.h \
     checkoutwidget.h \
     billprinter.h \
-    sellercheckoutprinter.h
+    sellercheckoutprinter.h \
+    comboboxitemdelegate.h
 
 FORMS    += \
     settingsdialog.ui \

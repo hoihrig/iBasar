@@ -16,61 +16,23 @@
 #################################################################################################
 */
 
-#ifndef SELLERREGISTRATIONWIDGET_H
-#define SELLERREGISTRATIONWIDGET_H
+#ifndef COMBOBOXITEMDELEGATE_H
+#define COMBOBOXITEMDELEGATE_H
 
-#include <QWidget>
-#include <QMessageBox>
-#include "databaseconnection.h"
-#include "seller.h"
-#include "salesitem.h"
-#include "sellercheckoutprinter.h"
-#include "comboboxitemdelegate.h"
+#include <QStyledItemDelegate>
 
-namespace Ui {
-class SellerRegistrationWidget;
-}
-
-class SellerRegistrationWidget : public QWidget
+class ComboBoxItemDelegate : public QStyledItemDelegate
 {
     Q_OBJECT
-    
+
 public:
-    explicit SellerRegistrationWidget(Databaseconnection *db, QWidget *parent = 0);
-    ~SellerRegistrationWidget();
+    ComboBoxItemDelegate(QObject *parent = 0);
+    ~ComboBoxItemDelegate();
 
-public slots:
-    void updateEvents();
+    virtual QWidget *createEditor( QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index ) const;
+    virtual void setEditorData ( QWidget *editor, const QModelIndex &index ) const;
+    virtual void setModelData ( QWidget *editor, QAbstractItemModel *model, const QModelIndex &index ) const;
 
-    void setDefaultEvent(QString name);
-private:
-    Ui::SellerRegistrationWidget *ui;
-    Databaseconnection *data;
-    Seller *regseller;
-    QString selectedEventName;
-    QString selectedEventLocation;
-    QString selectedEventDate;
-    QString soldProvision;
-    QString unsoldProvision;
-    QString currencySymbol;
-    QString defaultEvent;
-    QByteArray logo;
-
-    QStringList findEvents(Databaseconnection *db);
-    bool loadSalesItems();
-    void printCheckout(QList<int> salesItemList);
-
-    QString serializeHeader();
-    bool getSelectedEventInfo(Databaseconnection *db);
-private slots:
-    void updateSellerFields();
-    void searchSeller();
-    void createSeller();
-    void checkoutSeller();
-    void addRow();
-    void deleteRow();
-    void saveTabletoDB();
-    void reset();
 };
 
-#endif // SELLERREGISTRATIONWIDGET_H
+#endif // COMBOBOXITEMDELEGATE_H

@@ -429,7 +429,12 @@ void SellerRegistrationWidget::addRow()
 
 void SellerRegistrationWidget::deleteRow()
 {
+    if (ui->tableWidget->rowCount() == 0
+            || !ui->tableWidget->isEnabled())
+        return;
+
     int row = ui->tableWidget->currentRow();
+
 
     if (!ui->tableWidget->item(row,0)->text().isEmpty())
     {

@@ -38,13 +38,13 @@ void EventMgrWidget::createEventManagerWidget()
 {
     if (ui->eventnameedit->text().isEmpty())
     {
-        QMessageBox::critical(this,QString("iBasar Event Management"),tr("No Event name given. Cannot create Event!"));
+        QMessageBox::critical(this,tr("iBasar Event Management"),tr("No Event name given. Cannot create Event!"));
         return;
     }
 
     if (!db->isEstablished())
     {
-        QMessageBox::critical(this,QString("iBasar Event Management"),tr("No Connection to Database! Cannot create Event!"));
+        QMessageBox::critical(this,tr("iBasar Event Management"),tr("No Connection to Database! Cannot create Event!"));
         return;
     }
 

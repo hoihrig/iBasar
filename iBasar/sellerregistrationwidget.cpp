@@ -463,7 +463,7 @@ void SellerRegistrationWidget::saveTabletoDB()
             sitem.setItemSize(ui->tableWidget->item(i,3)->text());
             sitem.setPrice(ui->tableWidget->item(i,4)->text());
 
-            if (ui->tableWidget->item(i,5)->text() == QString("Ja"))
+            if (ui->tableWidget->item(i,5)->text() == tr("Ja"))
                 sitem.setSold(true);
             else
                 sitem.setSold(false);

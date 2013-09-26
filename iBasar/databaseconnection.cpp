@@ -79,7 +79,7 @@ QString Databaseconnection::getLastError() {
 
     if (db.lastError().isValid())
         return db.lastError().text();
-    return QString("No Error occured!");
+    return tr("No Error occured!");
 }
 
 void Databaseconnection::query(QString sqlquery, QSqlQuery &results)

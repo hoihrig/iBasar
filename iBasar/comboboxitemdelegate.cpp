@@ -39,8 +39,8 @@ QWidget* ComboBoxItemDelegate::createEditor( QWidget *parent, const QStyleOption
     // Create the combobox and populate it
     QComboBox *cb = new QComboBox(parent);
     int row = index.row();
-    cb->addItem(QString("Nein"));
-    cb->addItem(QString("Ja"));
+    cb->addItem(tr("Nein"));
+    cb->addItem(tr("Ja"));
 
     return cb;
 }

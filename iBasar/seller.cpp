@@ -81,6 +81,15 @@ bool Seller::isComplete()
     return false;
 }
 
+bool Seller::setID(int id)
+{
+    if (id != 0) {
+        mID = id;
+        return true;
+    }
+    return false;
+}
+
 bool Seller::setName(QString name)
 {
     if (!name.isEmpty())
@@ -159,6 +168,42 @@ bool Seller::setEvent(QString eventname)
         return true;
     }
     return false;
+}
+
+void Seller::clear()
+{
+    mID = 0;
+    mSurname.clear();
+    mName.clear();
+    mAddress.clear();
+    mEvent.clear();
+    mPhone.clear();
+    mCity.clear();
+    mPlz.clear();
+    mEmail.clear();
+}
+
+bool Seller::findSellerbyID(Databaseconnection *data)
+{
+    QSqlQuery result;
+    QString querycmd;
+
+    if (mID != 0) {
+        querycmd = "SELECT Vorname, Nachname FROM `Verkäufer` WHERE ID='" + QString::number(mID) + "'";
+    }
+
+    data->query(querycmd,result);
+
+    if (!(result.size() > 0))
+        return false;
+
+    result.next();
+
+    mName = result.value("Vorname").toString();
+    mSurname = result.value("Nachname").toString();
+
+    return findSeller(data);
+
 }
 
 bool Seller::findSeller(Databaseconnection *data)

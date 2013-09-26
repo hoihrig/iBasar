@@ -26,6 +26,7 @@
 #include "salesitem.h"
 #include "sellercheckoutprinter.h"
 #include "comboboxitemdelegate.h"
+#include "sellersearchwidget.h"
 
 namespace Ui {
 class SellerRegistrationWidget;
@@ -45,6 +46,7 @@ public slots:
     void setDefaultEvent(QString name);
 private:
     Ui::SellerRegistrationWidget *ui;
+    SellerSearchWidget *searchwidget;
     Databaseconnection *data;
     Seller *regseller;
     QString selectedEventName;
@@ -71,6 +73,8 @@ private slots:
     void deleteRow();
     void saveTabletoDB();
     void reset();
+    void startIDSearch(int id);
+    void startNameSearch(QString name);
 };
 
 #endif // SELLERREGISTRATIONWIDGET_H

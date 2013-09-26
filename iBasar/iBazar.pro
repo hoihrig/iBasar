@@ -37,7 +37,8 @@ SOURCES += main.cpp\
     checkoutwidget.cpp \
     billprinter.cpp \
     sellercheckoutprinter.cpp \
-    comboboxitemdelegate.cpp
+    comboboxitemdelegate.cpp \
+    sellersearchwidget.cpp
 
 HEADERS  += mainwindow.h \
     databaseconnection.h \
@@ -53,7 +54,8 @@ HEADERS  += mainwindow.h \
     checkoutwidget.h \
     billprinter.h \
     sellercheckoutprinter.h \
-    comboboxitemdelegate.h
+    comboboxitemdelegate.h \
+    sellersearchwidget.h
 
 FORMS    += \
     settingsdialog.ui \
@@ -62,6 +64,7 @@ FORMS    += \
     eventmgrwidget.ui \
     sellerregistrationwidget.ui \
     labelprintwidget.ui \
-    checkoutwidget.ui
+    checkoutwidget.ui \
+    sellersearchwidget.ui
 
 

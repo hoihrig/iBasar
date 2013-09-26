@@ -37,6 +37,7 @@ public:
     QString getEvent();
     bool isComplete();
 
+    bool setID(int id);
     bool setName(QString name);
     bool setSurname(QString surname);
     bool setAddress(QString address);
@@ -47,6 +48,7 @@ public:
     bool setEvent(QString eventname);
 
     bool findSeller(Databaseconnection *data);
+    bool findSellerbyID(Databaseconnection *data);
     bool createSeller(Databaseconnection *data);
     int getNumberofSalesItems(Databaseconnection *data);
     QList<int> getSalesItemIDs(Databaseconnection *data);
@@ -54,6 +56,7 @@ public:
     QString toHtml();
     QString serialize();
 
+    void clear();
 private:
     int mID;
     QString mName;

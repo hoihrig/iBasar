@@ -28,6 +28,7 @@ SellerRegistrationWidget::SellerRegistrationWidget(Databaseconnection *db, QWidg
     data = db;
 
     regseller = new Seller;
+    searchwidget = new SellerSearchWidget();
 
     ui->setupUi(this);
 
@@ -36,19 +37,50 @@ SellerRegistrationWidget::SellerRegistrationWidget(Databaseconnection *db, QWidg
 
     updateEvents();
 
-    connect(ui->sellersearchbtn,SIGNAL(clicked()),this,SLOT(searchSeller()));
+
+    connect(ui->sellersearchbtn,SIGNAL(clicked()),searchwidget,SLOT(show()));
     connect(ui->selleraddbtn,SIGNAL(clicked()),this,SLOT(createSeller()));
     connect(ui->addRowbtn,SIGNAL(clicked()),this,SLOT(addRow()));
     connect(ui->delRowbtn,SIGNAL(clicked()),this,SLOT(deleteRow()));
     connect(ui->savetblbtn,SIGNAL(clicked()),this,SLOT(saveTabletoDB()));
     connect(ui->sellerresetbtn,SIGNAL(clicked()),this,SLOT(reset()));
     connect(ui->sellerCheckoutbtn,SIGNAL(clicked()),this,SLOT(checkoutSeller()));
+    connect(searchwidget,SIGNAL(searchbyID(int)),this,SLOT(startIDSearch(int)));
+    connect(searchwidget,SIGNAL(searchbyName(QString)),this,SLOT(startNameSearch(QString)));
 }
 
 SellerRegistrationWidget::~SellerRegistrationWidget()
 {
     delete regseller;
+    delete searchwidget;
     delete ui;
+}
+
+void SellerRegistrationWidget::startIDSearch(int id)
+{
+    if (id != 0)
+    {
+        regseller->setID(id);
+        regseller->findSellerbyID(data);
+
+        updateSellerFields();
+    }
+}
+
+void SellerRegistrationWidget::startNameSearch(QString name)
+{
+    if (!name.isEmpty())
+    {
+        QStringList temp = name.split(", ");
+
+        regseller->setSurname(temp[0]);
+        regseller->setName(temp[1]);
+
+        regseller->findSeller(data);
+
+        updateSellerFields();
+    }
+
 }
 
 void SellerRegistrationWidget::setDefaultEvent(QString name)
@@ -70,6 +102,8 @@ void SellerRegistrationWidget::reset()
     ui->plzedit->clear();
     ui->surnameedit->clear();
     ui->sellergroupbox->setTitle(tr("Verkäufer"));
+
+    regseller->clear();
 
     for(int i=ui->tableWidget->rowCount(); i>=0; --i)
     {

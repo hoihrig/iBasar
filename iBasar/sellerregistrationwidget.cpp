@@ -69,6 +69,7 @@ void SellerRegistrationWidget::reset()
     ui->phoneedit->clear();
     ui->plzedit->clear();
     ui->surnameedit->clear();
+    ui->sellergroupbox->setTitle(tr("Verkäufer"));
 
     for(int i=ui->tableWidget->rowCount(); i>=0; --i)
     {
@@ -135,6 +136,10 @@ void SellerRegistrationWidget::updateSellerFields()
 
     if (!regseller->getEvent().isEmpty())
         ui->eventComboBox->setCurrentText(regseller->getEvent());
+
+    if (!regseller->getID() == 0){
+        ui->sellergroupbox->setTitle(tr("Verkäufer: ") + QString::number(regseller->getID()));
+    }
 
     if (regseller->isComplete())
         ui->tableWidget->setEnabled(true);

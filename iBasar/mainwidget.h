@@ -49,6 +49,7 @@ public slots:
 
     void updateTitle(QString name);
 
+    void retranslate();
 signals:
     void eventChanged(QString name);
 };

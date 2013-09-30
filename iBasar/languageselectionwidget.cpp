@@ -40,3 +40,8 @@ void LanguageSelectionWidget::languageSelected()
 {
     emit languageChanged(ui->languageComboBox->currentText());
 }
+
+void LanguageSelectionWidget::retranslate()
+{
+    ui->retranslateUi(this);
+}

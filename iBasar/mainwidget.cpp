@@ -118,6 +118,9 @@ void MainWidget::updateValues()
 
     updateEvents();
 
-    ui->retranslateUi(this);
+}
 
+void MainWidget::retranslate()
+{
+    ui->retranslateUi(this);
 }

@@ -44,6 +44,7 @@ public slots:
     void updateEvents();
 
     void setDefaultEvent(QString name);
+    void retranslate();
 private:
     Ui::SellerRegistrationWidget *ui;
     SellerSearchWidget *searchwidget;

@@ -124,7 +124,10 @@ void SellerRegistrationWidget::updateEvents()
         if (eventid >= 0)
             ui->eventComboBox->setCurrentIndex(eventid);
     }
+}
 
+void SellerRegistrationWidget::retranslate()
+{
     ui->retranslateUi(this);
 }
 

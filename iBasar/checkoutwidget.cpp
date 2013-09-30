@@ -100,7 +100,10 @@ void CheckoutWidget::itemNumberReturnPressed()
 void CheckoutWidget::getFocus()
 {
     ui->itemnumbertextbox->setFocus();
+}
 
+void CheckoutWidget::retranslate()
+{
     ui->retranslateUi(this);
 }
 
@@ -249,8 +252,6 @@ void CheckoutWidget::updateEvents()
         if (eventid >= 0)
             ui->eventComboBox->setCurrentIndex(eventid);
     }
-
-    ui->retranslateUi(this);
 }
 
 void CheckoutWidget::printCheckout()

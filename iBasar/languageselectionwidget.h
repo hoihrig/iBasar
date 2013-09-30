@@ -16,31 +16,30 @@
 #################################################################################################
 */
 
-#ifndef SELLERSEARCHWIDGET_H
-#define SELLERSEARCHWIDGET_H
+#ifndef LANGUAGESELECTIONWIDGET_H
+#define LANGUAGESELECTIONWIDGET_H
 
 #include <QDialog>
 
 namespace Ui {
-class SellerSearchWidget;
+class LanguageSelectionWidget;
 }
 
-class SellerSearchWidget : public QDialog
+class LanguageSelectionWidget : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit SellerSearchWidget(QWidget *parent = 0);
-    ~SellerSearchWidget();
+    explicit LanguageSelectionWidget(QWidget *parent = 0);
+    ~LanguageSelectionWidget();
 
-private slots:
-    void search();
 private:
-    Ui::SellerSearchWidget *ui;
+    Ui::LanguageSelectionWidget *ui;
+private slots:
+    void languageSelected();
 
 signals:
-    void searchbyID(int);
-    void searchbyName(QString);
+    void languageChanged(QString language);
 };
 
-#endif // SELLERSEARCHWIDGET_H
+#endif // LANGUAGESELECTIONWIDGET_H

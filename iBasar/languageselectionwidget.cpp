@@ -16,31 +16,27 @@
 #################################################################################################
 */
 
-#ifndef SELLERSEARCHWIDGET_H
-#define SELLERSEARCHWIDGET_H
+#include "languageselectionwidget.h"
+#include "ui_languageselectionwidget.h"
 
-#include <QDialog>
+LanguageSelectionWidget::LanguageSelectionWidget(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::LanguageSelectionWidget)
+{
+    ui->setupUi(this);
 
-namespace Ui {
-class SellerSearchWidget;
+    ui->languageComboBox->addItem("Deutsch");
+    ui->languageComboBox->addItem("English");
+
+    connect(ui->buttonBox,SIGNAL(accepted()),this,SLOT(languageSelected()));
 }
 
-class SellerSearchWidget : public QDialog
+LanguageSelectionWidget::~LanguageSelectionWidget()
 {
-    Q_OBJECT
+    delete ui;
+}
 
-public:
-    explicit SellerSearchWidget(QWidget *parent = 0);
-    ~SellerSearchWidget();
-
-private slots:
-    void search();
-private:
-    Ui::SellerSearchWidget *ui;
-
-signals:
-    void searchbyID(int);
-    void searchbyName(QString);
-};
-
-#endif // SELLERSEARCHWIDGET_H
+void LanguageSelectionWidget::languageSelected()
+{
+    emit languageChanged(ui->languageComboBox->currentText());
+}

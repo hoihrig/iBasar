@@ -124,6 +124,8 @@ void SellerRegistrationWidget::updateEvents()
         if (eventid >= 0)
             ui->eventComboBox->setCurrentIndex(eventid);
     }
+
+    ui->retranslateUi(this);
 }
 
 QStringList SellerRegistrationWidget::findEvents(Databaseconnection *db)

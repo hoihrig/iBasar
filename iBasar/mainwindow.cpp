@@ -27,14 +27,18 @@ MainWindow::MainWindow(QWidget *parent) :
 
     settings = new QSettings("Ibasar","Ibasar");
     db = new Databaseconnection();
+    translator = new QTranslator();
 
     db->readDbSettings(settings);
 
     db->open();
 
+    changeLanguage("Deutsch");
+
     mwidget = new MainWidget(db);
     msellerwidget = new SellerRegistrationWidget(db);
     mcheckoutwidget = new CheckoutWidget(db);
+    mlangwidget = new LanguageSelectionWidget();
 
     mwidget->setGeometry(ui->stackedWidget->geometry());
     ui->stackedWidget->addWidget(mwidget);
@@ -54,6 +58,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->toolBox,SIGNAL(currentChanged(int)),this,SLOT(loadWidget(int)));
     connect(ui->actionEvent_Manager,SIGNAL(triggered()),this,SLOT(showEventManagement()));
     connect(ui->actionPrint_Labels,SIGNAL(triggered()),this,SLOT(showLabelPrint()));
+    connect(ui->actionSelectLanguage,SIGNAL(triggered()),this,SLOT(showLanguageSelector()));
     connect(this,SIGNAL(updateWidgets()),mwidget,SLOT(updateValues()));
     connect(this,SIGNAL(updateWidgets()),mcheckoutwidget,SLOT(getFocus()));
     connect(this,SIGNAL(updateWidgets()),mcheckoutwidget,SLOT(updateEvents()));
@@ -62,6 +67,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(mwidget,SIGNAL(eventChanged(QString)),this,SLOT(setTitle(QString)));
     connect(mwidget,SIGNAL(eventChanged(QString)),mcheckoutwidget,SLOT(setDefaultEvent(QString)));
     connect(mwidget,SIGNAL(eventChanged(QString)),msellerwidget,SLOT(setDefaultEvent(QString)));
+    connect(mlangwidget,SIGNAL(languageChanged(QString)),this,SLOT(changeLanguage(QString)));
+
 
     emit updateWidgets();
 }
@@ -72,6 +79,8 @@ MainWindow::~MainWindow()
     delete mwidget;
     delete msellerwidget;
     delete mcheckoutwidget;
+    delete mlangwidget;
+    delete translator;
 
     delete ui;
 }
@@ -86,6 +95,20 @@ void MainWindow::loadWidget(int index)
 void MainWindow::setTitle(QString name)
 {
     this->setWindowTitle(QString("iBazar - ") + name);
+}
+
+void MainWindow::changeLanguage(QString language)
+{
+    if (language == QString("Deutsch"))
+        translator->load("ibasar_de");
+
+    if (language == QString("English"))
+        translator->load("ibasar_en");
+
+    qApp->installTranslator(translator);
+
+    ui->retranslateUi(this);
+
 }
 
 void MainWindow::showSettings()
@@ -114,6 +137,11 @@ void MainWindow::showLabelPrint()
     labelprint.exec();
 
     emit updateWidgets();
+}
+
+void MainWindow::showLanguageSelector()
+{
+    mlangwidget->exec();
 }
 
 void MainWindow::reconnectDb()

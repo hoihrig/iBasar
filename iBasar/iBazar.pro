@@ -21,6 +21,9 @@ drivers.files += sqldrivers/*
 
 INSTALLS += drivers qtlibs
 
+TRANSLATIONS = ibasar_de.ts \
+                ibasar_en.ts
+
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -38,7 +41,8 @@ SOURCES += main.cpp\
     billprinter.cpp \
     sellercheckoutprinter.cpp \
     comboboxitemdelegate.cpp \
-    sellersearchwidget.cpp
+    sellersearchwidget.cpp \
+    languageselectionwidget.cpp
 
 HEADERS  += mainwindow.h \
     databaseconnection.h \
@@ -55,7 +59,8 @@ HEADERS  += mainwindow.h \
     billprinter.h \
     sellercheckoutprinter.h \
     comboboxitemdelegate.h \
-    sellersearchwidget.h
+    sellersearchwidget.h \
+    languageselectionwidget.h
 
 FORMS    += \
     settingsdialog.ui \
@@ -65,6 +70,7 @@ FORMS    += \
     sellerregistrationwidget.ui \
     labelprintwidget.ui \
     checkoutwidget.ui \
-    sellersearchwidget.ui
+    sellersearchwidget.ui \
+    languageselectionwidget.ui
 
 

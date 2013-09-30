@@ -21,6 +21,7 @@
 
 #include <QtWidgets/QMainWindow>
 #include <QSettings>
+#include <QTranslator>
 #include "databaseconnection.h"
 #include "settings.h"
 #include "mainwidget.h"
@@ -28,6 +29,7 @@
 #include "sellerregistrationwidget.h"
 #include "labelprintwidget.h"
 #include "checkoutwidget.h"
+#include "languageselectionwidget.h"
 
 namespace Ui {
     class MainWindow;
@@ -53,19 +55,25 @@ private:
     Ui::MainWindow *ui;
     Databaseconnection *db;
 
+    QTranslator *translator;
+
     // Here are all the Widgets loaded by the StackedWidget
     MainWidget *mwidget;
     SellerRegistrationWidget *msellerwidget;
     CheckoutWidget *mcheckoutwidget;
+    LanguageSelectionWidget *mlangwidget;
 
 public slots:
+    void loadWidget(int index);
+    void errorhandling(QString error_msg, QString error_src);
+    void setTitle(QString name);
+    void changeLanguage(QString language);
+private slots:
+    void showLanguageSelector();
     void aboutQt();
     void showSettings();
     void showEventManagement();
     void showLabelPrint();
-    void loadWidget(int index);
-    void errorhandling(QString error_msg, QString error_src);
-    void setTitle(QString name);
 };
 
 #endif // MAINWINDOW_H

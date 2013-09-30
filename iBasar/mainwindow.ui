@@ -70,8 +70,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>159</width>
-           <height>594</height>
+           <width>98</width>
+           <height>28</height>
           </rect>
          </property>
          <attribute name="label">
@@ -83,8 +83,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>159</width>
-           <height>594</height>
+           <width>98</width>
+           <height>28</height>
           </rect>
          </property>
          <attribute name="label">
@@ -165,6 +165,7 @@
     <addaction name="actionEvent_Manager"/>
     <addaction name="actionPrint_Labels"/>
     <addaction name="actionSettings"/>
+    <addaction name="actionSelectLanguage"/>
    </widget>
    <widget class="QMenu" name="menuAbout">
     <property name="title">
@@ -214,6 +215,11 @@
   <action name="actionPrint_Labels">
    <property name="text">
     <string>Produkte drucken</string>
+   </property>
+  </action>
+  <action name="actionSelectLanguage">
+   <property name="text">
+    <string>Sprache wählen</string>
    </property>
   </action>
  </widget>

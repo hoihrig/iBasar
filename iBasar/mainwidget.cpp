@@ -117,4 +117,7 @@ void MainWidget::updateValues()
     updateItemStatus();
 
     updateEvents();
+
+    ui->retranslateUi(this);
+
 }

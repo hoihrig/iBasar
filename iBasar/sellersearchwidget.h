@@ -38,6 +38,7 @@ private slots:
 private:
     Ui::SellerSearchWidget *ui;
 
+    void changeEvent(QEvent *event);
 signals:
     void searchbyID(int);
     void searchbyName(QString);

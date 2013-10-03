@@ -126,9 +126,15 @@ void SellerRegistrationWidget::updateEvents()
     }
 }
 
-void SellerRegistrationWidget::retranslate()
+
+void SellerRegistrationWidget::changeEvent(QEvent *event)
 {
-    ui->retranslateUi(this);
+    if (event->type() == QEvent::LanguageChange)
+    {
+        ui->retranslateUi(this);
+    }
+
+    QWidget::changeEvent(event);
 }
 
 QStringList SellerRegistrationWidget::findEvents(Databaseconnection *db)

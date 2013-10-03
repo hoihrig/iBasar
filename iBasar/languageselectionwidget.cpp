@@ -41,7 +41,12 @@ void LanguageSelectionWidget::languageSelected()
     emit languageChanged(ui->languageComboBox->currentText());
 }
 
-void LanguageSelectionWidget::retranslate()
+void LanguageSelectionWidget::changeEvent(QEvent *event)
 {
-    ui->retranslateUi(this);
+    if (event->type() == QEvent::LanguageChange)
+    {
+        ui->retranslateUi(this);
+    }
+
+    QWidget::changeEvent(event);
 }

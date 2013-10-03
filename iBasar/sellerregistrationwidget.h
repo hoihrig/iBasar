@@ -44,7 +44,7 @@ public slots:
     void updateEvents();
 
     void setDefaultEvent(QString name);
-    void retranslate();
+
 private:
     Ui::SellerRegistrationWidget *ui;
     SellerSearchWidget *searchwidget;
@@ -65,6 +65,7 @@ private:
 
     QString serializeHeader();
     bool getSelectedEventInfo(Databaseconnection *db);
+    void changeEvent(QEvent *event);
 private slots:
     void updateSellerFields();
     void searchSeller();

@@ -39,6 +39,16 @@ SellerSearchWidget::~SellerSearchWidget()
     delete ui;
 }
 
+void SellerSearchWidget::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+        ui->retranslateUi(this);
+    }
+
+    QWidget::changeEvent(event);
+}
+
 void SellerSearchWidget::search()
 {
     if (ui->idsearchrbtn->isChecked())

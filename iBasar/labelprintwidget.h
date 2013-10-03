@@ -45,6 +45,7 @@ private:
     QStringList findEvents(Databaseconnection *db);
     QStringList findSellers(Databaseconnection *data);
 
+    void changeEvent(QEvent *event);
 private slots:
     void printlabel();
     void updateSellers(int index);

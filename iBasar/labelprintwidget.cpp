@@ -41,6 +41,16 @@ LabelPrintWidget::~LabelPrintWidget()
     delete ui;
 }
 
+void LabelPrintWidget::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+        ui->retranslateUi(this);
+    }
+
+    QWidget::changeEvent(event);
+}
+
 QStringList LabelPrintWidget::findEvents(Databaseconnection *db)
 {
     QStringList eventslist;

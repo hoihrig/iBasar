@@ -68,10 +68,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(mwidget,SIGNAL(eventChanged(QString)),mcheckoutwidget,SLOT(setDefaultEvent(QString)));
     connect(mwidget,SIGNAL(eventChanged(QString)),msellerwidget,SLOT(setDefaultEvent(QString)));
     connect(mlangwidget,SIGNAL(languageChanged(QString)),this,SLOT(changeLanguage(QString)));
-    connect(this,SIGNAL(updateWidgets()),mwidget,SLOT(retranslate()));
-    connect(this,SIGNAL(updateWidgets()),mcheckoutwidget,SLOT(retranslate()));
-    connect(this,SIGNAL(updateWidgets()),msellerwidget,SLOT(retranslate()));
-    connect(this,SIGNAL(updateWidgets()),mlangwidget,SLOT(retranslate()));
 
 
     emit updateWidgets();

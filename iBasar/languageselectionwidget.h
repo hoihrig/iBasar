@@ -33,10 +33,9 @@ public:
     explicit LanguageSelectionWidget(QWidget *parent = 0);
     ~LanguageSelectionWidget();
 
-public slots:
-    void retranslate();
 private:
     Ui::LanguageSelectionWidget *ui;
+    void changeEvent(QEvent *event);
 private slots:
     void languageSelected();
 

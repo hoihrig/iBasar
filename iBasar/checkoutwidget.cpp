@@ -102,10 +102,6 @@ void CheckoutWidget::getFocus()
     ui->itemnumbertextbox->setFocus();
 }
 
-void CheckoutWidget::retranslate()
-{
-    ui->retranslateUi(this);
-}
 
 void CheckoutWidget::reset()
 {
@@ -252,6 +248,16 @@ void CheckoutWidget::updateEvents()
         if (eventid >= 0)
             ui->eventComboBox->setCurrentIndex(eventid);
     }
+}
+
+void CheckoutWidget::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+        ui->retranslateUi(this);
+    }
+
+    QWidget::changeEvent(event);
 }
 
 void CheckoutWidget::printCheckout()

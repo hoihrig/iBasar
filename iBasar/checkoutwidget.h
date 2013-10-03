@@ -50,7 +50,7 @@ public slots:
     void updateEvents();
 
     void setDefaultEvent(QString name);
-    void retranslate();
+
 private:
     Ui::CheckoutWidget *ui;
     Databaseconnection *data;
@@ -71,6 +71,7 @@ private:
     bool getSelectedEventInfo(Databaseconnection *db);
     bool pdf;
     bool headerPresent;
+    void changeEvent(QEvent *event);
 };
 
 #endif // CHECKOUTWIDGET_H

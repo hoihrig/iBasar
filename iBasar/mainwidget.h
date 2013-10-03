@@ -44,12 +44,12 @@ private:
     void updateItemStatus();
 
     void updateEvents();
+    void changeEvent(QEvent *event);
 public slots:
     void updateValues();
 
     void updateTitle(QString name);
 
-    void retranslate();
 signals:
     void eventChanged(QString name);
 };

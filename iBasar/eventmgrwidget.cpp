@@ -34,6 +34,16 @@ EventMgrWidget::EventMgrWidget(Databaseconnection *data, QWidget *parent) :
     connect(ui->browselblbtn,SIGNAL(clicked()),this,SLOT(selectLogo()));
 }
 
+void EventMgrWidget::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+        ui->retranslateUi(this);
+    }
+
+    QWidget::changeEvent(event);
+}
+
 void EventMgrWidget::createEventManagerWidget()
 {
     if (ui->eventnameedit->text().isEmpty())

@@ -110,6 +110,16 @@ void MainWidget::updateEvents()
     }
 }
 
+void MainWidget::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+        ui->retranslateUi(this);
+    }
+
+    QWidget::changeEvent(event);
+}
+
 void MainWidget::updateValues()
 {
     updateDbStatus();
@@ -118,9 +128,4 @@ void MainWidget::updateValues()
 
     updateEvents();
 
-}
-
-void MainWidget::retranslate()
-{
-    ui->retranslateUi(this);
 }

@@ -41,6 +41,7 @@ private:
     Ui::EventMgrWidget *ui;
     Databaseconnection *db;
 
+    void changeEvent(QEvent *event);
 private slots:
     void createEventManagerWidget();
     void selectLogo();

@@ -19,7 +19,7 @@
 #include "databaseconnection.h"
 
 Databaseconnection::Databaseconnection(QObject *parent) :
-    QObject(parent), db_hostname("localhost"), db_name("ibasar"), db_username("ibasar"), db_password(""), connection_ok(false)
+    QObject(parent), db_hostname("localhost"), db_name("ibasar"), db_username("ibasar"), db_password(""), connection_ok(false), blocked(false)
 {
 }
 
@@ -53,11 +53,15 @@ bool Databaseconnection::open()
 
     connection_ok = db.open();
 
-    if (connection_ok)
+    if (connection_ok) {
+        blocked = false;
         return connection_ok;
+    }
     else
     {
         qDebug() << db.lastError();
+        emit db_error(tr("Connection to DB not established"), tr("DatabaseConnection"));
+        blocked = true;
         return 0;
     }
 }
@@ -77,21 +81,26 @@ void Databaseconnection::close()
 QString Databaseconnection::getLastError() {
     QSqlDatabase db;
 
-    if (db.lastError().isValid())
+    if (db.lastError().isValid()) {
         return db.lastError().text();
+    }
     return tr("No Error occured!");
 }
 
 void Databaseconnection::query(QString sqlquery, QSqlQuery &results)
 {
+    if (blocked)
+        return;
+
     if ((sqlquery.isEmpty()) || (!isEstablished()))
     {
         emit db_error(tr("Connection to DB not established"), tr("DatabaseConnection"));
         return;
     }
-    if (!results.exec(sqlquery))
+    if (!results.exec(sqlquery)) {
+        blocked = true;
         qDebug() << results.lastError();
-
+    }
     return;
 }
 

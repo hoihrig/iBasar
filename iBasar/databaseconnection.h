@@ -64,6 +64,7 @@ private:
     QString db_username;
     QString db_password;
     bool connection_ok;
+    bool blocked;
 
 
     bool checkDriverAvailable();

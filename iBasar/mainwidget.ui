@@ -25,200 +25,343 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="Line" name="line">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>50</y>
-     <width>571</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
-  <widget class="QFrame" name="frame">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>100</y>
-     <width>571</width>
-     <height>181</height>
-    </rect>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
-   </property>
-   <property name="frameShadow">
-    <enum>QFrame::Raised</enum>
-   </property>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>10</y>
-      <width>211</width>
-      <height>44</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
-        <widget class="QLabel" name="dbtextlbl">
-         <property name="text">
-          <string>Servername:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="connecttextlbl">
-         <property name="text">
-          <string>Status:</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QVBoxLayout" name="verticalLayout_2">
-       <item>
-        <widget class="QLabel" name="dblbl">
-         <property name="text">
-          <string>localhost</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="connectlbl">
-         <property name="text">
-          <string>false</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>10</y>
-      <width>221</width>
-      <height>67</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
-       <item>
-        <widget class="QLabel" name="itemstextlbl">
-         <property name="text">
-          <string>Gegenstände verfügbar:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="sellertextlbl">
-         <property name="text">
-          <string>Verkäufer verfügbar:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="eventstextlbl">
-         <property name="text">
-          <string>Veranstaltungen verfügbar:</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QVBoxLayout" name="verticalLayout_4">
-       <item>
-        <widget class="QLabel" name="itemslbl">
-         <property name="text">
-          <string>0</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="sellerslbl">
-         <property name="text">
-          <string>0</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="eventslbl">
-         <property name="text">
-          <string>0</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-    </layout>
-   </widget>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>70</y>
-     <width>71</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Statistik</string>
-   </property>
-  </widget>
   <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
      <x>30</x>
      <y>20</y>
      <width>571</width>
-     <height>26</height>
+     <height>281</height>
     </rect>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="4,3">
+   <layout class="QVBoxLayout" name="verticalLayout_8" stretch="1,1,4,3">
     <item>
-     <widget class="QLabel" name="captionlbl">
-      <property name="text">
-       <string>Willkommen bei iBasar</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="1,2">
+     <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="4,3">
       <item>
-       <widget class="QLabel" name="eventlbl">
+       <widget class="QLabel" name="captionlbl">
         <property name="text">
-         <string>Veranstaltung</string>
+         <string>Willkommen bei iBasar</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="eventcomboBox"/>
+       <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="1,2">
+        <item>
+         <widget class="QLabel" name="eventlbl">
+          <property name="text">
+           <string>Veranstaltung</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="eventcomboBox"/>
+        </item>
+       </layout>
       </item>
      </layout>
     </item>
+    <item>
+     <widget class="Line" name="line">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_7" stretch="1,0">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Statistik</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="frame">
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="2,1,2">
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout">
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_2">
+               <item>
+                <widget class="QLabel" name="itemstextlbl">
+                 <property name="text">
+                  <string>Gegenstände verfügbar:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="itemslbl">
+                 <property name="text">
+                  <string>0</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_11">
+               <item>
+                <widget class="QLabel" name="sellertextlbl">
+                 <property name="text">
+                  <string>Verkäufer verfügbar:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="sellerslbl">
+                 <property name="text">
+                  <string>0</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_12">
+               <item>
+                <widget class="QLabel" name="eventstextlbl">
+                 <property name="text">
+                  <string>Veranstaltungen verfügbar:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="eventslbl">
+                 <property name="text">
+                  <string>0</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>118</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_2">
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout">
+               <item>
+                <widget class="QLabel" name="dbtextlbl">
+                 <property name="text">
+                  <string>Servername:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="dblbl">
+                 <property name="text">
+                  <string>localhost</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_10">
+               <item>
+                <widget class="QLabel" name="connecttextlbl">
+                 <property name="text">
+                  <string>Status:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="connectlbl">
+                 <property name="text">
+                  <string>false</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <spacer name="verticalSpacer">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>13</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="eventDetailBox">
+      <property name="title">
+       <string>Veranstaltungsdetails</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_13" stretch="2,1,2">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_6">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <item>
+              <widget class="QLabel" name="provisionSoldLabel">
+               <property name="text">
+                <string>Provision Verkauft (%)</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="provisionSoldresultlabel">
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <item>
+              <widget class="QLabel" name="provisionNotSoldLabel">
+               <property name="text">
+                <string>Provision Nicht Verkauft (EUR)</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="provisionNotSoldresultlabel">
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>118</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_7">
+             <item>
+              <widget class="QLabel" name="currencySymbolLabel">
+               <property name="text">
+                <string>Währungssymbol</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="currencySymbolresultlabel">
+               <property name="text">
+                <string>EUR</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_8">
+             <item>
+              <widget class="QLabel" name="logolabel">
+               <property name="text">
+                <string>Logo vorhanden</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="logoresultlabel">
+               <property name="text">
+                <string>false</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
    </layout>
   </widget>
+  <zorder>line</zorder>
+  <zorder>frame</zorder>
+  <zorder>label</zorder>
+  <zorder>layoutWidget</zorder>
+  <zorder>eventDetailBox</zorder>
+  <zorder>eventDetailBox</zorder>
  </widget>
  <resources/>
  <connections/>

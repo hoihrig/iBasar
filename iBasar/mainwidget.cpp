@@ -29,6 +29,7 @@ MainWidget::MainWidget(Databaseconnection *db, QWidget *parent) :
     updateValues();
 
     connect(ui->eventcomboBox,SIGNAL(currentIndexChanged(QString)),this,SLOT(updateTitle(QString)));
+    connect(ui->eventcomboBox,SIGNAL(currentIndexChanged(QString)),this,SLOT(updateEventDetails(QString)));
 
 }
 
@@ -83,13 +84,13 @@ void MainWidget::updateEvents()
     QSqlQuery result;
     QString querycmd;
 
-    querycmd = "SELECT Name from `Veranstaltung`";
+    querycmd = "SELECT ID, Name from `Veranstaltung`";
 
     data->query(querycmd,result);
 
     while (result.next())
     {
-        eventslist.append(result.value(0).toString());
+        eventslist.append(result.value(1).toString());
     }
 
     if (eventslist.count() != ui->eventcomboBox->count())
@@ -110,6 +111,46 @@ void MainWidget::updateEvents()
     }
 }
 
+void MainWidget::updateEventDetails(QString name)
+{
+    QSqlQuery result;
+    QString querycmd;
+    int eventid;
+
+    querycmd = "SELECT ID from `Veranstaltung` WHERE Name='" + name + "';";
+
+    data->query(querycmd, result);
+
+    if (result.next())
+            eventid = result.value(0).toInt();
+    else
+        return;
+
+
+    querycmd = "SELECT * from `Config` WHERE Veranstaltung=" + QString::number(eventid) + ";";
+
+    data->query(querycmd,result);
+
+    if (result.next())
+    {
+        ui->provisionSoldresultlabel->setText(result.value("Provision_Verkauft").toString());
+
+        ui->provisionNotSoldresultlabel->setText(result.value("Provision_NVerkauft").toString());
+
+        ui->currencySymbolresultlabel->setText(result.value("WSymbol").toString());
+
+        QByteArray temp;
+
+        temp = result.value("Logo").toByteArray();
+
+        if (temp.size() > 0)
+            ui->logoresultlabel->setText("true");
+        else
+            ui->logoresultlabel->setText("false");
+    }
+
+}
+
 void MainWidget::changeEvent(QEvent *event)
 {
     if (event->type() == QEvent::LanguageChange)
@@ -127,5 +168,7 @@ void MainWidget::updateValues()
     updateItemStatus();
 
     updateEvents();
+
+    updateEventDetails(ui->eventcomboBox->currentText());
 
 }

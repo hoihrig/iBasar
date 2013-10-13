@@ -48,6 +48,7 @@ private:
 public slots:
     void updateValues();
 
+    void updateEventDetails(QString name);
     void updateTitle(QString name);
 
 signals:

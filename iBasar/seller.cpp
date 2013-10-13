@@ -20,6 +20,8 @@
 
 Seller::Seller()
 {
+    mID = 0;
+    mActive = 0;
 }
 
 int Seller::getID()
@@ -170,6 +172,22 @@ bool Seller::setEvent(QString eventname)
     return false;
 }
 
+void Seller::setActive(Databaseconnection *data, bool value)
+{
+    mActive = value;
+
+    QSqlQuery result;
+    QString querycmd;
+
+    if (mID != 0) {
+        querycmd = "UPDATE `Verkäufer` SET `Aktiv` = '" + QString::number(mActive) + "' WHERE `ID` ='" + QString::number(mID) + "'";
+    }
+
+    data->query(querycmd, result);
+
+
+}
+
 void Seller::clear()
 {
     mID = 0;
@@ -181,6 +199,12 @@ void Seller::clear()
     mCity.clear();
     mPlz.clear();
     mEmail.clear();
+    mActive = 0;
+}
+
+bool Seller::isActive()
+{
+    return mActive;
 }
 
 bool Seller::findSellerbyID(Databaseconnection *data)
@@ -205,6 +229,7 @@ bool Seller::findSellerbyID(Databaseconnection *data)
     return findSeller(data);
 
 }
+
 
 bool Seller::findSeller(Databaseconnection *data)
 {
@@ -235,6 +260,7 @@ bool Seller::findSeller(Databaseconnection *data)
     mPlz = result.value("PLZ").toString();
     mPhone = result.value("Telefon").toString();
     mEmail = result.value("Email").toString();
+    mActive = result.value("Aktiv").toBool();
 
     // This one just gives us the ID back, not the name. This is why we have to look up the name
     mEvent = result.value("Veranstaltung").toString();
@@ -279,7 +305,7 @@ bool Seller::createSeller(Databaseconnection *data)
     eventid = result.value("ID").toInt();
     result.clear();
 
-    querycmd = "INSERT INTO `Verkäufer` (ID, Vorname, Nachname, Straße, PLZ, Ort, Telefon, Email, Veranstaltung) VALUES (" +
+    querycmd = "INSERT INTO `Verkäufer` (ID, Vorname, Nachname, Straße, PLZ, Ort, Telefon, Email, Veranstaltung, Aktiv) VALUES (" +
             QString::number(mID) + ", " +
             "'" + mName + "', " +
             "'" + mSurname + "', " +
@@ -288,13 +314,15 @@ bool Seller::createSeller(Databaseconnection *data)
             "'" + mCity + "', " +
             "'" + mPhone + "', " +
             "'" + mEmail + "', " +
-            QString::number(eventid)  + ")";
+            QString::number(eventid)  + ", 1)";
 
     data->query(querycmd,result);
 
     if (result.numRowsAffected() > 0)
+    {
+        mActive = true;
         return true;
-
+    }
     return false;
 }
 

@@ -157,6 +157,7 @@ CREATE TABLE  `ibasar`.`Verkäufer` (
   `Telefon` varchar(20) CHARACTER SET latin1 NOT NULL,
   `Email` varchar(50) CHARACTER SET latin1 NOT NULL,
   `Ist_Grosshaendler` tinyint(1) NOT NULL,
+  `Aktiv` tinyint(1) NOT NULL,
   `Veranstaltung` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Liste der Verkäufer';

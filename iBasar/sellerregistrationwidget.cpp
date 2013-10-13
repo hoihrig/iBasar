@@ -64,6 +64,7 @@ void SellerRegistrationWidget::startIDSearch(int id)
         regseller->findSellerbyID(data);
 
         updateSellerFields();
+        updateTable();
     }
 }
 
@@ -79,6 +80,7 @@ void SellerRegistrationWidget::startNameSearch(QString name)
         regseller->findSeller(data);
 
         updateSellerFields();
+        updateTable();
     }
 
 }
@@ -186,9 +188,22 @@ void SellerRegistrationWidget::updateSellerFields()
         ui->sellergroupbox->setTitle(tr("Verkäufer: ") + QString::number(regseller->getID()));
     }
 
+    if (!regseller->isActive()) {
+        ui->sellergroupbox->setTitle(ui->sellergroupbox->title() + QString(" - Checked Out!"));
+    }
+
     if (regseller->isComplete())
         ui->tableWidget->setEnabled(true);
 
+}
+
+void SellerRegistrationWidget::updateTable()
+{
+    for (int i=ui->tableWidget->rowCount() - 1; i >= 0; --i)
+        ui->tableWidget->removeRow(i);
+
+    //Now fill the TableWidget with all Items from Seller
+    loadSalesItems();
 }
 
 void SellerRegistrationWidget::searchSeller()
@@ -212,11 +227,7 @@ void SellerRegistrationWidget::searchSeller()
     updateSellerFields();
 
     //delete all rows that are now visible in Table
-    for (int i=ui->tableWidget->rowCount() - 1; i >= 0; --i)
-        ui->tableWidget->removeRow(i);
-
-    //Now fill the TableWidget with all Items from Seller
-    loadSalesItems();
+    updateTable();
 
 }
 
@@ -270,11 +281,17 @@ void SellerRegistrationWidget::checkoutSeller()
     regseller->setSurname(ui->surnameedit->text());
     regseller->findSeller(data);
 
+    if (!regseller->isActive())
+    {
+        QMessageBox::critical(this,tr("Seller"),tr("This Seller has already checked out!"));
+        return;
+    }
+
     salesItemList = regseller->getSalesItemIDs(data);
 
     if (salesItemList.count() == 0)
     {
-        QMessageBox::critical(this,tr("Seller"),tr("This Seller has either no items or has already checked out!"));
+        QMessageBox::critical(this,tr("Seller"),tr("This Seller has no items!"));
         return;
     }
 
@@ -284,8 +301,10 @@ void SellerRegistrationWidget::checkoutSeller()
     for (int i=0; i<salesItemList.count(); i++)
     {
         sitem.findItem(data, salesItemList[i]);
-        sitem.deleteItem(data);
     }
+
+    // Seller has checked out
+    regseller->setActive(data,false);
     reset();
 }
 

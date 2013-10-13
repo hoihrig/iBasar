@@ -35,6 +35,7 @@ public:
     QString getEmail();
     QString getPhone();
     QString getEvent();
+    bool isActive();
     bool isComplete();
 
     bool setID(int id);
@@ -57,6 +58,7 @@ public:
     QString serialize();
 
     void clear();
+    void setActive(Databaseconnection *data, bool value);
 private:
     int mID;
     QString mName;
@@ -67,6 +69,7 @@ private:
     QString mEmail;
     QString mPhone;
     QString mEvent;
+    bool mActive;
 
     QString findEvent(Databaseconnection *data, QString eventid);
 

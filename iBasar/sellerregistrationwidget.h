@@ -40,6 +40,7 @@ public:
     explicit SellerRegistrationWidget(Databaseconnection *db, QWidget *parent = 0);
     ~SellerRegistrationWidget();
 
+    void updateTable();
 public slots:
     void updateEvents();
 

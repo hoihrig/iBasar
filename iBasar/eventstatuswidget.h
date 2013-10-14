@@ -16,66 +16,32 @@
 #################################################################################################
 */
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef EVENTSTATUSWIDGET_H
+#define EVENTSTATUSWIDGET_H
 
-#include <QtWidgets/QMainWindow>
-#include <QSettings>
-#include <QTranslator>
+#include <QWidget>
 #include "databaseconnection.h"
-#include "settings.h"
-#include "mainwidget.h"
-#include "eventmgrwidget.h"
-#include "sellerregistrationwidget.h"
-#include "labelprintwidget.h"
-#include "checkoutwidget.h"
-#include "languageselectionwidget.h"
-#include "eventstatuswidget.h"
 
 namespace Ui {
-    class MainWindow;
-    class SettingsDialog;
+class EventStatusWidget;
 }
 
-class MainWindow : public QMainWindow
+class EventStatusWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
-
-signals:
-    void updateWidgets();
-
-private:
-    void connectDb();
-    void reconnectDb();
-
-    QSettings *settings;
-    Ui::MainWindow *ui;
-    Databaseconnection *db;
-
-    QTranslator *translator;
-
-    // Here are all the Widgets loaded by the StackedWidget
-    MainWidget *mwidget;
-    SellerRegistrationWidget *msellerwidget;
-    CheckoutWidget *mcheckoutwidget;
-    LanguageSelectionWidget *mlangwidget;
-    EventStatusWidget *mstatwidget;
+    explicit EventStatusWidget(Databaseconnection *db, QWidget *parent = 0);
+    ~EventStatusWidget();
 
 public slots:
-    void loadWidget(int index);
-    void errorhandling(QString error_msg, QString error_src);
-    void setTitle(QString name);
-    void changeLanguage(QString language);
-private slots:
-    void showLanguageSelector();
-    void aboutQt();
-    void showSettings();
-    void showEventManagement();
-    void showLabelPrint();
+    void updateEvent();
+
+private:
+    Ui::EventStatusWidget *ui;
+    Databaseconnection *data;
+
+    void changeEvent(QEvent *event);
 };
 
-#endif // MAINWINDOW_H
+#endif // EVENTSTATUSWIDGET_H

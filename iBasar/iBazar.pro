@@ -42,7 +42,8 @@ SOURCES += main.cpp\
     sellercheckoutprinter.cpp \
     comboboxitemdelegate.cpp \
     sellersearchwidget.cpp \
-    languageselectionwidget.cpp
+    languageselectionwidget.cpp \
+    eventstatuswidget.cpp
 
 HEADERS  += mainwindow.h \
     databaseconnection.h \
@@ -60,7 +61,8 @@ HEADERS  += mainwindow.h \
     sellercheckoutprinter.h \
     comboboxitemdelegate.h \
     sellersearchwidget.h \
-    languageselectionwidget.h
+    languageselectionwidget.h \
+    eventstatuswidget.h
 
 FORMS    += \
     settingsdialog.ui \
@@ -71,6 +73,7 @@ FORMS    += \
     labelprintwidget.ui \
     checkoutwidget.ui \
     sellersearchwidget.ui \
-    languageselectionwidget.ui
+    languageselectionwidget.ui \
+    eventstatuswidget.ui
 
 

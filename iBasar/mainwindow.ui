@@ -47,7 +47,7 @@
          <enum>QFrame::Box</enum>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>3</number>
         </property>
         <property name="tabSpacing">
          <number>7</number>
@@ -58,7 +58,7 @@
            <x>0</x>
            <y>0</y>
            <width>159</width>
-           <height>594</height>
+           <height>563</height>
           </rect>
          </property>
          <attribute name="label">
@@ -70,8 +70,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>98</width>
-           <height>28</height>
+           <width>159</width>
+           <height>563</height>
           </rect>
          </property>
          <attribute name="label">
@@ -83,12 +83,17 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>98</width>
-           <height>28</height>
+           <width>159</width>
+           <height>563</height>
           </rect>
          </property>
          <attribute name="label">
           <string>Käufer</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="eventsummarypage">
+         <attribute name="label">
+          <string>Status</string>
          </attribute>
         </widget>
        </widget>

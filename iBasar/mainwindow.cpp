@@ -39,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent) :
     msellerwidget = new SellerRegistrationWidget(db);
     mcheckoutwidget = new CheckoutWidget(db);
     mlangwidget = new LanguageSelectionWidget();
+    mstatwidget = new EventStatusWidget(db);
 
     mwidget->setGeometry(ui->stackedWidget->geometry());
     ui->stackedWidget->addWidget(mwidget);
@@ -49,6 +50,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     mcheckoutwidget->setGeometry(ui->stackedWidget->geometry());
     ui->stackedWidget->addWidget(mcheckoutwidget);
+
+    mstatwidget->setGeometry(ui->stackedWidget->geometry());
+    ui->stackedWidget->addWidget(mstatwidget);
 
     ui->toolBox->setCurrentIndex(0);
 
@@ -63,6 +67,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this,SIGNAL(updateWidgets()),mcheckoutwidget,SLOT(getFocus()));
     connect(this,SIGNAL(updateWidgets()),mcheckoutwidget,SLOT(updateEvents()));
     connect(this,SIGNAL(updateWidgets()),msellerwidget,SLOT(updateEvents()));
+    connect(this,SIGNAL(updateWidgets()),mstatwidget,SLOT(updateEvent()));
     connect(db,SIGNAL(db_error(QString,QString)),this,SLOT(errorhandling(QString,QString)));
     connect(mwidget,SIGNAL(eventChanged(QString)),this,SLOT(setTitle(QString)));
     connect(mwidget,SIGNAL(eventChanged(QString)),mcheckoutwidget,SLOT(setDefaultEvent(QString)));

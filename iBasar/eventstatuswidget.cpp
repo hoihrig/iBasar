@@ -16,66 +16,33 @@
 #################################################################################################
 */
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
-
-#include <QtWidgets/QMainWindow>
-#include <QSettings>
-#include <QTranslator>
-#include "databaseconnection.h"
-#include "settings.h"
-#include "mainwidget.h"
-#include "eventmgrwidget.h"
-#include "sellerregistrationwidget.h"
-#include "labelprintwidget.h"
-#include "checkoutwidget.h"
-#include "languageselectionwidget.h"
 #include "eventstatuswidget.h"
+#include "ui_eventstatuswidget.h"
 
-namespace Ui {
-    class MainWindow;
-    class SettingsDialog;
+EventStatusWidget::EventStatusWidget(Databaseconnection *db, QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::EventStatusWidget)
+{
+    ui->setupUi(this);
+    data = db;
 }
 
-class MainWindow : public QMainWindow
+EventStatusWidget::~EventStatusWidget()
 {
-    Q_OBJECT
+    delete ui;
+}
 
-public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+void EventStatusWidget::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+        ui->retranslateUi(this);
+    }
 
-signals:
-    void updateWidgets();
+    QWidget::changeEvent(event);
+}
 
-private:
-    void connectDb();
-    void reconnectDb();
+void EventStatusWidget::updateEvent()
+{
 
-    QSettings *settings;
-    Ui::MainWindow *ui;
-    Databaseconnection *db;
-
-    QTranslator *translator;
-
-    // Here are all the Widgets loaded by the StackedWidget
-    MainWidget *mwidget;
-    SellerRegistrationWidget *msellerwidget;
-    CheckoutWidget *mcheckoutwidget;
-    LanguageSelectionWidget *mlangwidget;
-    EventStatusWidget *mstatwidget;
-
-public slots:
-    void loadWidget(int index);
-    void errorhandling(QString error_msg, QString error_src);
-    void setTitle(QString name);
-    void changeLanguage(QString language);
-private slots:
-    void showLanguageSelector();
-    void aboutQt();
-    void showSettings();
-    void showEventManagement();
-    void showLabelPrint();
-};
-
-#endif // MAINWINDOW_H
+}

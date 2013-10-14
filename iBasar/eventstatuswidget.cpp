@@ -25,11 +25,20 @@ EventStatusWidget::EventStatusWidget(Databaseconnection *db, QWidget *parent) :
 {
     ui->setupUi(this);
     data = db;
+
+    connect(ui->eventComboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(eventChanged(int)));
 }
 
 EventStatusWidget::~EventStatusWidget()
 {
     delete ui;
+}
+
+void EventStatusWidget::eventChanged(int index)
+{
+    Q_UNUSED(index);
+
+    updateEvent();
 }
 
 void EventStatusWidget::changeEvent(QEvent *event)
@@ -42,7 +51,146 @@ void EventStatusWidget::changeEvent(QEvent *event)
     QWidget::changeEvent(event);
 }
 
+void EventStatusWidget::setDefaultEvent(QString name){
+
+    if (!name.isEmpty())
+    {
+        defaultEvent = name;
+    }
+}
+
+QStringList EventStatusWidget::findEvents(Databaseconnection *db)
+{
+    QStringList eventslist;
+
+    QSqlQuery result;
+    QString querycmd;
+
+    querycmd = "SELECT Name from `Veranstaltung`";
+
+    db->query(querycmd,result);
+
+    while (result.next())
+    {
+        eventslist.append(result.value(0).toString());
+    }
+
+    return eventslist;
+}
+
+int EventStatusWidget::findEventID(QString eventname)
+{
+    QSqlQuery result;
+    QString querycmd;
+
+    querycmd = "SELECT ID from `Veranstaltung` WHERE Name='" + eventname + "';";
+
+    data->query(querycmd,result);
+
+    if (result.next())
+        return result.value(0).toInt();
+    else
+        return -1;
+
+}
+
+QStringList EventStatusWidget::findSellersforEvent()
+{
+    int eventid = 0;
+    QStringList sellerlist;
+    QSqlQuery result;
+    QString querycmd;
+
+    eventid = findEventID(ui->eventComboBox->currentText());
+
+    querycmd = "SELECT ID from `Verkäufer` WHERE Veranstaltung=" + QString::number(eventid) + ";";
+
+    data->query(querycmd, result);
+
+    while (result.next())
+        sellerlist.append(result.value(0).toString());
+
+    return sellerlist;
+}
+
+void EventStatusWidget::updateSellerStats()
+{
+    int eventid = 0;
+    QSqlQuery result;
+    QString querycmd;
+
+    eventid = findEventID(ui->eventComboBox->currentText());
+
+    querycmd = "SELECT COUNT(ID) from `Verkäufer` WHERE Veranstaltung=" + QString::number(eventid) + ";";
+
+    data->query(querycmd, result);
+
+    if (result.next())
+        ui->numbersellersresultlabel->setText(result.value(0).toString());
+    else
+        ui->numbersellersresultlabel->setText(tr("Error"));
+
+}
+
+void EventStatusWidget::updateItemStats()
+{
+    int eventid = 0;
+    int amountItemsTotal = 0;
+    int amountItemsSold = 0;
+    int amountItemsNSold = 0;
+    QStringList sellerlist;
+    QSqlQuery result;
+    QString querycmd;
+
+    sellerlist = findSellersforEvent();
+
+    for (int i = 0; i < sellerlist.count(); i++)
+    {
+        // Get Total number of items and add to amountItemsTotal
+        querycmd = "SELECT COUNT(ID) from `Artikel` WHERE Verkäufer=" + sellerlist[i] + ";";
+        data->query(querycmd, result);
+        if (result.next())
+            amountItemsTotal += result.value(0).toInt();
+
+        // Get Total number of sold items and add to amountItemsSold
+        querycmd = "SELECT COUNT(ID) from `Artikel` WHERE Verkäufer=" + sellerlist[i] + " AND Verkauft=1;";
+        data->query(querycmd, result);
+        if (result.next())
+            amountItemsSold += result.value(0).toInt();
+
+        // Get Total number of unsold items and add to amountItemsNSold
+        querycmd = "SELECT COUNT(ID) from `Artikel` WHERE Verkäufer=" + sellerlist[i] + " AND Verkauft=0;";
+        data->query(querycmd, result);
+        if (result.next())
+            amountItemsNSold += result.value(0).toInt();
+
+    }
+
+    ui->numberitemsresultlabel->setText(QString::number(amountItemsTotal));
+    ui->numbersolditemsresultlabel->setText(QString::number(amountItemsSold));
+    ui->numberunsolditemsresultlabel->setText(QString::number(amountItemsNSold));
+
+}
+
+void EventStatusWidget::updateAvailableEvents()
+{
+    ui->eventComboBox->clear();
+    ui->eventComboBox->addItems(findEvents(data));
+
+    if (!defaultEvent.isEmpty())
+    {
+        int eventid = ui->eventComboBox->findText(defaultEvent);
+
+        if (eventid >= 0)
+            ui->eventComboBox->setCurrentIndex(eventid);
+    }
+
+}
+
 void EventStatusWidget::updateEvent()
 {
+    updateAvailableEvents();
+    updateItemStats();
+    updateSellerStats();
 
 }

@@ -72,6 +72,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(mwidget,SIGNAL(eventChanged(QString)),this,SLOT(setTitle(QString)));
     connect(mwidget,SIGNAL(eventChanged(QString)),mcheckoutwidget,SLOT(setDefaultEvent(QString)));
     connect(mwidget,SIGNAL(eventChanged(QString)),msellerwidget,SLOT(setDefaultEvent(QString)));
+    connect(mwidget,SIGNAL(eventChanged(QString)),mstatwidget,SLOT(setDefaultEvent(QString)));
     connect(mlangwidget,SIGNAL(languageChanged(QString)),this,SLOT(changeLanguage(QString)));
 
 

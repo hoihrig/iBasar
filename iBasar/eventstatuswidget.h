@@ -37,11 +37,21 @@ public:
 public slots:
     void updateEvent();
 
+    void setDefaultEvent(QString name);
+private slots:
+    void eventChanged(int index);
 private:
     Ui::EventStatusWidget *ui;
     Databaseconnection *data;
+    QString defaultEvent;
 
     void changeEvent(QEvent *event);
+    void updateSellerStats();
+    void updateItemStats();
+    void updateAvailableEvents();
+    QStringList findEvents(Databaseconnection *db);
+    int findEventID(QString eventname);
+    QStringList findSellersforEvent();
 };
 
 #endif // EVENTSTATUSWIDGET_H

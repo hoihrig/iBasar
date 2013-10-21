@@ -106,17 +106,19 @@
     </message>
     <message>
         <location filename="databaseconnection.cpp" line="37"/>
-        <location filename="databaseconnection.cpp" line="89"/>
+        <location filename="databaseconnection.cpp" line="63"/>
+        <location filename="databaseconnection.cpp" line="97"/>
         <source>DatabaseConnection</source>
         <translation>Database Connection</translation>
     </message>
     <message>
-        <location filename="databaseconnection.cpp" line="82"/>
+        <location filename="databaseconnection.cpp" line="87"/>
         <source>No Error occured!</source>
         <translation>No Error occured!</translation>
     </message>
     <message>
-        <location filename="databaseconnection.cpp" line="89"/>
+        <location filename="databaseconnection.cpp" line="63"/>
+        <location filename="databaseconnection.cpp" line="97"/>
         <source>Connection to DB not established</source>
         <translation>Connection to DB not established</translation>
     </message>
@@ -189,30 +191,132 @@
         <translation>1</translation>
     </message>
     <message>
-        <location filename="eventmgrwidget.cpp" line="41"/>
-        <location filename="eventmgrwidget.cpp" line="47"/>
+        <location filename="eventmgrwidget.cpp" line="51"/>
+        <location filename="eventmgrwidget.cpp" line="57"/>
         <source>iBasar Event Management</source>
         <translation>iBasar Event Management</translation>
     </message>
     <message>
-        <location filename="eventmgrwidget.cpp" line="41"/>
+        <location filename="eventmgrwidget.cpp" line="51"/>
         <source>No Event name given. Cannot create Event!</source>
         <translation>No Event name given. Cannot create Event!</translation>
     </message>
     <message>
-        <location filename="eventmgrwidget.cpp" line="47"/>
+        <location filename="eventmgrwidget.cpp" line="57"/>
         <source>No Connection to Database! Cannot create Event!</source>
         <translation>No Connection to Database! Cannot create Event!</translation>
     </message>
     <message>
-        <location filename="eventmgrwidget.cpp" line="118"/>
+        <location filename="eventmgrwidget.cpp" line="128"/>
         <source>Open Image</source>
         <translation>Open Image</translation>
     </message>
     <message>
-        <location filename="eventmgrwidget.cpp" line="118"/>
+        <location filename="eventmgrwidget.cpp" line="128"/>
         <source>Image Files (*.png *.jpg *.bmp)</source>
         <translation>Image Files (*.png *.jpg *.bmp</translation>
+    </message>
+</context>
+<context>
+    <name>EventStatusWidget</name>
+    <message>
+        <location filename="eventstatuswidget.ui" line="14"/>
+        <source>Form</source>
+        <translation>Form</translation>
+    </message>
+    <message>
+        <location filename="eventstatuswidget.ui" line="29"/>
+        <source>Veranstaltung</source>
+        <translation>Event</translation>
+    </message>
+    <message>
+        <location filename="eventstatuswidget.ui" line="61"/>
+        <source>Gegenstände</source>
+        <translation>Items</translation>
+    </message>
+    <message>
+        <location filename="eventstatuswidget.ui" line="75"/>
+        <source>Anzahl Gegenstände</source>
+        <translation>Number Items</translation>
+    </message>
+    <message>
+        <location filename="eventstatuswidget.ui" line="82"/>
+        <location filename="eventstatuswidget.ui" line="103"/>
+        <location filename="eventstatuswidget.ui" line="124"/>
+        <location filename="eventstatuswidget.ui" line="164"/>
+        <location filename="eventstatuswidget.ui" line="185"/>
+        <location filename="eventstatuswidget.ui" line="206"/>
+        <location filename="eventstatuswidget.ui" line="227"/>
+        <location filename="eventstatuswidget.ui" line="271"/>
+        <location filename="eventstatuswidget.ui" line="309"/>
+        <location filename="eventstatuswidget.ui" line="330"/>
+        <source>0</source>
+        <translation>0</translation>
+    </message>
+    <message>
+        <location filename="eventstatuswidget.ui" line="96"/>
+        <source>Anzahl nicht verkaufter Gegenstände</source>
+        <translation>Number of unsold Items</translation>
+    </message>
+    <message>
+        <location filename="eventstatuswidget.ui" line="117"/>
+        <source>Anzahl verkaufter Gegenstände</source>
+        <translation>Number of sold Items</translation>
+    </message>
+    <message>
+        <location filename="eventstatuswidget.ui" line="157"/>
+        <source>Gesamtwert</source>
+        <translation>Total Value</translation>
+    </message>
+    <message>
+        <location filename="eventstatuswidget.ui" line="178"/>
+        <source>Einstellgebühr</source>
+        <translation>Registrationfee</translation>
+    </message>
+    <message>
+        <location filename="eventstatuswidget.ui" line="199"/>
+        <source>Wert verkaufter Waren</source>
+        <translation>Value of sold Items</translation>
+    </message>
+    <message>
+        <location filename="eventstatuswidget.ui" line="220"/>
+        <source>Provision</source>
+        <translation>Provision</translation>
+    </message>
+    <message>
+        <location filename="eventstatuswidget.ui" line="252"/>
+        <source>Verkäufer</source>
+        <translation>Seller</translation>
+    </message>
+    <message>
+        <location filename="eventstatuswidget.ui" line="264"/>
+        <source>Anzahl Verkäufer</source>
+        <translation>Number of Sellers</translation>
+    </message>
+    <message>
+        <location filename="eventstatuswidget.ui" line="302"/>
+        <source>Aktive Verkäufer</source>
+        <translation>Active Sellers</translation>
+    </message>
+    <message>
+        <location filename="eventstatuswidget.ui" line="323"/>
+        <source>Ausgecheckte Verkäufer</source>
+        <translation>Checked Out Sellers</translation>
+    </message>
+    <message>
+        <location filename="eventstatuswidget.ui" line="355"/>
+        <source>Abrechnen</source>
+        <translation>End Event</translation>
+    </message>
+    <message>
+        <location filename="eventstatuswidget.ui" line="368"/>
+        <source>Aktualisieren</source>
+        <translation>Update</translation>
+    </message>
+    <message>
+        <location filename="eventstatuswidget.cpp" line="131"/>
+        <source>Error</source>
+        <translation>Error</translation>
     </message>
 </context>
 <context>
@@ -289,52 +393,57 @@
         <translation>Buyer</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="157"/>
+        <location filename="mainwindow.ui" line="96"/>
+        <source>Status</source>
+        <translation>Status</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="162"/>
         <source>Datei</source>
         <translation>File</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="163"/>
+        <location filename="mainwindow.ui" line="168"/>
         <source>Werkzeuge</source>
         <translation>Tools</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="172"/>
+        <location filename="mainwindow.ui" line="177"/>
         <source>Über</source>
         <translation>About</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="192"/>
+        <location filename="mainwindow.ui" line="197"/>
         <source>Beenden</source>
         <translation>Exit</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="197"/>
+        <location filename="mainwindow.ui" line="202"/>
         <source>Einstellungen</source>
         <translation>Settings</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="202"/>
+        <location filename="mainwindow.ui" line="207"/>
         <source>Über iBasar</source>
         <translation>About iBasar</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="207"/>
+        <location filename="mainwindow.ui" line="212"/>
         <source>Über Qt</source>
         <translation>About Qt</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="212"/>
+        <location filename="mainwindow.ui" line="217"/>
         <source>Veranstaltungsmanagement</source>
         <translation>Event Management</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="217"/>
+        <location filename="mainwindow.ui" line="222"/>
         <source>Produkte drucken</source>
         <translation>Print Items</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="222"/>
+        <location filename="mainwindow.ui" line="227"/>
         <source>Sprache wählen</source>
         <translation>Select Language</translation>
     </message>
@@ -347,59 +456,92 @@
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="mainwidget.ui" line="71"/>
+        <location filename="mainwidget.ui" line="177"/>
         <source>Servername:</source>
         <translation>Server name:</translation>
     </message>
     <message>
-        <location filename="mainwidget.ui" line="78"/>
+        <location filename="mainwidget.ui" line="198"/>
         <source>Status:</source>
         <translation>Status:</translation>
     </message>
     <message>
-        <location filename="mainwidget.ui" line="89"/>
+        <location filename="mainwidget.ui" line="239"/>
+        <source>Veranstaltungsdetails</source>
+        <translation>Event Details</translation>
+    </message>
+    <message>
+        <location filename="mainwidget.ui" line="254"/>
+        <source>Provision Verkauft (%)</source>
+        <translation>Provision Sold (%)</translation>
+    </message>
+    <message>
+        <location filename="mainwidget.ui" line="275"/>
+        <source>Provision Nicht Verkauft (EUR)</source>
+        <translation>Provision Not Sold (EUR)</translation>
+    </message>
+    <message>
+        <location filename="mainwidget.ui" line="313"/>
+        <source>Währungssymbol</source>
+        <translation>Currencysymbol</translation>
+    </message>
+    <message>
+        <location filename="mainwidget.ui" line="320"/>
+        <source>EUR</source>
+        <translation>€</translation>
+    </message>
+    <message>
+        <location filename="mainwidget.ui" line="334"/>
+        <source>Logo vorhanden</source>
+        <translation>Logo available</translation>
+    </message>
+    <message>
+        <location filename="mainwidget.ui" line="184"/>
         <source>localhost</source>
         <translation>localhost</translation>
     </message>
     <message>
-        <location filename="mainwidget.ui" line="96"/>
+        <location filename="mainwidget.ui" line="205"/>
+        <location filename="mainwidget.ui" line="341"/>
         <source>false</source>
         <translation>false</translation>
     </message>
     <message>
-        <location filename="mainwidget.ui" line="119"/>
+        <location filename="mainwidget.ui" line="97"/>
         <source>Gegenstände verfügbar:</source>
         <translation>Items available:</translation>
     </message>
     <message>
-        <location filename="mainwidget.ui" line="126"/>
+        <location filename="mainwidget.ui" line="118"/>
         <source>Verkäufer verfügbar:</source>
         <translation>Sellers available:</translation>
     </message>
     <message>
-        <location filename="mainwidget.ui" line="133"/>
+        <location filename="mainwidget.ui" line="139"/>
         <source>Veranstaltungen verfügbar:</source>
         <translation>Events available:</translation>
     </message>
     <message>
-        <location filename="mainwidget.ui" line="144"/>
-        <location filename="mainwidget.ui" line="154"/>
-        <location filename="mainwidget.ui" line="164"/>
+        <location filename="mainwidget.ui" line="104"/>
+        <location filename="mainwidget.ui" line="125"/>
+        <location filename="mainwidget.ui" line="146"/>
+        <location filename="mainwidget.ui" line="261"/>
+        <location filename="mainwidget.ui" line="282"/>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <location filename="mainwidget.ui" line="186"/>
+        <location filename="mainwidget.ui" line="75"/>
         <source>Statistik</source>
         <translation>Statistics</translation>
     </message>
     <message>
-        <location filename="mainwidget.ui" line="202"/>
+        <location filename="mainwidget.ui" line="43"/>
         <source>Willkommen bei iBasar</source>
         <translation>Welcome to iBasar</translation>
     </message>
     <message>
-        <location filename="mainwidget.ui" line="211"/>
+        <location filename="mainwidget.ui" line="52"/>
         <source>Veranstaltung</source>
         <translation>Event</translation>
     </message>
@@ -413,7 +555,7 @@
     </message>
     <message>
         <location filename="sellerregistrationwidget.ui" line="22"/>
-        <location filename="sellerregistrationwidget.cpp" line="104"/>
+        <location filename="sellerregistrationwidget.cpp" line="106"/>
         <source>Verkäufer</source>
         <translation>Seller</translation>
     </message>
@@ -508,52 +650,62 @@
         <translation>Save</translation>
     </message>
     <message>
-        <location filename="sellerregistrationwidget.cpp" line="175"/>
+        <location filename="sellerregistrationwidget.cpp" line="188"/>
         <source>Verkäufer: </source>
         <translation>Seller: </translation>
     </message>
     <message>
-        <location filename="sellerregistrationwidget.cpp" line="187"/>
-        <location filename="sellerregistrationwidget.cpp" line="197"/>
-        <location filename="sellerregistrationwidget.cpp" line="398"/>
-        <location filename="sellerregistrationwidget.cpp" line="512"/>
+        <location filename="sellerregistrationwidget.cpp" line="213"/>
+        <location filename="sellerregistrationwidget.cpp" line="223"/>
+        <location filename="sellerregistrationwidget.cpp" line="428"/>
+        <location filename="sellerregistrationwidget.cpp" line="542"/>
         <source>Seller Registration</source>
         <translation>Seller Registration</translation>
     </message>
     <message>
-        <location filename="sellerregistrationwidget.cpp" line="187"/>
-        <location filename="sellerregistrationwidget.cpp" line="252"/>
+        <location filename="sellerregistrationwidget.cpp" line="213"/>
+        <location filename="sellerregistrationwidget.cpp" line="274"/>
         <source>To Search you have to specify Name and Surname of the Seller. Cannot search Seller!</source>
         <translation>To Search you have to specify Name and Surname of the Seller. Cannot search Seller!</translation>
     </message>
     <message>
-        <location filename="sellerregistrationwidget.cpp" line="197"/>
+        <location filename="sellerregistrationwidget.cpp" line="223"/>
         <source>Could not find a Seller with that Name!</source>
         <translation>Could not find a Seller with that Name!</translation>
     </message>
     <message>
-        <location filename="sellerregistrationwidget.cpp" line="252"/>
-        <location filename="sellerregistrationwidget.cpp" line="266"/>
+        <location filename="sellerregistrationwidget.cpp" line="274"/>
+        <location filename="sellerregistrationwidget.cpp" line="286"/>
+        <location filename="sellerregistrationwidget.cpp" line="294"/>
         <source>Seller</source>
         <translation>Seller</translation>
     </message>
     <message>
-        <location filename="sellerregistrationwidget.cpp" line="266"/>
-        <source>This Seller has either no items or has already checked out!</source>
-        <translation>This Seller has either no items or has already checked out!</translation>
+        <location filename="sellerregistrationwidget.cpp" line="286"/>
+        <source>This Seller has already checked out!</source>
+        <translation>This Seller has already checked out!</translation>
     </message>
     <message>
-        <location filename="sellerregistrationwidget.cpp" line="398"/>
+        <location filename="sellerregistrationwidget.cpp" line="294"/>
+        <source>This Seller has no items!</source>
+        <translation>This Seller has no items!</translation>
+    </message>
+    <message>
+        <source>This Seller has either no items or has already checked out!</source>
+        <translation type="obsolete">This Seller has either no items or has already checked out!</translation>
+    </message>
+    <message>
+        <location filename="sellerregistrationwidget.cpp" line="428"/>
         <source>One of the required Fields to create a Seller is missing. Cannot create Seller!</source>
         <translation>One of the required fields to create a Seller is missing. Cannot create Seller!</translation>
     </message>
     <message>
-        <location filename="sellerregistrationwidget.cpp" line="505"/>
+        <location filename="sellerregistrationwidget.cpp" line="535"/>
         <source>Ja</source>
         <translation>Yes</translation>
     </message>
     <message>
-        <location filename="sellerregistrationwidget.cpp" line="512"/>
+        <location filename="sellerregistrationwidget.cpp" line="542"/>
         <source>Could not save Dataset to Database, because of missing field!</source>
         <translation>Could not save Dataset to Database, because of missing field!</translation>
     </message>
@@ -601,18 +753,18 @@
         <translation>Cancel</translation>
     </message>
     <message>
-        <location filename="sellersearchwidget.cpp" line="47"/>
-        <location filename="sellersearchwidget.cpp" line="59"/>
+        <location filename="sellersearchwidget.cpp" line="57"/>
+        <location filename="sellersearchwidget.cpp" line="69"/>
         <source>Seller Search</source>
         <translation>Seller Search</translation>
     </message>
     <message>
-        <location filename="sellersearchwidget.cpp" line="47"/>
+        <location filename="sellersearchwidget.cpp" line="57"/>
         <source>Um einen Verkäufer zu suchen eine Kundennummer eingegeben werden!</source>
         <translation>To Search for a seller a Seller ID has to be entered!</translation>
     </message>
     <message>
-        <location filename="sellersearchwidget.cpp" line="59"/>
+        <location filename="sellersearchwidget.cpp" line="69"/>
         <source>Um einen Verkäufer zu suchen müssen Vorname und Nachname eingegeben werden!</source>
         <translation>So search for a Seller you need to fill in Name and Surname!</translation>
     </message>

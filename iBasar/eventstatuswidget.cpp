@@ -26,19 +26,12 @@ EventStatusWidget::EventStatusWidget(Databaseconnection *db, QWidget *parent) :
     ui->setupUi(this);
     data = db;
 
-    connect(ui->eventComboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(eventChanged(int)));
+    connect(ui->refreshpushbutton,SIGNAL(clicked()),this,SLOT(updateEventStats()));
 }
 
 EventStatusWidget::~EventStatusWidget()
 {
     delete ui;
-}
-
-void EventStatusWidget::eventChanged(int index)
-{
-    Q_UNUSED(index);
-
-    updateEvent();
 }
 
 void EventStatusWidget::changeEvent(QEvent *event)
@@ -187,9 +180,11 @@ void EventStatusWidget::updateAvailableEvents()
 
 }
 
-void EventStatusWidget::updateEvent()
+void EventStatusWidget::updateEventStats()
 {
+    QString oldevent = ui->eventComboBox->currentText();
     updateAvailableEvents();
+    ui->eventComboBox->setCurrentText(oldevent);
     updateItemStats();
     updateSellerStats();
 

@@ -35,11 +35,10 @@ public:
     ~EventStatusWidget();
 
 public slots:
-    void updateEvent();
+    void updateEventStats();
 
     void setDefaultEvent(QString name);
-private slots:
-    void eventChanged(int index);
+
 private:
     Ui::EventStatusWidget *ui;
     Databaseconnection *data;

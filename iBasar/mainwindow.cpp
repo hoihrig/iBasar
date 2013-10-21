@@ -67,7 +67,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this,SIGNAL(updateWidgets()),mcheckoutwidget,SLOT(getFocus()));
     connect(this,SIGNAL(updateWidgets()),mcheckoutwidget,SLOT(updateEvents()));
     connect(this,SIGNAL(updateWidgets()),msellerwidget,SLOT(updateEvents()));
-    connect(this,SIGNAL(updateWidgets()),mstatwidget,SLOT(updateEvent()));
+    connect(this,SIGNAL(updateWidgets()),mstatwidget,SLOT(updateEventStats()));
     connect(db,SIGNAL(db_error(QString,QString)),this,SLOT(errorhandling(QString,QString)));
     connect(mwidget,SIGNAL(eventChanged(QString)),this,SLOT(setTitle(QString)));
     connect(mwidget,SIGNAL(eventChanged(QString)),mcheckoutwidget,SLOT(setDefaultEvent(QString)));

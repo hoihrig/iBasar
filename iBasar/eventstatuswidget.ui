@@ -372,6 +372,67 @@
     <string>Aktualisieren</string>
    </property>
   </widget>
+  <widget class="QGroupBox" name="eventgroupBox">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>360</y>
+     <width>581</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Veranstaltungsbilanz</string>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_5">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_20">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_19">
+        <item>
+         <widget class="QLabel" name="payoutlabel">
+          <property name="text">
+           <string>Ausbezahlt</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="payoutresultlabel">
+          <property name="text">
+           <string>0</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_18">
+        <item>
+         <widget class="QLabel" name="moneyearnedlabel">
+          <property name="text">
+           <string>Erlös</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="moneyearnedresultlabel">
+          <property name="text">
+           <string>0</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
  </widget>
  <resources/>
  <connections/>

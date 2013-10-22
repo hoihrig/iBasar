@@ -235,86 +235,103 @@
         <translation>Items</translation>
     </message>
     <message>
-        <location filename="eventstatuswidget.ui" line="75"/>
+        <location filename="eventstatuswidget.ui" line="73"/>
         <source>Anzahl Gegenstände</source>
         <translation>Number Items</translation>
     </message>
     <message>
-        <location filename="eventstatuswidget.ui" line="82"/>
-        <location filename="eventstatuswidget.ui" line="103"/>
-        <location filename="eventstatuswidget.ui" line="124"/>
-        <location filename="eventstatuswidget.ui" line="164"/>
-        <location filename="eventstatuswidget.ui" line="185"/>
-        <location filename="eventstatuswidget.ui" line="206"/>
-        <location filename="eventstatuswidget.ui" line="227"/>
-        <location filename="eventstatuswidget.ui" line="271"/>
-        <location filename="eventstatuswidget.ui" line="309"/>
-        <location filename="eventstatuswidget.ui" line="330"/>
+        <location filename="eventstatuswidget.ui" line="80"/>
+        <location filename="eventstatuswidget.ui" line="101"/>
+        <location filename="eventstatuswidget.ui" line="126"/>
+        <location filename="eventstatuswidget.ui" line="147"/>
+        <location filename="eventstatuswidget.ui" line="172"/>
+        <location filename="eventstatuswidget.ui" line="193"/>
+        <location filename="eventstatuswidget.ui" line="231"/>
+        <location filename="eventstatuswidget.ui" line="275"/>
+        <location filename="eventstatuswidget.ui" line="296"/>
+        <location filename="eventstatuswidget.ui" line="334"/>
+        <location filename="eventstatuswidget.ui" line="402"/>
+        <location filename="eventstatuswidget.ui" line="423"/>
         <source>0</source>
         <translation>0</translation>
     </message>
     <message>
-        <location filename="eventstatuswidget.ui" line="96"/>
+        <location filename="eventstatuswidget.ui" line="119"/>
         <source>Anzahl nicht verkaufter Gegenstände</source>
         <translation>Number of unsold Items</translation>
     </message>
     <message>
-        <location filename="eventstatuswidget.ui" line="117"/>
+        <location filename="eventstatuswidget.ui" line="165"/>
         <source>Anzahl verkaufter Gegenstände</source>
         <translation>Number of sold Items</translation>
     </message>
     <message>
-        <location filename="eventstatuswidget.ui" line="157"/>
+        <location filename="eventstatuswidget.ui" line="94"/>
         <source>Gesamtwert</source>
         <translation>Total Value</translation>
     </message>
     <message>
-        <location filename="eventstatuswidget.ui" line="178"/>
+        <location filename="eventstatuswidget.ui" line="140"/>
         <source>Einstellgebühr</source>
         <translation>Registrationfee</translation>
     </message>
     <message>
-        <location filename="eventstatuswidget.ui" line="199"/>
+        <location filename="eventstatuswidget.ui" line="186"/>
         <source>Wert verkaufter Waren</source>
         <translation>Value of sold Items</translation>
     </message>
     <message>
-        <location filename="eventstatuswidget.ui" line="220"/>
+        <location filename="eventstatuswidget.ui" line="224"/>
         <source>Provision</source>
         <translation>Provision</translation>
     </message>
     <message>
-        <location filename="eventstatuswidget.ui" line="252"/>
+        <location filename="eventstatuswidget.ui" line="256"/>
         <source>Verkäufer</source>
         <translation>Seller</translation>
     </message>
     <message>
-        <location filename="eventstatuswidget.ui" line="264"/>
+        <location filename="eventstatuswidget.ui" line="268"/>
         <source>Anzahl Verkäufer</source>
         <translation>Number of Sellers</translation>
     </message>
     <message>
-        <location filename="eventstatuswidget.ui" line="302"/>
+        <location filename="eventstatuswidget.ui" line="289"/>
         <source>Aktive Verkäufer</source>
         <translation>Active Sellers</translation>
     </message>
     <message>
-        <location filename="eventstatuswidget.ui" line="323"/>
+        <location filename="eventstatuswidget.ui" line="327"/>
         <source>Ausgecheckte Verkäufer</source>
         <translation>Checked Out Sellers</translation>
     </message>
     <message>
-        <location filename="eventstatuswidget.ui" line="355"/>
+        <location filename="eventstatuswidget.ui" line="359"/>
         <source>Abrechnen</source>
         <translation>End Event</translation>
     </message>
     <message>
-        <location filename="eventstatuswidget.ui" line="368"/>
+        <location filename="eventstatuswidget.ui" line="372"/>
         <source>Aktualisieren</source>
         <translation>Update</translation>
     </message>
     <message>
-        <location filename="eventstatuswidget.cpp" line="131"/>
+        <location filename="eventstatuswidget.ui" line="385"/>
+        <source>Veranstaltungsbilanz</source>
+        <translation>Event Result</translation>
+    </message>
+    <message>
+        <location filename="eventstatuswidget.ui" line="395"/>
+        <source>Ausbezahlt</source>
+        <translation>Payed Out</translation>
+    </message>
+    <message>
+        <location filename="eventstatuswidget.ui" line="416"/>
+        <source>Erlös</source>
+        <translation>Earning</translation>
+    </message>
+    <message>
+        <location filename="eventstatuswidget.cpp" line="124"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>

@@ -293,7 +293,7 @@
     <message>
         <location filename="eventstatuswidget.ui" line="268"/>
         <source>Anzahl Verkäufer</source>
-        <translation>Anyahl Verkäufer</translation>
+        <translation type="unfinished">Anzahl Verkäufer</translation>
     </message>
     <message>
         <location filename="eventstatuswidget.ui" line="289"/>
@@ -331,9 +331,8 @@
         <translation>Erlös</translation>
     </message>
     <message>
-        <location filename="eventstatuswidget.cpp" line="124"/>
         <source>Error</source>
-        <translation>Fehler</translation>
+        <translation type="obsolete">Fehler</translation>
     </message>
 </context>
 <context>

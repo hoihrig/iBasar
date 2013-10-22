@@ -331,9 +331,8 @@
         <translation>Earning</translation>
     </message>
     <message>
-        <location filename="eventstatuswidget.cpp" line="124"/>
         <source>Error</source>
-        <translation>Error</translation>
+        <translation type="obsolete">Error</translation>
     </message>
 </context>
 <context>

@@ -106,7 +106,7 @@ QStringList EventStatusWidget::findSellersforEvent()
     return sellerlist;
 }
 
-void EventStatusWidget::updateSellerStats()
+int EventStatusWidget::findActiveSellersforEvent()
 {
     int eventid = 0;
     QSqlQuery result;
@@ -114,14 +114,49 @@ void EventStatusWidget::updateSellerStats()
 
     eventid = findEventID(ui->eventComboBox->currentText());
 
-    querycmd = "SELECT COUNT(ID) from `Verkäufer` WHERE Veranstaltung=" + QString::number(eventid) + ";";
+    querycmd = "SELECT COUNT(ID) from `Verkäufer` WHERE Veranstaltung=" + QString::number(eventid) + " AND Aktiv=1;";
 
     data->query(querycmd, result);
 
     if (result.next())
-        ui->numbersellersresultlabel->setText(result.value(0).toString());
+        return result.value(0).toInt();
     else
-        ui->numbersellersresultlabel->setText(tr("Error"));
+        return 0;
+}
+
+int EventStatusWidget::findInactiveSellersforEvent()
+{
+    int eventid = 0;
+    QSqlQuery result;
+    QString querycmd;
+
+    eventid = findEventID(ui->eventComboBox->currentText());
+
+    querycmd = "SELECT COUNT(ID) from `Verkäufer` WHERE Veranstaltung=" + QString::number(eventid) + " AND Aktiv=0;";
+
+    data->query(querycmd, result);
+
+    if (result.next())
+        return result.value(0).toInt();
+    else
+        return 0;
+}
+
+void EventStatusWidget::updateSellerStats()
+{
+    int activesellers = 0;
+    int inactivesellers = 0;
+    int allsellers = 0;
+
+    activesellers = findActiveSellersforEvent();
+    inactivesellers = findInactiveSellersforEvent();
+
+    allsellers = activesellers + inactivesellers;
+
+    ui->numbersellersresultlabel->setText(QString::number(allsellers));
+    ui->selleractiveresultlabel->setText(QString::number(activesellers));
+    ui->sellercheckedoutresultlabel->setText(QString::number(inactivesellers));
+
 
 }
 

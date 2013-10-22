@@ -34,6 +34,7 @@ public:
     explicit EventStatusWidget(Databaseconnection *db, QWidget *parent = 0);
     ~EventStatusWidget();
 
+    int findActiveSellersforEvent();
 public slots:
     void updateEventStats();
 
@@ -51,6 +52,7 @@ private:
     QStringList findEvents(Databaseconnection *db);
     int findEventID(QString eventname);
     QStringList findSellersforEvent();
+    int findInactiveSellersforEvent();
 };
 
 #endif // EVENTSTATUSWIDGET_H

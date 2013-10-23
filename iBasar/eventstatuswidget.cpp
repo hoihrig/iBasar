@@ -166,6 +166,8 @@ void EventStatusWidget::updateItemStats()
     int amountItemsTotal = 0;
     int amountItemsSold = 0;
     int amountItemsNSold = 0;
+    float valueItemsTotal = 0;
+    float valueItemsSold = 0;
     QStringList sellerlist;
     QSqlQuery result;
     QString querycmd;
@@ -194,9 +196,54 @@ void EventStatusWidget::updateItemStats()
 
     }
 
+    valueItemsTotal = getTotalValueItemsbyEvent();
+    valueItemsSold = getTotalValueSoldItemsbyEvent();
+
+
     ui->numberitemsresultlabel->setText(QString::number(amountItemsTotal));
     ui->numbersolditemsresultlabel->setText(QString::number(amountItemsSold));
     ui->numberunsolditemsresultlabel->setText(QString::number(amountItemsNSold));
+    ui->totalvalueresultlabel->setText(QString::number(valueItemsTotal));
+    ui->totalsoldresultlabel->setText(QString::number(valueItemsSold));
+
+}
+
+float EventStatusWidget::getTotalValueItemsbyEvent()
+{
+    int eventid = 0;
+    QSqlQuery result;
+    QString querycmd;
+
+    eventid = findEventID(ui->eventComboBox->currentText());
+
+    querycmd = "SELECT SUM(b.Preis) FROM `Verkäufer` a, `Artikel` b WHERE a.Veranstaltung=" + QString::number(eventid) + " AND b.Verkäufer=a.ID;";
+
+    data->query(querycmd, result);
+
+    if (result.next())
+        return result.value(0).toFloat();
+    else
+        return 0;
+
+}
+
+float EventStatusWidget::getTotalValueSoldItemsbyEvent()
+{
+    int eventid = 0;
+    QSqlQuery result;
+    QString querycmd;
+
+    eventid = findEventID(ui->eventComboBox->currentText());
+
+    querycmd = "SELECT SUM(b.Preis) FROM `Verkäufer` a, `Artikel` b WHERE a.Veranstaltung=" +
+            QString::number(eventid) + " AND b.Verkäufer=a.ID AND b.Verkauft=1;";
+
+    data->query(querycmd, result);
+
+    if (result.next())
+        return result.value(0).toFloat();
+    else
+        return 0;
 
 }
 
@@ -220,6 +267,8 @@ void EventStatusWidget::updateEventStats()
     QString oldevent = ui->eventComboBox->currentText();
     updateAvailableEvents();
     ui->eventComboBox->setCurrentText(oldevent);
+
+
     updateItemStats();
     updateSellerStats();
 

@@ -53,6 +53,8 @@ private:
     int findEventID(QString eventname);
     QStringList findSellersforEvent();
     int findInactiveSellersforEvent();
+    float getTotalValueSoldItemsbyEvent();
+    float getTotalValueItemsbyEvent();
 };
 
 #endif // EVENTSTATUSWIDGET_H

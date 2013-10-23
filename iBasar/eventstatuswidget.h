@@ -44,6 +44,9 @@ private:
     Ui::EventStatusWidget *ui;
     Databaseconnection *data;
     QString defaultEvent;
+    QString currencysymbol;
+    float provision_sold;
+    float provision_nsold;
 
     void changeEvent(QEvent *event);
     void updateSellerStats();
@@ -55,6 +58,7 @@ private:
     int findInactiveSellersforEvent();
     float getTotalValueSoldItemsbyEvent();
     float getTotalValueItemsbyEvent();
+    void readEventConfig();
 };
 
 #endif // EVENTSTATUSWIDGET_H

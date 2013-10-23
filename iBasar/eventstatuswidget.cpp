@@ -24,6 +24,11 @@ EventStatusWidget::EventStatusWidget(Databaseconnection *db, QWidget *parent) :
     ui(new Ui::EventStatusWidget)
 {
     ui->setupUi(this);
+
+    provision_sold = 0;
+    provision_nsold = 0;
+    currencysymbol = QString("€");
+
     data = db;
 
     connect(ui->refreshpushbutton,SIGNAL(clicked()),this,SLOT(updateEventStats()));
@@ -85,6 +90,26 @@ int EventStatusWidget::findEventID(QString eventname)
     else
         return -1;
 
+}
+
+void EventStatusWidget::readEventConfig()
+{
+    int eventid = 0;
+    QSqlQuery result;
+    QString querycmd;
+
+    eventid = findEventID(ui->eventComboBox->currentText());
+
+    querycmd = "SELECT Provision_Verkauft, Provision_NVerkauft, WSymbol from `Config` WHERE Veranstaltung=" + QString::number(eventid) + ";";
+
+    data->query(querycmd,result);
+
+    if (result.next())
+    {
+        provision_sold = result.value(0).toFloat();
+        provision_nsold = result.value(1).toFloat();
+        currencysymbol = result.value(2).toFloat();
+    }
 }
 
 QStringList EventStatusWidget::findSellersforEvent()
@@ -162,12 +187,13 @@ void EventStatusWidget::updateSellerStats()
 
 void EventStatusWidget::updateItemStats()
 {
-    int eventid = 0;
     int amountItemsTotal = 0;
     int amountItemsSold = 0;
     int amountItemsNSold = 0;
     float valueItemsTotal = 0;
     float valueItemsSold = 0;
+    float provision_soldItems = 0;
+    float provision_nsoldItems = 0;
     QStringList sellerlist;
     QSqlQuery result;
     QString querycmd;
@@ -198,6 +224,8 @@ void EventStatusWidget::updateItemStats()
 
     valueItemsTotal = getTotalValueItemsbyEvent();
     valueItemsSold = getTotalValueSoldItemsbyEvent();
+    provision_soldItems = (valueItemsSold * provision_sold) / 100;
+    provision_nsoldItems = amountItemsNSold * provision_nsold;
 
 
     ui->numberitemsresultlabel->setText(QString::number(amountItemsTotal));
@@ -205,6 +233,8 @@ void EventStatusWidget::updateItemStats()
     ui->numberunsolditemsresultlabel->setText(QString::number(amountItemsNSold));
     ui->totalvalueresultlabel->setText(QString::number(valueItemsTotal));
     ui->totalsoldresultlabel->setText(QString::number(valueItemsSold));
+    ui->totalprovisionresultlabel->setText(QString::number(provision_soldItems));
+    ui->totalnotsoldresultlabel->setText(QString::number(provision_nsoldItems));
 
 }
 
@@ -268,6 +298,7 @@ void EventStatusWidget::updateEventStats()
     updateAvailableEvents();
     ui->eventComboBox->setCurrentText(oldevent);
 
+    readEventConfig();
 
     updateItemStats();
     updateSellerStats();

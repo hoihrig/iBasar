@@ -59,6 +59,7 @@ private:
     float getTotalValueSoldItemsbyEvent();
     float getTotalValueItemsbyEvent();
     void readEventConfig();
+    void updateEventSummary();
 };
 
 #endif // EVENTSTATUSWIDGET_H

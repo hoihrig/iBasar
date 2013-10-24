@@ -44,6 +44,8 @@ void EventStatusWidget::changeEvent(QEvent *event)
     if (event->type() == QEvent::LanguageChange)
     {
         ui->retranslateUi(this);
+
+        updateEventStats();
     }
 
     QWidget::changeEvent(event);
@@ -108,7 +110,7 @@ void EventStatusWidget::readEventConfig()
     {
         provision_sold = result.value(0).toFloat();
         provision_nsold = result.value(1).toFloat();
-        currencysymbol = result.value(2).toFloat();
+        currencysymbol = result.value(2).toString();
     }
 }
 
@@ -231,10 +233,10 @@ void EventStatusWidget::updateItemStats()
     ui->numberitemsresultlabel->setText(QString::number(amountItemsTotal));
     ui->numbersolditemsresultlabel->setText(QString::number(amountItemsSold));
     ui->numberunsolditemsresultlabel->setText(QString::number(amountItemsNSold));
-    ui->totalvalueresultlabel->setText(QString::number(valueItemsTotal));
-    ui->totalsoldresultlabel->setText(QString::number(valueItemsSold));
-    ui->totalprovisionresultlabel->setText(QString::number(provision_soldItems));
-    ui->totalnotsoldresultlabel->setText(QString::number(provision_nsoldItems));
+    ui->totalvalueresultlabel->setText(QString::number(valueItemsTotal) + " " + currencysymbol);
+    ui->totalsoldresultlabel->setText(QString::number(valueItemsSold) + " " + currencysymbol);
+    ui->totalprovisionresultlabel->setText(QString::number(provision_soldItems) + " " + currencysymbol);
+    ui->totalprovisionnotsoldresultlabel->setText(QString::number(provision_nsoldItems) + " " + currencysymbol);
 
 }
 
@@ -292,6 +294,20 @@ void EventStatusWidget::updateAvailableEvents()
 
 }
 
+void EventStatusWidget::updateEventSummary()
+{
+    float revenue = 0;
+    float payout = 0;
+
+    revenue = ui->totalprovisionresultlabel->text().split(" ").at(0).toFloat() + ui->totalprovisionnotsoldresultlabel->text().split(" ").at(0).toFloat();
+
+    payout = ui->totalsoldresultlabel->text().split(" ").at(0).toFloat() - revenue;
+
+    ui->payoutresultlabel->setText(QString::number(payout) + " " + currencysymbol);
+    ui->revenueresultlabel->setText(QString::number(revenue) + " " + currencysymbol);
+
+}
+
 void EventStatusWidget::updateEventStats()
 {
     QString oldevent = ui->eventComboBox->currentText();
@@ -302,5 +318,7 @@ void EventStatusWidget::updateEventStats()
 
     updateItemStats();
     updateSellerStats();
+
+    updateEventSummary();
 
 }

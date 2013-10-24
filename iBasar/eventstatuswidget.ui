@@ -135,14 +135,14 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_10">
           <item>
-           <widget class="QLabel" name="totalnotsoldlabel">
+           <widget class="QLabel" name="totalprovisionnotsoldlabel">
             <property name="text">
              <string>Einstellgebühr</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="totalnotsoldresultlabel">
+           <widget class="QLabel" name="totalprovisionnotsoldresultlabel">
             <property name="text">
              <string>0</string>
             </property>
@@ -421,14 +421,14 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_18">
         <item>
-         <widget class="QLabel" name="moneyearnedlabel">
+         <widget class="QLabel" name="revenuelabel">
           <property name="text">
            <string>Erlös</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="moneyearnedresultlabel">
+         <widget class="QLabel" name="revenueresultlabel">
           <property name="text">
            <string>0</string>
           </property>

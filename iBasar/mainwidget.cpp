@@ -47,7 +47,8 @@ void MainWidget::updateTitle(QString name)
 
 void MainWidget::updateDbStatus()
 {
-    ui->dblbl->setText(data->getHostname());
+    QString hostname = data->getHostname();
+    ui->dblbl->setText(hostname);
 
     if (data->isEstablished())
         ui->connectlbl->setText("true");
@@ -109,6 +110,8 @@ void MainWidget::updateEvents()
         if (eventid >= 0)
             ui->eventcomboBox->setCurrentText(defaultEvent);
     }
+
+    emit updateTitle(ui->eventcomboBox->currentText());
 }
 
 void MainWidget::updateEventDetails(QString name)
@@ -156,6 +159,8 @@ void MainWidget::changeEvent(QEvent *event)
     if (event->type() == QEvent::LanguageChange)
     {
         ui->retranslateUi(this);
+
+        updateValues();
     }
 
     QWidget::changeEvent(event);
@@ -163,6 +168,7 @@ void MainWidget::changeEvent(QEvent *event)
 
 void MainWidget::updateValues()
 {
+
     updateDbStatus();
 
     updateItemStatus();

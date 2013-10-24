@@ -54,7 +54,6 @@ MainWindow::MainWindow(QWidget *parent) :
     mstatwidget->setGeometry(ui->stackedWidget->geometry());
     ui->stackedWidget->addWidget(mstatwidget);
 
-    ui->toolBox->setCurrentIndex(0);
 
 
     connect(ui->actionAbout_Qt,SIGNAL(triggered()),this,SLOT(aboutQt()));
@@ -75,6 +74,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(mwidget,SIGNAL(eventChanged(QString)),mstatwidget,SLOT(setDefaultEvent(QString)));
     connect(mlangwidget,SIGNAL(languageChanged(QString)),this,SLOT(changeLanguage(QString)));
 
+    ui->toolBox->setCurrentIndex(0);
 
     emit updateWidgets();
 }

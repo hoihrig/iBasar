@@ -72,6 +72,9 @@ bool SalesItem::setPrice(QString price)
     if (price.isEmpty())
         return false;
 
+    if (price.contains(','))
+        price.replace(',','.');
+
     mPrice = price;
     return true;
 }
@@ -265,7 +268,7 @@ bool SalesItem::saveNewItem(Databaseconnection *data)
             "'" + mItemSize + "', " +
             QString::number(manufacturerID) + ", " +
             QString::number(descriptionID) + ", " +
-            "'" + mPrice + "', 1, 0)";
+            "" + mPrice + ", 1, 0)";
     data->query(querycmd,result);
 
     if (result.numRowsAffected() > 0)

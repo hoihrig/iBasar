@@ -146,7 +146,7 @@ QString SellerCheckoutPrinter::addHtmlUnSoldSalesItem(QStringList entry)
 
     temp = "<tr><td>" + entry[1] + "</td><td>";
     temp += "<nobr>" + entry[0] + "</nobr></td><td></td>";
-    temp += "<td align=\"right\"><nobr>" + QString::number(entry[2].toInt(),'f',2) + " " + currencySymbol + "</nobr></td></tr>";
+    temp += "<td align=\"right\"><nobr>" + QString::number(entry[2].toFloat(),'f',2) + " " + currencySymbol + "</nobr></td></tr>";
 
     return temp;
 }
@@ -157,7 +157,7 @@ QString SellerCheckoutPrinter::addHtmlSoldSalesItem(QStringList entry)
 
     temp = "<tr><td><nobr>" + entry[1] + ": ";
     temp += entry[0] + "</nobr></td><td align=\"right\">&nbsp;</td>";
-    temp += "<td align=\"right\"><nobr>" + QString::number(entry[2].toInt(),'f',2) + " " + currencySymbol + "</nobr></td></tr>";
+    temp += "<td align=\"right\"><nobr>" + QString::number(entry[2].toFloat(),'f',2) + " " + currencySymbol + "</nobr></td></tr>";
 
     return temp;
 }

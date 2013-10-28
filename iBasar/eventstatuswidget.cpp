@@ -32,6 +32,7 @@ EventStatusWidget::EventStatusWidget(Databaseconnection *db, QWidget *parent) :
     data = db;
 
     connect(ui->refreshpushbutton,SIGNAL(clicked()),this,SLOT(updateEventStats()));
+    connect(ui->endEventPushButton,SIGNAL(clicked()),this,SLOT(createReport()));
 }
 
 EventStatusWidget::~EventStatusWidget()
@@ -240,6 +241,23 @@ void EventStatusWidget::updateItemStats()
 
 }
 
+QString EventStatusWidget::serialize()
+{
+    QString temp;
+
+    temp = ui->numbersellersresultlabel->text() + ":::";
+    temp += ui->numberitemsresultlabel->text() + ":::";
+    temp += ui->numbersolditemsresultlabel->text() + ":::";
+    temp += ui->numberunsolditemsresultlabel->text() + ":::";
+    temp += ui->totalsoldresultlabel->text() + ":::";
+    temp += ui->totalprovisionresultlabel->text() + ":::";
+    temp += ui->totalprovisionnotsoldresultlabel->text() + ":::";
+    temp += ui->payoutresultlabel->text() + ":::";
+    temp += ui->revenueresultlabel->text();
+
+    return temp;
+}
+
 float EventStatusWidget::getTotalValueItemsbyEvent()
 {
     int eventid = 0;
@@ -320,5 +338,24 @@ void EventStatusWidget::updateEventStats()
     updateSellerStats();
 
     updateEventSummary();
+
+}
+
+void EventStatusWidget::createReport()
+{
+    EventRevenuePrinter revprinter;
+    QString serializedData;
+
+    revprinter.setCurrencySymbol(currencysymbol);
+    revprinter.setEventName(ui->eventComboBox->currentText());
+    revprinter.setProvisionSold(QString::number(provision_sold));
+    revprinter.setProvisionNotSold(QString::number(provision_nsold));
+
+    serializedData = serialize();
+
+    if(ui->pdfcheckBox->isChecked())
+        revprinter.printPdf(serializedData);
+    else
+        revprinter.printPrinter(this,serializedData);
 
 }

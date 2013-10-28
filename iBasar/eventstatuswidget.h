@@ -21,6 +21,7 @@
 
 #include <QWidget>
 #include "databaseconnection.h"
+#include "eventrevenueprinter.h"
 
 namespace Ui {
 class EventStatusWidget;
@@ -40,6 +41,7 @@ public slots:
 
     void setDefaultEvent(QString name);
 
+    void createReport();
 private:
     Ui::EventStatusWidget *ui;
     Databaseconnection *data;
@@ -60,6 +62,7 @@ private:
     float getTotalValueItemsbyEvent();
     void readEventConfig();
     void updateEventSummary();
+    QString serialize();
 };
 
 #endif // EVENTSTATUSWIDGET_H

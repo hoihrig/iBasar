@@ -43,7 +43,8 @@ SOURCES += main.cpp\
     comboboxitemdelegate.cpp \
     sellersearchwidget.cpp \
     languageselectionwidget.cpp \
-    eventstatuswidget.cpp
+    eventstatuswidget.cpp \
+    eventrevenueprinter.cpp
 
 HEADERS  += mainwindow.h \
     databaseconnection.h \
@@ -62,7 +63,8 @@ HEADERS  += mainwindow.h \
     comboboxitemdelegate.h \
     sellersearchwidget.h \
     languageselectionwidget.h \
-    eventstatuswidget.h
+    eventstatuswidget.h \
+    eventrevenueprinter.h
 
 FORMS    += \
     settingsdialog.ui \

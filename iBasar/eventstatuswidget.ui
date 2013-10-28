@@ -356,32 +356,6 @@
     </item>
    </layout>
   </widget>
-  <widget class="QPushButton" name="pushButton">
-   <property name="geometry">
-    <rect>
-     <x>660</x>
-     <y>140</y>
-     <width>93</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Abrechnen</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="refreshpushbutton">
-   <property name="geometry">
-    <rect>
-     <x>660</x>
-     <y>90</y>
-     <width>93</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Aktualisieren</string>
-   </property>
-  </widget>
   <widget class="QGroupBox" name="eventgroupBox">
    <property name="geometry">
     <rect>
@@ -440,6 +414,55 @@
        </layout>
       </item>
      </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>640</x>
+     <y>90</y>
+     <width>121</width>
+     <height>134</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_7">
+    <item>
+     <widget class="QPushButton" name="refreshpushbutton">
+      <property name="text">
+       <string>Aktualisieren</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="endEventgroupBox">
+      <property name="title">
+       <string>Abrechnung</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_8">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_6">
+         <item>
+          <widget class="QCheckBox" name="pdfcheckBox">
+           <property name="text">
+            <string>PDF</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="endEventPushButton">
+           <property name="text">
+            <string>Abrechnen</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
     </item>
    </layout>
   </widget>

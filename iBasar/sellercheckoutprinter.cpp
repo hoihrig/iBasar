@@ -75,7 +75,7 @@ QString SellerCheckoutPrinter::createHtmlHeader()
     QString temp;
 
     temp = "<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=windows-1252\">";
-    temp += "<title>iBasar, Schneesportbörse: Abrechnungsbeleg</title></head><body>";
+    temp += "<title>" + tr("iBasar, Schneesportbörse: Abrechnungsbeleg") + "</title></head><body>";
     return temp;
 }
 
@@ -120,8 +120,8 @@ QString SellerCheckoutPrinter::addHtmlSoldSalesItemHeader()
 {
     QString temp;
 
-    temp = "<tr><td><h2>Abrechnung: iBasar, Schneesportbörse</h2></td></tr>";
-    temp += "<td><table width=\"100%\"><tr><td><b>Einnahmen aus verkauften Artikeln:</b></td><td align=\"right\">&nbsp;</td>";
+    temp = "<tr><td><h2>" + tr("Abrechnung: iBasar, Schneesportbörse") + "</h2></td></tr>";
+    temp += "<td><table width=\"100%\"><tr><td><b>" + tr("Einnahmen aus verkauften Artikeln") + ":</b></td><td align=\"right\">&nbsp;</td>";
     temp += "<td align=\"right\">&nbsp;</td></tr>";
 
 
@@ -132,8 +132,9 @@ QString SellerCheckoutPrinter::addHtmlUnSoldSalesItemHeader()
 {
     QString temp;
 
-    temp = "<tr><td><h3>Folgende Ihrer Artikel konnten wir leider nicht verkaufen:</h3></td></tr>";
-    temp += "<tr><td><table align=\"left\"><tr><th>Kennz.</th><th><nobr>Hersteller - Artikel - Zusatzinformation</nobr></th><th>Gr&ouml;&szlig;e</th><th>Preis</th></tr>";
+    temp = "<tr><td><h3>" + tr("Folgende Ihrer Artikel konnten wir leider nicht verkaufen") + ":</h3></td></tr>";
+    temp += "<tr><td><table align=\"left\"><tr><th>" + tr("Kennz.") + "</th><th><nobr>";
+    temp += tr("Hersteller") + " - " + tr("Artikel") + " - " + tr("Zusatzinformation") + "</nobr></th><th>" + tr("Grösse") + "</th><th>" + tr("Preis") + "</th></tr>";
 
     return temp;
 }
@@ -167,10 +168,10 @@ QString SellerCheckoutPrinter::addHtmlDocumentFooter()
     QString temp;
 
     temp = "</tbody></table></td></tr><tr><td><table border=\"0\" width=\"100%\">";
-    temp += "<tbody><tr><td colspan=\"2\">Vielen Dank und bis n&auml;chstes Jahr!</td></tr>";
+    temp += "<tbody><tr><td colspan=\"2\">" + tr("Vielen Dank und bis nächstes Jahr!") + "</td></tr>";
     temp += "<tr><td colspan=\"2\">&nbsp;</td></tr><tr>";
-    temp += "<td>Ihr iBasar-Demo-Verein</td>";
-    temp += "<td class=\"sehrklein\" align=\"right\">Erstellt: " + QDateTime::currentDateTime().toString() + "</td>";
+    temp += "<td>" + tr("Ihr iBasar-Demo-Verein") + "</td>";
+    temp += "<td class=\"sehrklein\" align=\"right\">" + tr("Erstellt") + ": " + QDateTime::currentDateTime().toString() + "</td>";
     temp += "</tr></tbody></table></td></tr></tbody></table></body></html>";
 
     return temp;
@@ -185,15 +186,15 @@ QString SellerCheckoutPrinter::addHtmlSoldSummary(int count, float price)
     float totalcost = fee + provision;
     float totalpayout = price - totalcost;
 
-    temp = "<tr><td>Annahmegeb&uuml;hr (" + QString::number(count) +
+    temp = "<tr><td>" + tr("Annahmegebühr") + " (" + QString::number(count) +
             " x " + unsoldProvision + " " + currencySymbol + "):</td>";
     temp += "<td align=\"right\"><nobr>" + QString::number(fee,'f',2) + " " + currencySymbol + "</nobr></td><td align=\"right\">&nbsp;</td></tr>";
 
-    temp += "<tr><td>Verkaufsprovision (" + soldProvision + "% von " + QString::number(price,'f',2) + "&euro;):</td>";
+    temp += "<tr><td>" + tr("Verkaufsprovision") + " (" + soldProvision + "% von " + QString::number(price,'f',2) + " " + currencySymbol + "):</td>";
     temp += "<td align=\"right\"><nobr>" + QString::number(provision,'f',2) + " " + currencySymbol + "</nobr></td><td align=\"right\">&nbsp;</td></tr>";
-    temp += "<tr><td><b>Kosten:</b></td><td align=\"right\"><nobr>&nbsp;</nobr></td><td align=\"right\">";
+    temp += "<tr><td><b>" + tr("Kosten") + ":</b></td><td align=\"right\"><nobr>&nbsp;</nobr></td><td align=\"right\">";
     temp += "<nobr><b>-" + QString::number(totalcost,'f',2) + " " + currencySymbol + "</b></nobr></td></tr>";
-    temp += "<tr><td><b>Gesamtbetrag:</b></td><td align=\"right\">&nbsp;</td><td align=\"right\">";
+    temp += "<tr><td><b>" + tr("Gesamtbetrag") + ":</b></td><td align=\"right\">&nbsp;</td><td align=\"right\">";
     temp += "<nobr><b>" + QString::number(totalpayout,'f',2) + " " + currencySymbol + "</b></nobr></td></tr></table>";
     temp += "</td></tr><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr>";
 
@@ -205,7 +206,7 @@ QString SellerCheckoutPrinter::addHtmlUnSoldSummary(int count, float price)
     QString temp;
 
     temp = "<tr><td>&nbsp;</td></tr>";
-    temp += "<tr><td><b>Summe:</b></td><td><b>" + QString::number(count) + " Artikel</b></td>";
+    temp += "<tr><td><b>" + tr("Summe") + ":</b></td><td><b>" + QString::number(count) + " " + tr("Artikel") + "</b></td>";
     temp += "<td>&nbsp;</td><td align=\"right\">";
     temp += "<nobr><b>" + QString::number(price,'f',2) + " " + currencySymbol + "</nobr></b></td></tr></table>";
     temp += "</td></tr><tr><td>&nbsp;</td></tr><tr><td>";

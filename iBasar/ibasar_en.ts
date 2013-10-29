@@ -232,7 +232,7 @@
     <message>
         <location filename="eventrevenueprinter.cpp" line="92"/>
         <source>Gesamtanzahl Anbieter:</source>
-        <translation>Total Number Sellers;</translation>
+        <translation>Total Number Sellers:</translation>
     </message>
     <message>
         <location filename="eventrevenueprinter.cpp" line="94"/>
@@ -628,6 +628,100 @@
         <location filename="mainwidget.ui" line="52"/>
         <source>Veranstaltung</source>
         <translation>Event</translation>
+    </message>
+</context>
+<context>
+    <name>SellerCheckoutPrinter</name>
+    <message>
+        <location filename="sellercheckoutprinter.cpp" line="78"/>
+        <source>iBasar, Schneesportbörse: Abrechnungsbeleg</source>
+        <translation>iBasar, Skibasar: Receipt</translation>
+    </message>
+    <message>
+        <location filename="sellercheckoutprinter.cpp" line="123"/>
+        <source>Abrechnung: iBasar, Schneesportbörse</source>
+        <translation>Receipt: iBasar, Skibasar</translation>
+    </message>
+    <message>
+        <location filename="sellercheckoutprinter.cpp" line="124"/>
+        <source>Einnahmen aus verkauften Artikeln</source>
+        <translation>Intake from sold Items</translation>
+    </message>
+    <message>
+        <location filename="sellercheckoutprinter.cpp" line="135"/>
+        <source>Folgende Ihrer Artikel konnten wir leider nicht verkaufen</source>
+        <translation>The following Items could not be sold</translation>
+    </message>
+    <message>
+        <location filename="sellercheckoutprinter.cpp" line="136"/>
+        <source>Kennz.</source>
+        <translation>Mark.</translation>
+    </message>
+    <message>
+        <location filename="sellercheckoutprinter.cpp" line="137"/>
+        <source>Hersteller</source>
+        <translation>Brand</translation>
+    </message>
+    <message>
+        <location filename="sellercheckoutprinter.cpp" line="137"/>
+        <location filename="sellercheckoutprinter.cpp" line="209"/>
+        <source>Artikel</source>
+        <translation>Item</translation>
+    </message>
+    <message>
+        <location filename="sellercheckoutprinter.cpp" line="137"/>
+        <source>Zusatzinformation</source>
+        <translation>Additional Information</translation>
+    </message>
+    <message>
+        <location filename="sellercheckoutprinter.cpp" line="137"/>
+        <source>Grösse</source>
+        <translation>Size</translation>
+    </message>
+    <message>
+        <location filename="sellercheckoutprinter.cpp" line="137"/>
+        <source>Preis</source>
+        <translation>Price</translation>
+    </message>
+    <message>
+        <location filename="sellercheckoutprinter.cpp" line="171"/>
+        <source>Vielen Dank und bis nächstes Jahr!</source>
+        <translation>Thank you very much and see you again next year!</translation>
+    </message>
+    <message>
+        <location filename="sellercheckoutprinter.cpp" line="173"/>
+        <source>Ihr iBasar-Demo-Verein</source>
+        <translation>Zour iBasar Demo Club</translation>
+    </message>
+    <message>
+        <location filename="sellercheckoutprinter.cpp" line="174"/>
+        <source>Erstellt</source>
+        <translation>Created</translation>
+    </message>
+    <message>
+        <location filename="sellercheckoutprinter.cpp" line="189"/>
+        <source>Annahmegebühr</source>
+        <translation>Fee</translation>
+    </message>
+    <message>
+        <location filename="sellercheckoutprinter.cpp" line="193"/>
+        <source>Verkaufsprovision</source>
+        <translation>Provision for sold Items</translation>
+    </message>
+    <message>
+        <location filename="sellercheckoutprinter.cpp" line="195"/>
+        <source>Kosten</source>
+        <translation>Costs</translation>
+    </message>
+    <message>
+        <location filename="sellercheckoutprinter.cpp" line="197"/>
+        <source>Gesamtbetrag</source>
+        <translation>Total Amount</translation>
+    </message>
+    <message>
+        <location filename="sellercheckoutprinter.cpp" line="209"/>
+        <source>Summe</source>
+        <translation>Sum</translation>
     </message>
 </context>
 <context>

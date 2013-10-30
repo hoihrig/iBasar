@@ -76,6 +76,7 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `ibasar`.`Config`;
 CREATE TABLE  `ibasar`.`Config` (
   `Logo` blob NOT NULL,
+  `Logo_Format` varchar(3) NOT NULL,
   `Provision_Verkauft` int(2) NOT NULL,
   `Provision_NVerkauft` int(2) NOT NULL,
   `Provision_Annahme` decimal(2,0) NOT NULL,
@@ -85,6 +86,7 @@ CREATE TABLE  `ibasar`.`Config` (
   `Negativ` tinyint(1) NOT NULL,
   `WSymbol` char(1) CHARACTER SET latin1 NOT NULL,
   `Duplexprint` tinyint(1) NOT NULL,
+  `Veranstalter` varchar(50) NOT NULL,
   `Veranstaltung` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Systemeinstellungen, abhängig von Veranstaltung';
 

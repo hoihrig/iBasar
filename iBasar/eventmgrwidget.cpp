@@ -125,7 +125,7 @@ void EventMgrWidget::createEventManagerWidget()
 void EventMgrWidget::selectLogo()
 {
     QString fileName = QFileDialog::getOpenFileName(this,
-       tr("Open Image"), ".", tr("Image Files (*.png *.jpg *.bmp)"));
+       tr("Open Image"), ".", tr("Image Files (*.png)"));
 
     if (!fileName.isEmpty())
         ui->logolineEdit->setText(fileName);

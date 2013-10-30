@@ -96,6 +96,8 @@ void LabelPrintWidget::updateSellers(int index)
 {
     Q_UNUSED(index);
 
+    ui->sellercombobox->clear();
+
     ui->sellercombobox->addItems(findSellers(db));
 
 }

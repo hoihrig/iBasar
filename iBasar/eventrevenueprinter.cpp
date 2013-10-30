@@ -151,7 +151,6 @@ void EventRevenuePrinter::printPrinter(QWidget* parent, QString &serializedData)
 void EventRevenuePrinter::print(QString &serializedData)
 {
     QString htmlContent;
-    float totalPrice = 0;
 
     htmlContent += createHtmlHeader();
 

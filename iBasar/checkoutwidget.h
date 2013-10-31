@@ -58,7 +58,9 @@ private:
     QString selectedEventName;
     QString selectedEventLocation;
     QString selectedEventDate;
+    QString selectedOrganizer;
     QByteArray selectedLogo;
+    QString logoName;
     QString defaultEvent;
 
     void addRow();

@@ -221,16 +221,18 @@ bool CheckoutWidget::getSelectedEventInfo(Databaseconnection *db)
 
     QString eventid = result.value("ID").toString();
 
-    querycmd = "SELECT LOGO FROM `Config` WHERE Veranstaltung=" + eventid + ";";
+    querycmd = "SELECT LOGO, Logo_Format, Veranstalter FROM `Config` WHERE Veranstaltung=" + eventid + ";";
 
     db->query(querycmd,result);
 
     if (result.next()) {
         selectedLogo = result.value(0).toByteArray();
+        logoName = QString("logo.") + result.value(1).toString().toLower();
+        selectedOrganizer = result.value(2).toString();
 
         QPixmap pic;
         pic.loadFromData(selectedLogo);
-        pic.save(QString("Logo.png"));
+        pic.save(logoName);
     }
 
     return true;
@@ -279,9 +281,12 @@ void CheckoutWidget::printCheckout()
         bprinter.setEventName(selectedEventName);
         bprinter.setEventLocation(selectedEventLocation);
         bprinter.setEventDate(selectedEventDate);
+        bprinter.setOrganizerName(selectedOrganizer);
 
         if (!selectedLogo.isEmpty())
-            bprinter.setPrintLogo(true);
+        {
+            bprinter.setPrintLogo(logoName);
+        }
     }
 
     // Serialize all the items and put them in a List
@@ -308,7 +313,7 @@ void CheckoutWidget::printCheckout()
     //cleanup
     if (!selectedLogo.isEmpty())
     {
-        QFile file("Logo.png");
+        QFile file(logoName);
         file.remove();
     }
 }

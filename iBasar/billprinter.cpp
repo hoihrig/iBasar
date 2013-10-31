@@ -41,9 +41,13 @@ void BillPrinter::setHeaderInfo(QString Info)
         headerinfo = deserialize(Info);
 }
 
-void BillPrinter::setPrintLogo(bool Logoavailable)
+void BillPrinter::setPrintLogo(QString LogoName)
 {
-    printLogo = Logoavailable;
+    if (!LogoName.isEmpty())
+    {
+        printLogo = true;
+        printLogoName = LogoName;
+    }
 }
 
 void BillPrinter::setEventName(QString eventName)
@@ -64,6 +68,13 @@ void BillPrinter::setEventDate(QString eventDate)
         this->eventDate = eventDate;
 }
 
+void BillPrinter::setOrganizerName(QString organizer)
+{
+    if(!organizer.isEmpty())
+        this->organizerName = organizer;
+
+}
+
 QString BillPrinter::createHtmlHeader()
 {
     QString temp;
@@ -77,7 +88,7 @@ QString BillPrinter::addLogo()
 {
     QString temp;
 
-    temp = "<tr><td><table align=\"right\"><tbody><tr><td><img src=\"logo.png\" /></td></tr></tbody></table></td></tr>";
+    temp = "<tr><td><table align=\"right\"><tbody><tr><td><img src=\"" + printLogoName + "\" /></td></tr></tbody></table></td></tr>";
 
     return temp;
 }
@@ -141,7 +152,7 @@ QString BillPrinter::addHtmlDocumentFooter()
     temp = "</tbody></table></td></tr><tr><td><table border=\"0\" width=\"100%\">";
     temp += "<tbody><tr><td colspan=\"2\">Vielen Dank für Ihren Einkauf!</td></tr>";
     temp += "<tr><td colspan=\"2\">&nbsp;</td></tr><tr>";
-    temp += "<td>Ihr iBasar-Demo-Verein</td>";
+    temp += "<td>" + organizerName + "</td>";
     temp += "<td class=\"sehrklein\" align=\"right\">Erstellt: " + QDateTime::currentDateTime().toString() + "</td>";
     temp += "</tr></tbody></table></td></tr></tbody></table></body></html>";
 

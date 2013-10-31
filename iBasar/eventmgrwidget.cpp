@@ -52,6 +52,12 @@ void EventMgrWidget::createEventManagerWidget()
         return;
     }
 
+    if (ui->organizernamelineEdit->text().isEmpty())
+    {
+        QMessageBox::critical(this,tr("iBasar Event Management"),tr("No Organizer name given. Cannot create Event!"));
+        return;
+    }
+
     if (!db->isEstablished())
     {
         QMessageBox::critical(this,tr("iBasar Event Management"),tr("No Connection to Database! Cannot create Event!"));
@@ -79,11 +85,12 @@ void EventMgrWidget::createEventManagerWidget()
 
 
     if (ui->logolineEdit->text().isEmpty()) {
-        querycmd = "INSERT INTO `Config` (Veranstaltung, WSymbol, Provision_Verkauft, Provision_NVerkauft) VALUES (" +
+        querycmd = "INSERT INTO `Config` (Veranstaltung, WSymbol, Provision_Verkauft, Provision_NVerkauft, Veranstalter) VALUES (" +
                 QString::number(rowid) + ", '" +
                 ui->currencyLineEdit->text() + "', " +
                 ui->provSoldLineEdit->text() + ", " +
-                ui->provNSoldLineEdit->text() + ");";
+                ui->provNSoldLineEdit->text() + ", '" +
+                ui->organizernamelineEdit->text() + "');";
 
         db->query(querycmd,result);
 
@@ -91,6 +98,7 @@ void EventMgrWidget::createEventManagerWidget()
     else
     {
             QString fileName = ui->logolineEdit->text();
+            QFileInfo fileInfo(fileName);
 
             // load image to bytearray
             QByteArray ba;
@@ -104,11 +112,13 @@ void EventMgrWidget::createEventManagerWidget()
             // Writing the image into table
             QSqlDatabase::database().transaction();
             QSqlQuery query;
-            query.prepare( "INSERT INTO `Config` (Veranstaltung, WSymbol, Provision_Verkauft, Provision_NVerkauft, Logo ) VALUES (" +
+            query.prepare( "INSERT INTO `Config` (Veranstaltung, WSymbol, Provision_Verkauft, Provision_NVerkauft, Veranstalter, Logo_Format, Logo ) VALUES (" +
                            QString::number(rowid) + ", '" +
                            ui->currencyLineEdit->text() + "', " +
                            ui->provSoldLineEdit->text() + ", " +
-                           ui->provNSoldLineEdit->text() + ", " +
+                           ui->provNSoldLineEdit->text() + ", '" +
+                           ui->organizernamelineEdit->text() + "', '" +
+                           fileInfo.suffix().toUpper() + "', " +
                            ":IMAGE);");
             query.bindValue(":IMAGE", ba);
             query.exec();
@@ -125,7 +135,7 @@ void EventMgrWidget::createEventManagerWidget()
 void EventMgrWidget::selectLogo()
 {
     QString fileName = QFileDialog::getOpenFileName(this,
-       tr("Open Image"), ".", tr("Image Files (*.png)"));
+       tr("Open Image"), ".", tr("Image Files (*.png *.jpg *.bmp)"));
 
     if (!fileName.isEmpty())
         ui->logolineEdit->setText(fileName);

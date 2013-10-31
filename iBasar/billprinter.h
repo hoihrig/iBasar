@@ -44,7 +44,8 @@ public:
     void setEventDate(QString eventDate);
     
 
-    void setPrintLogo(bool Logoavailable);
+    void setPrintLogo(QString LogoName);
+    void setOrganizerName(QString organizer);
 signals:
     
 public slots:
@@ -65,6 +66,8 @@ private:
     QString eventName;
     QString eventLocation;
     QString eventDate;
+    QString organizerName;
+    QString printLogoName;
     bool printLogo;
 
     QString addLogo();

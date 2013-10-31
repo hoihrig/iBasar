@@ -349,13 +349,15 @@ bool SellerRegistrationWidget::getSelectedEventInfo(Databaseconnection *db)
         soldProvision = result.value("Provision_Verkauft").toString();
         unsoldProvision = result.value("Provision_NVerkauft").toString();
         currencySymbol = result.value("WSymbol").toString();
+        organizer = result.value("Veranstalter").toString();
         logo = result.value("Logo").toByteArray();
+        logoName = QString("logo.") + result.value("Logo_Format").toString().toLower();
 
         if (!logo.isEmpty())
         {
             QPixmap pic;
             pic.loadFromData(logo);
-            pic.save(QString("Logo.png"));
+            pic.save(QString(logoName));
         }
 
         return true;
@@ -385,9 +387,10 @@ void SellerRegistrationWidget::printCheckout(QList<int> salesItemList)
         scprinter.setSoldProvision(soldProvision);
         scprinter.setUnSoldProvision(unsoldProvision);
         scprinter.setCurrencySymbol(currencySymbol);
+        scprinter.setEventOrganizer(organizer);
 
-        if (!logo.isEmpty())
-            scprinter.setPrintLogo(true);
+        if (!logoName.isEmpty())
+            scprinter.setPrintLogo(logoName);
 
     }
 
@@ -411,8 +414,8 @@ void SellerRegistrationWidget::printCheckout(QList<int> salesItemList)
     }
 
     // cleanup
-    if (!logo.isEmpty())
-        QFile::remove("Logo.png");
+    if (!logoName.isEmpty())
+        QFile::remove(logoName);
 }
 
 void SellerRegistrationWidget::createSeller()
@@ -547,10 +550,10 @@ void SellerRegistrationWidget::saveTabletoDB()
 
         }
 
-        QMessageBox::information(this,tr("Seller Registration"), tr("Successfully saved Seller information with Seller ID: ") + QString::number(regseller->getID()));
 
     }
 
+    QMessageBox::information(this,tr("Seller Registration"), tr("Successfully saved Seller information with Seller ID: ") + QString::number(regseller->getID()));
     reset();
 
 }

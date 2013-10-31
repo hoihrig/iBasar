@@ -103,7 +103,7 @@ void EventStatusWidget::readEventConfig()
 
     eventid = findEventID(ui->eventComboBox->currentText());
 
-    querycmd = "SELECT Provision_Verkauft, Provision_NVerkauft, WSymbol from `Config` WHERE Veranstaltung=" + QString::number(eventid) + ";";
+    querycmd = "SELECT Provision_Verkauft, Provision_NVerkauft, WSymbol, Logo, Logo_Format from `Config` WHERE Veranstaltung=" + QString::number(eventid) + ";";
 
     data->query(querycmd,result);
 
@@ -112,6 +112,14 @@ void EventStatusWidget::readEventConfig()
         provision_sold = result.value(0).toFloat();
         provision_nsold = result.value(1).toFloat();
         currencysymbol = result.value(2).toString();
+
+        QByteArray selectedLogo;
+        selectedLogo = result.value(3).toByteArray();
+        logoName = QString("logo.") + result.value(4).toString().toLower();
+
+        QPixmap pic;
+        pic.loadFromData(selectedLogo);
+        pic.save(logoName);
     }
 }
 
@@ -351,11 +359,21 @@ void EventStatusWidget::createReport()
     revprinter.setProvisionSold(QString::number(provision_sold));
     revprinter.setProvisionNotSold(QString::number(provision_nsold));
 
+    if(!logoName.isEmpty())
+        revprinter.setPrintLogo(logoName);
+
     serializedData = serialize();
 
     if(ui->pdfcheckBox->isChecked())
         revprinter.printPdf(serializedData);
     else
         revprinter.printPrinter(this,serializedData);
+
+    //cleanup
+    if (!logoName.isEmpty())
+    {
+        QFile file(logoName);
+        file.remove();
+    }
 
 }

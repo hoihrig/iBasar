@@ -17,7 +17,7 @@ public:
 
     void printPdf(QString &serializedData);
     void setCurrencySymbol(const QString &value);
-    void setPrintLogo(bool value);
+    void setPrintLogo(QString logoName);
     void printPrinter(QWidget *parent, QString &serializedData);
     void setEventDate(QString eventDate);
     void setEventLocation(QString eventLocation);
@@ -34,6 +34,7 @@ private:
     QPrinter *iprinter;
     QStringList headerinfo;
     QString eventName;
+    QString eventLogoName;
     QString currencySymbol;
     QString provisionSold;
     QString provisionNotSold;

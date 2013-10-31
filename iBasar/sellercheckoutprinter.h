@@ -48,7 +48,8 @@ public:
     void setUnSoldProvision(QString provision);
     void setCurrencySymbol(const QString &value);
 
-    void setPrintLogo(bool value);
+    void setPrintLogo(QString logoName);
+    void setEventOrganizer(QString eventOrganizer);
 
 signals:
 
@@ -73,6 +74,8 @@ private:
     QString soldProvision;
     QString unsoldProvision;
     QString currencySymbol;
+    QString logoName;
+    QString organizer;
     bool printLogo;
 
     QString addHtmlUnSoldSalesItemHeader();

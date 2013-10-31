@@ -58,6 +58,8 @@ private:
     QString unsoldProvision;
     QString currencySymbol;
     QString defaultEvent;
+    QString logoName;
+    QString organizer;
     QByteArray logo;
 
     QStringList findEvents(Databaseconnection *db);

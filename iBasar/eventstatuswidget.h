@@ -20,6 +20,7 @@
 #define EVENTSTATUSWIDGET_H
 
 #include <QWidget>
+#include <QFile>
 #include "databaseconnection.h"
 #include "eventrevenueprinter.h"
 
@@ -47,6 +48,7 @@ private:
     Databaseconnection *data;
     QString defaultEvent;
     QString currencysymbol;
+    QString logoName;
     float provision_sold;
     float provision_nsold;
 

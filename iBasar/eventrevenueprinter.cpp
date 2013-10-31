@@ -67,7 +67,7 @@ QString EventRevenuePrinter::addLogo()
 {
     QString temp;
 
-    temp = "<tr><td><table align=\"right\"><tbody><tr><td><img src=\"logo.png\" /></td></tr></tbody></table></td></tr>";
+    temp = "<tr><td><table align=\"right\"><tbody><tr><td><img src=\"" + eventLogoName + "\" /></td></tr></tbody></table></td></tr>";
 
     return temp;
 }
@@ -175,9 +175,12 @@ void EventRevenuePrinter::print(QString &serializedData)
 }
 
 
-void EventRevenuePrinter::setPrintLogo(bool value)
+void EventRevenuePrinter::setPrintLogo(QString logoName)
 {
-    printLogo = value;
+    if(!logoName.isEmpty()) {
+        printLogo = true;
+        eventLogoName = logoName;
+    }
 }
 
 

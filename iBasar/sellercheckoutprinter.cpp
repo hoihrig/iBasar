@@ -83,7 +83,7 @@ QString SellerCheckoutPrinter::addLogo()
 {
     QString temp;
 
-    temp = "<tr><td><table align=\"right\"><tbody><tr><td><img src=\"logo.png\" /></td></tr></tbody></table></td></tr>";
+    temp = "<tr><td><table align=\"right\"><tbody><tr><td><img src=\"" + logoName + "\" /></td></tr></tbody></table></td></tr>";
 
     return temp;
 }
@@ -170,7 +170,7 @@ QString SellerCheckoutPrinter::addHtmlDocumentFooter()
     temp = "</tbody></table></td></tr><tr><td><table border=\"0\" width=\"100%\">";
     temp += "<tbody><tr><td colspan=\"2\">" + tr("Vielen Dank und bis nächstes Jahr!") + "</td></tr>";
     temp += "<tr><td colspan=\"2\">&nbsp;</td></tr><tr>";
-    temp += "<td>" + tr("Ihr iBasar-Demo-Verein") + "</td>";
+    temp += "<td>" + organizer + "</td>";
     temp += "<td class=\"sehrklein\" align=\"right\">" + tr("Erstellt") + ": " + QDateTime::currentDateTime().toString() + "</td>";
     temp += "</tr></tbody></table></td></tr></tbody></table></body></html>";
 
@@ -288,9 +288,19 @@ void SellerCheckoutPrinter::print(QStringList &soldentries, QStringList &unsolde
 }
 
 
-void SellerCheckoutPrinter::setPrintLogo(bool value)
+void SellerCheckoutPrinter::setPrintLogo(QString logoName)
 {
-    printLogo = value;
+    if(!logoName.isEmpty())
+    {
+        printLogo = true;
+        this->logoName = logoName;
+    }
+}
+
+void SellerCheckoutPrinter::setEventOrganizer(QString eventOrganizer)
+{
+    if(!eventOrganizer.isEmpty())
+        organizer = eventOrganizer;
 }
 
 

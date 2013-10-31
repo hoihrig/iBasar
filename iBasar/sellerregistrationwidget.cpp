@@ -547,6 +547,10 @@ void SellerRegistrationWidget::saveTabletoDB()
 
         }
 
+        QMessageBox::information(this,tr("Seller Registration"), tr("Successfully saved Seller information with Seller ID: ") + QString::number(regseller->getID()));
+
     }
+
+    reset();
 
 }

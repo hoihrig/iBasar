@@ -76,6 +76,7 @@ void SellerRegistrationWidget::startNameSearch(QString name)
 
         regseller->setSurname(temp[0]);
         regseller->setName(temp[1]);
+        regseller->setEvent(ui->eventComboBox->currentText());
 
         regseller->findSeller(data);
 
@@ -279,12 +280,13 @@ void SellerRegistrationWidget::checkoutSeller()
 
     regseller->setName(ui->nameedit->text());
     regseller->setSurname(ui->surnameedit->text());
+    regseller->setEvent(ui->eventComboBox->currentText());
     regseller->findSeller(data);
 
     if (!regseller->isActive())
     {
+        // Allow to check out twice but notify the person doing it
         QMessageBox::critical(this,tr("Seller"),tr("This Seller has already checked out!"));
-        return;
     }
 
     salesItemList = regseller->getSalesItemIDs(data);

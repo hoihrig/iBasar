@@ -74,6 +74,7 @@ private:
     bool pdf;
     bool headerPresent;
     void changeEvent(QEvent *event);
+    bool itemExistsInCurrentEvent(QString itemnumber);
 };
 
 #endif // CHECKOUTWIDGET_H

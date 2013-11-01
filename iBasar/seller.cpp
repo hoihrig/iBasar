@@ -211,9 +211,10 @@ bool Seller::findSellerbyID(Databaseconnection *data)
 {
     QSqlQuery result;
     QString querycmd;
+    QString eventid;
 
     if (mID != 0) {
-        querycmd = "SELECT Vorname, Nachname FROM `Verkäufer` WHERE ID='" + QString::number(mID) + "'";
+        querycmd = "SELECT Vorname, Nachname, Veranstaltung FROM `Verkäufer` WHERE ID=" + QString::number(mID) + "";
     }
 
     data->query(querycmd,result);
@@ -225,6 +226,15 @@ bool Seller::findSellerbyID(Databaseconnection *data)
 
     mName = result.value("Vorname").toString();
     mSurname = result.value("Nachname").toString();
+    eventid = result.value("Veranstaltung").toString();
+
+    querycmd = "SELECT Name from `Veranstaltung` WHERE ID=" + eventid + ";";
+
+    data->query(querycmd,result);
+
+    if (result.next())
+        mEvent = result.value(0).toString();
+
 
     return findSeller(data);
 

@@ -94,7 +94,14 @@ void CheckoutWidget::checkout()
 void CheckoutWidget::itemNumberReturnPressed()
 {
     if(ui->itemnumbertextbox->text().size() == 12)
+    {
         processItem(ui->itemnumbertextbox->text());
+    }
+    else
+    {
+        QString prodnr = QString("%1").arg(ui->itemnumbertextbox->text(), 12, QChar('0')).toUpper();
+        processItem(prodnr);
+    }
 }
 
 void CheckoutWidget::getFocus()
@@ -127,9 +134,42 @@ void CheckoutWidget::itemNumberTextChanged(QString itemnumber)
         processItem(itemnumber);
 }
 
+bool CheckoutWidget::itemExistsInCurrentEvent(QString itemnumber)
+{
+    QSqlQuery result;
+    QString querycmd;
+    QString eventid;
+
+    querycmd = "SELECT ID from `Veranstaltung` WHERE Name='" + ui->eventComboBox->currentText() +"';";
+
+    data->query(querycmd,result);
+
+    if(result.next())
+        eventid = result.value(0).toString();
+    else
+        return false;
+
+
+    querycmd = "SELECT a.ID FROM `Verkäufer` a, `Artikel` b WHERE a.Veranstaltung=" + eventid + " AND a.ID=b.Verkäufer AND b.ID=" + itemnumber + ";";
+
+    data->query(querycmd,result);
+
+    if (result.next())
+        return true;
+    else
+        return false;
+
+}
+
 void CheckoutWidget::processItem(QString itemnumber)
 {
     SalesItem item;
+
+    if(!itemExistsInCurrentEvent(itemnumber))
+    {
+        QMessageBox::critical(this,tr("CheckoutWidget"), tr("This Item does not exist for the currently selected Event"));
+        return;
+    }
 
     if (item.findItem(data, itemnumber.toInt()))
     {

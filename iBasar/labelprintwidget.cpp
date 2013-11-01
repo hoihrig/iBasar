@@ -115,7 +115,8 @@ void LabelPrintWidget::printlabel()
     printseller.setSurname(ui->sellercombobox->currentText().split(',').at(0).trimmed());
     printseller.setName(ui->sellercombobox->currentText().split(',').at(1).trimmed());
 
-    // Fill all properties of seller
+    // Fill all properties of seller for this event
+    printseller.setEvent(ui->eventcombobox->currentText());
     printseller.findSeller(db);
 
     // The Labelprinter needs all that information in serialized form

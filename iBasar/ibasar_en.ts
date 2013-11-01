@@ -83,6 +83,16 @@
         <source>Could not validate all input fields. Please make sure that all fields are filled.</source>
         <translation>Could not validate all input fields. Please make sure that all fields are filled.</translation>
     </message>
+    <message>
+        <location filename="checkoutwidget.cpp" line="170"/>
+        <source>CheckoutWidget</source>
+        <translation>CheckoutWidget</translation>
+    </message>
+    <message>
+        <location filename="checkoutwidget.cpp" line="170"/>
+        <source>This Item does not exist for the currently selected Event</source>
+        <translation>This Item does not exist for the currently selected Event</translation>
+    </message>
 </context>
 <context>
     <name>ComboBoxItemDelegate</name>
@@ -743,7 +753,7 @@
     </message>
     <message>
         <location filename="sellerregistrationwidget.ui" line="22"/>
-        <location filename="sellerregistrationwidget.cpp" line="106"/>
+        <location filename="sellerregistrationwidget.cpp" line="107"/>
         <source>Verkäufer</source>
         <translation>Seller</translation>
     </message>
@@ -838,49 +848,49 @@
         <translation>Save</translation>
     </message>
     <message>
-        <location filename="sellerregistrationwidget.cpp" line="188"/>
+        <location filename="sellerregistrationwidget.cpp" line="189"/>
         <source>Verkäufer: </source>
         <translation>Seller: </translation>
     </message>
     <message>
-        <location filename="sellerregistrationwidget.cpp" line="213"/>
-        <location filename="sellerregistrationwidget.cpp" line="223"/>
-        <location filename="sellerregistrationwidget.cpp" line="431"/>
-        <location filename="sellerregistrationwidget.cpp" line="545"/>
-        <location filename="sellerregistrationwidget.cpp" line="556"/>
+        <location filename="sellerregistrationwidget.cpp" line="214"/>
+        <location filename="sellerregistrationwidget.cpp" line="224"/>
+        <location filename="sellerregistrationwidget.cpp" line="433"/>
+        <location filename="sellerregistrationwidget.cpp" line="547"/>
+        <location filename="sellerregistrationwidget.cpp" line="558"/>
         <source>Seller Registration</source>
         <translation>Seller Registration</translation>
     </message>
     <message>
-        <location filename="sellerregistrationwidget.cpp" line="213"/>
-        <location filename="sellerregistrationwidget.cpp" line="274"/>
+        <location filename="sellerregistrationwidget.cpp" line="214"/>
+        <location filename="sellerregistrationwidget.cpp" line="275"/>
         <source>To Search you have to specify Name and Surname of the Seller. Cannot search Seller!</source>
         <translation>To Search you have to specify Name and Surname of the Seller. Cannot search Seller!</translation>
     </message>
     <message>
-        <location filename="sellerregistrationwidget.cpp" line="223"/>
+        <location filename="sellerregistrationwidget.cpp" line="224"/>
         <source>Could not find a Seller with that Name!</source>
         <translation>Could not find a Seller with that Name!</translation>
     </message>
     <message>
-        <location filename="sellerregistrationwidget.cpp" line="274"/>
-        <location filename="sellerregistrationwidget.cpp" line="286"/>
-        <location filename="sellerregistrationwidget.cpp" line="294"/>
+        <location filename="sellerregistrationwidget.cpp" line="275"/>
+        <location filename="sellerregistrationwidget.cpp" line="289"/>
+        <location filename="sellerregistrationwidget.cpp" line="296"/>
         <source>Seller</source>
         <translation>Seller</translation>
     </message>
     <message>
-        <location filename="sellerregistrationwidget.cpp" line="286"/>
+        <location filename="sellerregistrationwidget.cpp" line="289"/>
         <source>This Seller has already checked out!</source>
         <translation>This Seller has already checked out!</translation>
     </message>
     <message>
-        <location filename="sellerregistrationwidget.cpp" line="294"/>
+        <location filename="sellerregistrationwidget.cpp" line="296"/>
         <source>This Seller has no items!</source>
         <translation>This Seller has no items!</translation>
     </message>
     <message>
-        <location filename="sellerregistrationwidget.cpp" line="556"/>
+        <location filename="sellerregistrationwidget.cpp" line="558"/>
         <source>Successfully saved Seller information with Seller ID: </source>
         <translation>Successfully saved Seller information with Seller ID:</translation>
     </message>
@@ -889,17 +899,17 @@
         <translation type="obsolete">This Seller has either no items or has already checked out!</translation>
     </message>
     <message>
-        <location filename="sellerregistrationwidget.cpp" line="431"/>
+        <location filename="sellerregistrationwidget.cpp" line="433"/>
         <source>One of the required Fields to create a Seller is missing. Cannot create Seller!</source>
         <translation>One of the required fields to create a Seller is missing. Cannot create Seller!</translation>
     </message>
     <message>
-        <location filename="sellerregistrationwidget.cpp" line="538"/>
+        <location filename="sellerregistrationwidget.cpp" line="540"/>
         <source>Ja</source>
         <translation>Yes</translation>
     </message>
     <message>
-        <location filename="sellerregistrationwidget.cpp" line="545"/>
+        <location filename="sellerregistrationwidget.cpp" line="547"/>
         <source>Could not save Dataset to Database, because of missing field!</source>
         <translation>Could not save Dataset to Database, because of missing field!</translation>
     </message>

@@ -146,53 +146,59 @@
         <translation>Durchsuchen</translation>
     </message>
     <message>
-        <location filename="eventmgrwidget.ui" line="107"/>
+        <location filename="eventmgrwidget.ui" line="101"/>
+        <source>Veranstalter</source>
+        <translation>Veranstalter</translation>
+    </message>
+    <message>
+        <location filename="eventmgrwidget.ui" line="114"/>
         <source>Veranstaltungsname</source>
         <translation>Veranstaltungsname</translation>
     </message>
     <message>
-        <location filename="eventmgrwidget.ui" line="120"/>
+        <location filename="eventmgrwidget.ui" line="127"/>
         <source>Veranstaltungsort</source>
         <translation>Veranstaltungsort</translation>
     </message>
     <message>
-        <location filename="eventmgrwidget.ui" line="127"/>
+        <location filename="eventmgrwidget.ui" line="134"/>
         <source>Datum</source>
         <translation>Datum</translation>
     </message>
     <message>
-        <location filename="eventmgrwidget.ui" line="134"/>
+        <location filename="eventmgrwidget.ui" line="141"/>
         <source>Währungssymbol</source>
         <translation>Währungssymbol</translation>
     </message>
     <message>
-        <location filename="eventmgrwidget.ui" line="141"/>
+        <location filename="eventmgrwidget.ui" line="148"/>
         <source>Provision Verkauft (%)</source>
         <translation>Provision Verkauft (%)</translation>
     </message>
     <message>
-        <location filename="eventmgrwidget.ui" line="148"/>
+        <location filename="eventmgrwidget.ui" line="155"/>
         <source>Provision Nicht Verkauft (€)</source>
         <translation>Provision Nicht Verkauft (€)</translation>
     </message>
     <message>
-        <location filename="eventmgrwidget.ui" line="185"/>
+        <location filename="eventmgrwidget.ui" line="192"/>
         <source>€</source>
         <translation>€</translation>
     </message>
     <message>
-        <location filename="eventmgrwidget.ui" line="195"/>
+        <location filename="eventmgrwidget.ui" line="202"/>
         <source>5</source>
         <translation>5</translation>
     </message>
     <message>
-        <location filename="eventmgrwidget.ui" line="202"/>
+        <location filename="eventmgrwidget.ui" line="209"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
         <location filename="eventmgrwidget.cpp" line="51"/>
         <location filename="eventmgrwidget.cpp" line="57"/>
+        <location filename="eventmgrwidget.cpp" line="63"/>
         <source>iBasar Event Management</source>
         <translation>iBasar Verwaltungsmanagement</translation>
     </message>
@@ -203,16 +209,21 @@
     </message>
     <message>
         <location filename="eventmgrwidget.cpp" line="57"/>
+        <source>No Organizer name given. Cannot create Event!</source>
+        <translation>Kein Veranstalter angegeben. Veranstaltung kann nicht erstellt werden!</translation>
+    </message>
+    <message>
+        <location filename="eventmgrwidget.cpp" line="63"/>
         <source>No Connection to Database! Cannot create Event!</source>
         <translation>Keine Datenbankverbindung vorhanden. Die Veranstaltung kann nicht angelegt werden!</translation>
     </message>
     <message>
-        <location filename="eventmgrwidget.cpp" line="128"/>
+        <location filename="eventmgrwidget.cpp" line="138"/>
         <source>Open Image</source>
         <translation>Bild öffnen</translation>
     </message>
     <message>
-        <location filename="eventmgrwidget.cpp" line="128"/>
+        <location filename="eventmgrwidget.cpp" line="138"/>
         <source>Image Files (*.png *.jpg *.bmp)</source>
         <translation>Bildformat(*.png *.jpg *.bmp)</translation>
     </message>
@@ -689,9 +700,8 @@
         <translation>Vielen Dank und bis nächstes Jahr!</translation>
     </message>
     <message>
-        <location filename="sellercheckoutprinter.cpp" line="173"/>
         <source>Ihr iBasar-Demo-Verein</source>
-        <translation>Ihr iBasar-Demo-Verein</translation>
+        <translation type="obsolete">Ihr iBasar-Demo-Verein</translation>
     </message>
     <message>
         <location filename="sellercheckoutprinter.cpp" line="174"/>
@@ -835,8 +845,9 @@
     <message>
         <location filename="sellerregistrationwidget.cpp" line="213"/>
         <location filename="sellerregistrationwidget.cpp" line="223"/>
-        <location filename="sellerregistrationwidget.cpp" line="428"/>
-        <location filename="sellerregistrationwidget.cpp" line="542"/>
+        <location filename="sellerregistrationwidget.cpp" line="431"/>
+        <location filename="sellerregistrationwidget.cpp" line="545"/>
+        <location filename="sellerregistrationwidget.cpp" line="556"/>
         <source>Seller Registration</source>
         <translation>Verkäufer Registrierung</translation>
     </message>
@@ -869,21 +880,26 @@
         <translation>Dieser Verkäufer besitzt keine Gegenstände!</translation>
     </message>
     <message>
+        <location filename="sellerregistrationwidget.cpp" line="556"/>
+        <source>Successfully saved Seller information with Seller ID: </source>
+        <translation>Verkäufer wurde erfolgreich gespeichert mit VerkäuferID:</translation>
+    </message>
+    <message>
         <source>This Seller has either no items or has already checked out!</source>
         <translation type="obsolete">Dieser Verkäufer hat keine Gegenstände angemeldet oder hat schon ausgechecked!</translation>
     </message>
     <message>
-        <location filename="sellerregistrationwidget.cpp" line="428"/>
+        <location filename="sellerregistrationwidget.cpp" line="431"/>
         <source>One of the required Fields to create a Seller is missing. Cannot create Seller!</source>
         <translation>Eines der benötigten Felder ist leer. Verkäufer kann nicht angelegt werden!</translation>
     </message>
     <message>
-        <location filename="sellerregistrationwidget.cpp" line="535"/>
+        <location filename="sellerregistrationwidget.cpp" line="538"/>
         <source>Ja</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="sellerregistrationwidget.cpp" line="542"/>
+        <location filename="sellerregistrationwidget.cpp" line="545"/>
         <source>Could not save Dataset to Database, because of missing field!</source>
         <translation>Datensaty konnte nicht in Datenbank gespeichert werden, wegen eines leeren Feldes!</translation>
     </message>

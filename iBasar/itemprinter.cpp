@@ -159,7 +159,7 @@ int ItemPrinter::printpages(QList<QStringList> pages)
 
             // Set Font for the itemtext and print itemtext
             ipainter->setFont(serifFont);
-            QRect textRect = ipainter->boundingRect(posx,posy + rely,width,20,Qt::TextWordWrap, entrylist[0]);
+            QRect textRect = ipainter->boundingRect(posx,posy + rely,width/3,20,Qt::TextWordWrap, entrylist[0]);
             ipainter->drawText(textRect,Qt::TextWordWrap, entrylist[0]);
             rely += (2*lineheight); // Advance Relative-y before printing the barcode
 
@@ -172,7 +172,7 @@ int ItemPrinter::printpages(QList<QStringList> pages)
             rely += barcodeheigth;
 
             // Print the product number in front of the price
-            textRect = ipainter->boundingRect(posx,(posy + rely),width,20,Qt::AlignLeft,prodnr);
+            textRect = ipainter->boundingRect(posx,(posy + rely),width/3,20,Qt::AlignLeft,prodnr);
             ipainter->drawText(textRect,Qt::AlignLeft,prodnr);
             rely += lineheight;
 

@@ -92,6 +92,8 @@ void SellerRegistrationWidget::setDefaultEvent(QString name)
     if (!name.isEmpty())
     {
         defaultEvent = name;
+
+        reset();
     }
 }
 

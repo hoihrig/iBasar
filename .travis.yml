@@ -9,6 +9,7 @@ script:
 - qmake -project
 - qmake iBazar.pro
 - make
+- ls -la release/
 deploy:
   provider: releases
   api_key:

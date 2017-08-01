@@ -14,6 +14,6 @@ deploy:
   skip_cleanup: true
   api_key:
     secure: Ns2VU3lFye6+mXSI+QmXtUj+gbPM5vZhdQTwROLbV0X6/DQsR73C2geDDIPul3JIEU2+46j6aCqhoQ0hPJEl+R63kGEVnbwxrc5klUuoCvrbozyq+od0GNDfvBddIv1ikY2LS1SPyNvt8KW68M0PXkc/dnW3DyLUMrfHerhWvVeoUwde/s0xeTTN9Yc0qZ4Cr0+45DTuyXv2e/FR32Ql8atDb/720NBztUgxRUJFIpazAhfC89ftVSQIaMwh4kTAjHeMMSMGmhV2Fgc6+q44I5l/dG/tR4wlSaH9XNoKN+h1BCKMCTP1iojJ7PXxTCFO0Vr6hCxYMjj7AuQCHgfkm/aTXGf4kA0LICNMhBfJOPoWHN6DYcB0DKo3iHOgOdxa+/PQ8wpbG9Q+Ww1VPztYM16768lIMZg7vishLR5+Yq/6fiFLjyosTLX2dwxMYLrheATI/0SCMtRdEDTgp5wBhnnIMVKGd7+MjapqHjxi4QrcQOnwKwSBvwvEXkHFllclMGPL4vocLltHQyfF8ezDLtHZwceJnAv1r8XAlmiuCn8Lw+pngvQRL5dSOqagUgRewkAooK7YO3kHfiIza6y7bnY1B2IZMsQns0LoUty8IWrtY1BNSKz98r+Zu59BAh2dyXDHzgFkHGUnW2kjYZQMDjQ43WpXe9c5nbMJperEsvs=
-  file: iBasar/release/iBazar
+  file: release/iBazar
   on:
     repo: hoihrig/iBasar
